@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aerobytes // security research & CTF writeups</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated background effect -->
+    <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="bracket">[</span>
+                <span class="logo-text">aerobytes</span>
+                <span class="bracket">]</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">about</a>
+                <a href="#work" class="nav-link">work</a>
+                <a href="#writeups" class="nav-link">writeups</a>
+                <a href="#contact" class="nav-link">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-banner">
+            <img src="aerobytesbanner.png" alt="aerobytes" class="banner-img">
+        </div>
+        <div class="hero-content">
+            <p class="hero-subtitle">
+                <span class="typing-text">security research // CTF writeups // threat intelligence</span>
+                <span class="cursor">_</span>
+            </p>
+            <div class="hero-meta">
+                <span class="terminal-prompt">root@aerobytes:~$</span>
+                <span class="command">cat about.txt</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">01.</span> 
+                <span class="section-text">about</span>
+            </h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="lead">Hey, I'm <strong>aeronique</strong> – a security researcher transitioning from intelligence work to cybersecurity.</p>
+                    <p>Currently serving as a Geospatial Intelligence Analyst with the U.S. Army Reserve (TS/SCI), I lead strategic and operational-level targeting while managing intelligence operations. I'm leveraging my analytical background and technical skills to break into offensive security and threat research.</p>
+                    <p>I'm a SANS Cyber Academy Scholar working toward GSEC certification, with hands-on experience in CTF competitions, purple team operations, and security research. My homelab runs Proxmox, Wazuh SIEM, Active Directory, and MITRE Caldera for continuous learning and experimentation.</p>
+                    <p class="highlight">Competitive achievements: 2nd place overall in 2025 Target Cyber Defense Challenge, 5th place in 2025 SANS Holiday Hack Challenge.</p>
+                </div>
+                <div class="skills-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">skills.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">$</span> cat offensive_security.txt</p>
+                        <ul class="skill-list">
+                            <li>→ Penetration Testing</li>
+                            <li>→ Web Application Security</li>
+                            <li>→ Binary Reverse Engineering</li>
+                            <li>→ Exploit Development</li>
+                            <li>→ CTF Competitions</li>
+                        </ul>
+                        <p><span class="prompt">$</span> cat defense_&_analysis.txt</p>
+                        <ul class="skill-list">
+                            <li>→ SIEM (Wazuh, Splunk)</li>
+                            <li>→ Threat Intelligence</li>
+                            <li>→ Purple Team Operations</li>
+                            <li>→ Malware Analysis</li>
+                            <li>→ Strategic Targeting (JIPOE)</li>
+                        </ul>
+                        <p><span class="prompt">$</span> cat tools.txt</p>
+                        <ul class="skill-list">
+                            <li>→ Ghidra, IDA, Burp Suite</li>
+                            <li>→ Python, Bash, PowerShell</li>
+                            <li>→ Proxmox, Docker, Active Directory</li>
+                            <li>→ MITRE ATT&CK, MITRE Caldera</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work/Projects Section -->
+    <section id="work" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">02.</span> 
+                <span class="section-text">featured work</span>
+            </h2>
+            <div class="work-grid">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">COMPETITION</span>
+                        <span class="card-date">2025</span>
+                    </div>
+                    <h3 class="card-title">Target x WiCyS Cyber Defense Challenge</h3>
+                    <p class="card-description">2nd place overall finish in national cyber defense competition. Successfully defended infrastructure against red team operations while maintaining critical services.</p>
+                    <div class="card-tags">
+                        <span class="tag">Blue Team</span>
+                        <span class="tag">Incident Response</span>
+                        <span class="tag">Defense</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">CTF</span>
+                        <span class="card-date">2025</span>
+                    </div>
+                    <h3 class="card-title">SANS Holiday Hack Challenge</h3>
+                    <p class="card-description">5th place finish in annual SANS Holiday Hack Challenge. Solved complex challenges involving reverse engineering, web exploitation, and cryptographic analysis.</p>
+                    <div class="card-tags">
+                        <span class="tag">Reverse Engineering</span>
+                        <span class="tag">Web Exploitation</span>
+                        <span class="tag">Crypto</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">HOMELAB</span>
+                        <span class="card-date">ONGOING</span>
+                    </div>
+                    <h3 class="card-title">Purple Team Infrastructure</h3>
+                    <p class="card-description">Built comprehensive homelab running Proxmox with Wazuh SIEM, Active Directory domain, and MITRE Caldera for adversary emulation and detection engineering.</p>
+                    <div class="card-tags">
+                        <span class="tag">Purple Team</span>
+                        <span class="tag">SIEM</span>
+                        <span class="tag">Detection Engineering</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">VOLUNTEER</span>
+                        <span class="card-date">ONGOING</span>
+                    </div>
+                    <h3 class="card-title">NGA GEMINI Advanced Mapper</h3>
+                    <p class="card-description">Advanced mapper for National Geospatial-Intelligence Agency's GEMINI program, contributing to critical mapping initiatives supporting national security operations.</p>
+                    <div class="card-tags">
+                        <span class="tag">GEOINT</span>
+                        <span class="tag">Intelligence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writeups Section -->
+    <section id="writeups" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">03.</span> 
+                <span class="section-text">writeups & research</span>
+            </h2>
+            <div class="writeups-list">
+                <div class="writeup-item">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">DEC 2025</span>
+                        <span class="writeup-category">CTF</span>
+                    </div>
+                    <h3 class="writeup-title">SANS Holiday Hack Challenge 2025 - Complete Walkthrough</h3>
+                    <p class="writeup-excerpt">Deep dive into solving the 2025 SANS Holiday Hack Challenge, including router exploitation (CVE-2023-1389), reverse engineering with Ghidra, and advanced web application attacks.</p>
+                    <a href="#" class="writeup-link">Read more →</a>
+                </div>
+
+                <div class="writeup-item">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">NOV 2025</span>
+                        <span class="writeup-category">COMPETITION</span>
+                    </div>
+                    <h3 class="writeup-title">Target Cyber Defense Challenge - Blue Team Retrospective</h3>
+                    <p class="writeup-excerpt">Lessons learned from placing 2nd in a national cyber defense competition. Team coordination, incident response under pressure, and defensive strategies that worked.</p>
+                    <a href="#" class="writeup-link">Read more →</a>
+                </div>
+
+                <div class="writeup-item">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">COMING SOON</span>
+                        <span class="writeup-category">RESEARCH</span>
+                    </div>
+                    <h3 class="writeup-title">Building a Purple Team Lab with Proxmox and Caldera</h3>
+                    <p class="writeup-excerpt">Complete guide to setting up a purple team lab environment for adversary emulation and detection engineering using MITRE Caldera, Wazuh SIEM, and Active Directory.</p>
+                    <a href="#" class="writeup-link">Coming soon →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">04.</span> 
+                <span class="section-text">get in touch</span>
+            </h2>
+            <div class="contact-content">
+                <p class="contact-text">Currently open to cybersecurity opportunities, collaboration on security research, and speaking engagements. Presenting at WiCyS 2026 Conference.</p>
+                <div class="contact-links">
+                    <a href="https://github.com/Aeronique" target="_blank" class="contact-button">
+                        <span class="button-icon">→</span>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-button">
+                        <span class="button-icon">→</span>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:contact@aerobytes.io" class="contact-button">
+                        <span class="button-icon">→</span>
+                        Email
+                    </a>
+                </div>
+                <div class="pgp-section">
+                    <p class="pgp-text">
+                        <span class="terminal-prompt">$</span> 
+                        Prefer encrypted communication? 
+                        <a href="#" class="pgp-link">PGP key</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="terminal-prompt">root@aerobytes:~$</span> 
+                echo "Built with care. No frameworks, just code."
+            </p>
+            <p class="footer-copy">© 2025 aerobytes. All rights reserved.</p>
+            <p class="footer-license">
+                Code is MIT licensed. Content and achievements are not. See <a href="LICENSE.txt" class="license-link">LICENSE.txt</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
