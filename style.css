@@ -127,6 +127,11 @@ body {
     text-shadow: 0 0 20px var(--accent-glow);
 }
 
+.logo-text {
+    font-family: var(--font-display);
+    font-weight: 900;
+}
+
 .bracket {
     color: var(--cyber-magenta);
     font-size: 1.8rem;
@@ -176,8 +181,8 @@ body {
 }
 
 .hero-banner {
-    max-width: 950px;
-    width: 95%;
+    max-width: 850px;
+    width: 90%;
     z-index: 10;
     animation: fadeInDown 1s ease-out;
 }
@@ -186,7 +191,6 @@ body {
     width: 100%;
     height: auto;
     filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.4));
-    transform: scaleX(1.15) scaleY(0.85);
 }
 
 @keyframes fadeInDown {
