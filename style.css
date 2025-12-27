@@ -376,6 +376,11 @@ strong {
     color: var(--cyber-purple);
 }
 
+.name-highlight {
+    color: var(--cyber-magenta);
+    font-weight: 700;
+}
+
 /* ===================================
    TERMINAL-STYLE BOXES
    =================================== */
