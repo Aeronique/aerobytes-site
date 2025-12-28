@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<section class="section">
+    <div class="container">
+        <article class="writeup-full">
+            <header class="writeup-header">
+                <div class="writeup-meta">
+                    <span class="writeup-date">{{ page.date | date: "%B %Y" | upcase }}</span>
+                    <span class="writeup-category">{{ page.category }}</span>
+                </div>
+                <h1 class="section-title">
+                    <span class="section-text">{{ page.title }}</span>
+                </h1>
+            </header>
+            
+            <div class="writeup-content">
+                {{ content }}
+            </div>
+            
+            {% if page.tags %}
+            <div class="card-tags">
+                {% for tag in page.tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+    </div>
+</section>
