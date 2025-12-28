@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}aerobytes</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="bracket">[</span>
+                <span class="logo-text">aerobytes</span>
+                <span class="bracket">]</span>
+            </a>
+            <div class="nav-links">
+                <a href="/#about" class="nav-link">about</a>
+                <a href="/#work" class="nav-link">work</a>
+                <a href="/writeups" class="nav-link">writeups</a>
+                <a href="/#contact" class="nav-link">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+    {{ content }}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="terminal-prompt">root@aerobytes:~$</span> 
+                echo "Built with care. No frameworks, just code."
+            </p>
+            <p class="footer-copy">© 2025 aerobytes. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+</body>
+</html>
