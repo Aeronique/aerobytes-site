@@ -1,0 +1,14 @@
+# robots.txt for aerobytes.io
+
+User-agent: *
+Allow: /
+
+# Prevent indexing of resume (extra protection layer)
+Disallow: /resume
+Disallow: /assets/resume/
+
+# Allow main content
+Allow: /writeups
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/images/
