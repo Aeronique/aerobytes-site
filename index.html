@@ -1,449 +1,433 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aerobytes // security research & CTF writeups</title>
-    <link rel="stylesheet" href="style.css?v=3">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Animated background effect -->
-    <div class="cyber-grid"></div>
-    <div class="scan-line"></div>
-    
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="bracket">[</span>
-                <span class="logo-text">aerobytes</span>
-                <span class="bracket">]</span>
-            </a>
-            <div class="nav-links">
-                <a href="#about" class="nav-link">about</a>
-                <a href="#skills" class="nav-link">skills</a>
-                <a href="#certifications" class="nav-link">certifications</a>
-                <a href="#experience" class="nav-link">experience</a>
-                <a href="#projects" class="nav-link">projects</a>
-                <a href="#education" class="nav-link">education</a>
-                <a href="#writeups" class="nav-link">writeups</a>
-                <a href="#contact" class="nav-link">contact</a>
+---
+layout: default
+title: Home
+---
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-banner">
+        <img src="{{ '/assets/images/aerobytesbanner.png' | relative_url }}" alt="aerobytes" class="banner-img">
+    </div>
+    <div class="hero-content">
+        <p class="hero-subtitle">
+            <span class="typing-text">security research // CTF writeups // threat intelligence</span>
+            <span class="cursor">_</span>
+        </p>
+        <div class="hero-meta">
+            <span class="terminal-prompt">root@aerobytes:~$</span>
+            <span class="command">cat about.txt</span>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">01.</span> 
+            <span class="section-text">about</span>
+        </h2>
+        <div class="about-content">
+           <p class="lead">I'm <span class="name-highlight">Elle "Aeronique" Duell</span>, transitioning from military intelligence to cybersecurity with a focus on defensive security and threat intelligence.</p>
+
+           <p>I serve in the Army Reserve in intelligence, where I've spent years analyzing patterns, tracking adversaries, and turning complex data into actionable insights. Those same skills translate directly to what I'm passionate about now: blue team operations, incident response, and threat hunting.</p>
+
+           <p>As a SANS Cyber Academy Scholar, I've earned GSEC and GFACT certifications and I'm currently working toward GCIH (expected March 2026). I've put those skills to the test in competition, placing 2nd in the 2025 Target Cyber Defense Challenge and finishing 5th on the leaderboard in the SANS Holiday Hack Challenge.</p>
+
+           <p>Outside of competitions, I'm building practical experience through my homelab, where I run Proxmox with Wazuh SIEM, Active Directory, and MITRE Caldera. It's where I experiment with purple team operations and detection engineering, constantly learning and staying sharp.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Skills Section -->
+<section id="skills" class="section section-dark">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">02.</span> 
+            <span class="section-text">technical skills</span>
+        </h2>
+        <div class="skills-terminal">
+            <div class="terminal-header">
+                <span class="terminal-title">skills.sh</span>
+            </div>
+            <div class="terminal-body">
+                <p><span class="prompt">$</span> cat defensive_security.txt</p>
+                <ul class="skill-list">
+                    <li>→ Security monitoring, log analysis</li>
+                    <li>→ SIEM deployment (Wazuh)</li>
+                    <li>→ IDS/IPS configuration (Suricata)</li>
+                    <li>→ Vulnerability assessment (Nessus)</li>
+                    <li>→ Network traffic analysis, threat hunting</li>
+                </ul>
+                <p><span class="prompt">$</span> cat threat_intelligence.txt</p>
+                <ul class="skill-list">
+                    <li>→ Adversary TTP identification</li>
+                    <li>→ Honeypot deployment and analysis (T-Pot)</li>
+                    <li>→ IOC correlation, threat landscape research</li>
+                    <li>→ Open-source intelligence gathering</li>
+                </ul>
+                <p><span class="prompt">$</span> cat reverse_engineering.txt</p>
+                <ul class="skill-list">
+                    <li>→ Binary analysis, malware behavior analysis</li>
+                    <li>→ Assembly interpretation</li>
+                    <li>→ DNS exfiltration techniques</li>
+                </ul>
+                <p><span class="prompt">$</span> cat infrastructure_tools.txt</p>
+                <ul class="skill-list">
+                    <li>→ Proxmox, VMware, Docker</li>
+                    <li>→ Active Directory, MITRE Caldera, Metasploit</li>
+                    <li>→ Ghidra, Burp Suite</li>
+                    <li>→ Python scripting (basic), bash</li>
+                </ul>
+                <p><span class="prompt">$</span> cat operating_systems.txt</p>
+                <ul class="skill-list">
+                    <li>→ Windows 10/11, Linux (Kali, Ubuntu)</li>
+                </ul>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-banner">
-            <img src="aerobytesbanner.png" alt="aerobytes" class="banner-img">
-        </div>
-        <div class="hero-content">
-            <p class="hero-subtitle">
-                <span class="typing-text">security research // CTF writeups // threat intelligence</span>
-                <span class="cursor">_</span>
-            </p>
-            <div class="hero-meta">
-                <span class="terminal-prompt">root@aerobytes:~$</span>
-                <span class="command">cat about.txt</span>
+<!-- Certifications Section -->
+<section id="certifications" class="section">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">03.</span> 
+            <span class="section-text">certifications & training</span>
+        </h2>
+        <div class="cert-terminal">
+            <div class="terminal-header">
+                <span class="terminal-title">certifications.sh</span>
+            </div>
+            <div class="terminal-body">
+                <p><span class="prompt">$</span> cat active_certifications.txt</p>
+                <ul class="skill-list">
+                    <li>→ SANS Cyber Academy Scholar</li>
+                    <li>→ GIAC Security Essentials (GSEC) | December 2025</li>
+                    <li>→ GIAC Foundational Cybersecurity Technologies (GFACT) | October 2025</li>
+                    <li>→ ISC2 Certified in Cybersecurity (CC) | June 2025</li>
+                    <li>→ Google Cybersecurity Professional Certificate | 2025</li>
+                    <li>→ Google IT Support Professional Certificate | 2025</li>
+                    <li>→ Google AI Essentials | 2025</li>
+                </ul>
+                <p><span class="prompt">$</span> cat in_progress.txt</p>
+                <ul class="skill-list">
+                    <li>→ GIAC Certified Incident Handler (GCIH) | Expected March 2026</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">01.</span> 
-                <span class="section-text">about</span>
-            </h2>
-            <div class="about-content">
-               <p class="lead">I'm <span class="name-highlight">Elle "Aeronique" Duell</span>, transitioning from military intelligence to cybersecurity with a focus on defensive security and threat intelligence.</p>
-    
-               <p>I serve in the Army Reserve in intelligence, where I've spent years analyzing patterns, tracking adversaries, and turning complex data into actionable insights. Those same skills translate directly to what I'm passionate about now: blue team operations, incident response, and threat hunting.</p>
-    
-               <p>As a SANS Cyber Academy Scholar, I've earned GSEC and GFACT certifications and I'm currently working toward GCIH (expected March 2026). I've put those skills to the test in competition, placing 2nd in the 2025 Target Cyber Defense Challenge and finishing 5th on the leaderboard in the SANS Holiday Hack Challenge.</p>
-    
-               <p>Outside of competitions, I'm building practical experience through my homelab, where I run Proxmox with Wazuh SIEM, Active Directory, and MITRE Caldera. It's where I experiment with purple team operations and detection engineering, constantly learning and staying sharp.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Skills Section -->
-    <section id="skills" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">02.</span> 
-                <span class="section-text">technical skills</span>
-            </h2>
-            <div class="skills-terminal">
-                <div class="terminal-header">
-                    <span class="terminal-title">skills.sh</span>
-                </div>
-                <div class="terminal-body">
-                    <p><span class="prompt">$</span> cat defensive_security.txt</p>
-                    <ul class="skill-list">
-                        <li>→ Security monitoring, log analysis</li>
-                        <li>→ SIEM deployment (Wazuh)</li>
-                        <li>→ IDS/IPS configuration (Suricata)</li>
-                        <li>→ Vulnerability assessment (Nessus)</li>
-                        <li>→ Network traffic analysis, threat hunting</li>
-                    </ul>
-                    <p><span class="prompt">$</span> cat threat_intelligence.txt</p>
-                    <ul class="skill-list">
-                        <li>→ Adversary TTP identification</li>
-                        <li>→ Honeypot deployment and analysis (T-Pot)</li>
-                        <li>→ IOC correlation, threat landscape research</li>
-                        <li>→ Open-source intelligence gathering</li>
-                    </ul>
-                    <p><span class="prompt">$</span> cat reverse_engineering.txt</p>
-                    <ul class="skill-list">
-                        <li>→ Binary analysis, malware behavior analysis</li>
-                        <li>→ Assembly interpretation</li>
-                        <li>→ DNS exfiltration techniques</li>
-                    </ul>
-                    <p><span class="prompt">$</span> cat infrastructure_tools.txt</p>
-                    <ul class="skill-list">
-                        <li>→ Proxmox, VMware, Docker</li>
-                        <li>→ Active Directory, MITRE Caldera, Metasploit</li>
-                        <li>→ Ghidra, Burp Suite</li>
-                        <li>→ Python scripting (basic), bash</li>
-                    </ul>
-                    <p><span class="prompt">$</span> cat operating_systems.txt</p>
-                    <ul class="skill-list">
-                        <li>→ Windows 10/11, Linux (Kali, Ubuntu)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="section">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">03.</span> 
-                <span class="section-text">certifications & training</span>
-            </h2>
-            <div class="cert-terminal">
-                <div class="terminal-header">
-                    <span class="terminal-title">certifications.sh</span>
-                </div>
-                <div class="terminal-body">
-                    <p><span class="prompt">$</span> cat active_certifications.txt</p>
-                    <ul class="skill-list">
-                        <li>→ SANS Cyber Academy Scholar</li>
-                        <li>→ GIAC Security Essentials (GSEC) | December 2025</li>
-                        <li>→ GIAC Foundational Cybersecurity Technologies (GFACT) | October 2025</li>
-                        <li>→ ISC2 Certified in Cybersecurity (CC) | June 2025</li>
-                        <li>→ Google Cybersecurity Professional Certificate | 2025</li>
-                        <li>→ Google IT Support Professional Certificate | 2025</li>
-                        <li>→ Google AI Essentials | 2025</li>
-                    </ul>
-                    <p><span class="prompt">$</span> cat in_progress.txt</p>
-                    <ul class="skill-list">
-                        <li>→ GIAC Certified Incident Handler (GCIH) | Expected March 2026</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">04.</span> 
-                <span class="section-text">professional experience</span>
-            </h2>
-            <div class="experience-list">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">[REDACTED] Intelligence Analyst</h3>
-                        <span class="experience-date">June 2018 - Present</span>
+<!-- Experience Section -->
+<section id="experience" class="section section-dark">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">04.</span> 
+            <span class="section-text">professional experience</span>
+        </h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Geospatial Intelligence Analyst</h3>
+                        <p class="experience-company">U.S. Army Reserve | TS/SCI Clearance</p>
                     </div>
-                    <p class="experience-org">U.S. Army Reserve | Norfolk, VA</p>
-                    <ul class="experience-duties">
-                        <li>→ Conduct [REDACTED] and [REDACTED] level analysis for [REDACTED] operations</li>
-                        <li>→ Lead team of [REDACTED] personnel coordinating intelligence production</li>
-                        <li>→ Author detailed intelligence reports requiring clear technical writing and complex information synthesis</li>
-                        <li>→ Apply pattern recognition and anomaly detection techniques directly transferable to network traffic analysis and threat hunting</li>
-                        <li>→ Conduct multi-source data correlation using analytical methods similar to SIEM log analysis</li>
-                    </ul>
+                    <span class="experience-date">June 2018 - Present</span>
                 </div>
+                <ul class="experience-responsibilities">
+                    <li>Serve as Joint Intelligence Targeting Staff (J2T) member conducting strategic and operational-level targeting for combatant command operations</li>
+                    <li>Lead Joint Targeting Team of 9 personnel, coordinating cross-functional intelligence production and delivering targeting packages to operational commanders</li>
+                    <li>Author detailed intelligence reports and briefings for senior leadership requiring clear technical writing and complex information synthesis</li>
+                    <li>Analyze satellite and aerial imagery using pattern recognition and anomaly detection techniques directly applicable to network traffic analysis and threat hunting</li>
+                    <li>Apply intelligence cycle methodologies (collection, analysis, dissemination) mirroring threat intelligence lifecycle, including IOC identification and adversary TTP mapping</li>
+                    <li>Conduct multi-source data correlation and research using analytical techniques similar to SIEM log correlation and security event analysis</li>
+                </ul>
+            </div>
 
-                <div class="experience-item">
-                    <div class="experience-header">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
                         <h3 class="experience-title">Advanced Mapper (Volunteer)</h3>
-                        <span class="experience-date">May 2020 - Present</span>
+                        <p class="experience-company">National Geospatial-Intelligence Agency GEMINI Program</p>
                     </div>
-                    <p class="experience-org">National Geospatial-Intelligence Agency GEMINI Program</p>
-                    <ul class="experience-duties">
-                        <li>→ Contribute to open-source intelligence mapping initiatives</li>
-                    </ul>
+                    <span class="experience-date">May 2020 - Present</span>
+                </div>
+                <ul class="experience-responsibilities">
+                    <li>Maintain and enhance open-source intelligence maps using research approaches aligned with cyber threat intelligence collection and OSINT reconnaissance</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Assistant Band Director</h3>
+                        <p class="experience-company">Nederland Independent School District</p>
+                    </div>
+                    <span class="experience-date">2010 - 2015</span>
+                </div>
+                <ul class="experience-responsibilities">
+                    <li>Led highly successful band program of approximately 500 students, earning multiple regional and state recognitions for performance excellence</li>
+                    <li>Developed curriculum, managed student performances, and coordinated community outreach programs</li>
+                    <li>Demonstrated strong leadership, organizational skills, and cross-functional collaboration with administrators, parents, and community stakeholders</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">05.</span> 
+            <span class="section-text">projects & achievements</span>
+        </h2>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Competitive Achievements</h3>
+            <div class="work-grid">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">COMPETITION</span>
+                        <span class="card-date">2025</span>
+                    </div>
+                    <h3 class="card-title">Target x WiCyS Cyber Defense Challenge</h3>
+                    <p class="card-description">2nd place overall finish in national cyber defense competition. Successfully defended infrastructure against red team operations while maintaining critical services.</p>
+                    <div class="card-tags">
+                        <span class="tag">Blue Team</span>
+                        <span class="tag">Incident Response</span>
+                        <span class="tag">Defense</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">CTF</span>
+                        <span class="card-date">2025</span>
+                    </div>
+                    <h3 class="card-title">SANS Holiday Hack Challenge</h3>
+                    <p class="card-description">5th place finish in annual SANS Holiday Hack Challenge. Solved complex challenges involving reverse engineering, web exploitation, and cryptographic analysis.</p>
+                    <div class="card-tags">
+                        <span class="tag">Reverse Engineering</span>
+                        <span class="tag">Web Exploitation</span>
+                        <span class="tag">Crypto</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">COMPETITION</span>
+                        <span class="card-date">2025</span>
+                    </div>
+                    <h3 class="card-title">DoD Cyber Sentinel Challenge</h3>
+                    <p class="card-description">Top 5% finish (116/2155) in DoD-sponsored cybersecurity competition demonstrating defensive security skills and strategic threat analysis.</p>
+                    <div class="card-tags">
+                        <span class="tag">Defense</span>
+                        <span class="tag">Threat Analysis</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Projects & Achievements Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">05.</span> 
-                <span class="section-text">projects & achievements</span>
-            </h2>
+        <div class="subsection">
+            <h3 class="subsection-title">Technical Projects</h3>
+            <div class="work-grid">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">HOMELAB</span>
+                        <span class="card-date">ONGOING</span>
+                    </div>
+                    <h3 class="card-title">Security Operations Homelab</h3>
+                    <p class="card-description">Self-designed Proxmox infrastructure with Wazuh SIEM, Active Directory, vulnerable systems (Metasploitable, DVWA), and MITRE Caldera for purple team operations.</p>
+                    <div class="card-tags">
+                        <span class="tag">Purple Team</span>
+                        <span class="tag">SIEM</span>
+                        <span class="tag">Detection Engineering</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">NETWORK SECURITY</span>
+                        <span class="card-date">ONGOING</span>
+                    </div>
+                    <h3 class="card-title">Network Security Lab</h3>
+                    <p class="card-description">Configured network segmentation with VLANs and Suricata IDS/IPS for defensive monitoring and traffic analysis.</p>
+                    <div class="card-tags">
+                        <span class="tag">IDS/IPS</span>
+                        <span class="tag">Network Security</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">THREAT INTELLIGENCE</span>
+                        <span class="card-date">ONGOING</span>
+                    </div>
+                    <h3 class="card-title">Cloud Threat Intelligence</h3>
+                    <p class="card-description">Deployed T-Pot honeypot on GCP to capture live attack traffic and analyze adversary TTPs for threat intelligence research.</p>
+                    <div class="card-tags">
+                        <span class="tag">Honeypot</span>
+                        <span class="tag">OSINT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h3 class="subsection-title">Speaking Engagements</h3>
+            <div class="speaking-item">
+                <div class="speaking-header">
+                    <h4 class="speaking-title">"Reverse Engineering with Ghidra for DNS Exfiltration"</h4>
+                    <span class="speaking-date">2026</span>
+                </div>
+                <p class="speaking-venue">WiCyS 2026 Conference | Washington, DC</p>
+                <p class="speaking-description">Co-presenting 45-minute technical session covering novice to professional reverse engineering methodologies.</p>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h3 class="subsection-title">Technical Writing & Publications</h3>
+            <p class="publications-description">Author of technical reports and analysis documenting CTF challenge solutions, honeypot deployment findings, blockchain security research, and homelab infrastructure. Published 6 articles at <a href="https://medium.com/@aeronique" target="_blank" class="inline-link">medium.com/@aeronique</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="section section-dark">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">06.</span> 
+            <span class="section-text">education</span>
+        </h2>
+        <div class="education-list">
+            <div class="education-item">
+                <div class="education-header">
+                    <h3 class="education-degree">Undergraduate Certificate, Computers and Networking</h3>
+                    <span class="education-date">2022</span>
+                </div>
+                <p class="education-school">American Military University | GPA: 4.0</p>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <h3 class="education-degree">Associate of Applied Science, Intelligence Operations</h3>
+                    <span class="education-date">2019</span>
+                </div>
+                <p class="education-school">Cochise College</p>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <h3 class="education-degree">Master of Music Education</h3>
+                    <span class="education-date">2010</span>
+                </div>
+                <p class="education-school">Lamar University</p>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <h3 class="education-degree">Bachelor of Music Performance</h3>
+                    <span class="education-date">2007</span>
+                </div>
+                <p class="education-school">Lamar University</p>
+            </div>
+        </div>
+
+        <div class="affiliations">
+            <h3 class="subsection-title">Professional Affiliations</h3>
+            <p class="affiliations-list">GIAC Advisory Board • Military Cyber Professionals Association • Women in CyberSecurity (WiCyS) • VetSec • Military Intelligence Corps Association</p>
+        </div>
+    </div>
+</section>
+
+<!-- Writeups Section -->
+<section id="writeups" class="section">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">07.</span> 
+            <span class="section-text">writeups & research</span>
+        </h2>
+        <div class="writeups-list">
+            {% for post in site.posts limit:3 %}
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">{{ post.date | date: "%b %Y" | upcase }}</span>
+                    <span class="writeup-category">{{ post.category }}</span>
+                </div>
+                <h3 class="writeup-title">{{ post.title }}</h3>
+                <p class="writeup-excerpt">{{ post.excerpt }}</p>
+                <a href="{{ post.url }}" class="writeup-link">Read more →</a>
+            </div>
+            {% endfor %}
             
-            <div class="subsection">
-                <h3 class="subsection-title">Competitive Achievements</h3>
-                <div class="work-grid">
-                    <div class="project-card">
-                        <div class="card-header">
-                            <span class="card-tag">COMPETITION</span>
-                            <span class="card-date">2025</span>
-                        </div>
-                        <h3 class="card-title">Target x WiCyS Cyber Defense Challenge</h3>
-                        <p class="card-description">2nd place overall finish in national cyber defense competition. Successfully defended infrastructure against red team operations while maintaining critical services.</p>
-                        <div class="card-tags">
-                            <span class="tag">Blue Team</span>
-                            <span class="tag">Incident Response</span>
-                            <span class="tag">Defense</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="card-header">
-                            <span class="card-tag">CTF</span>
-                            <span class="card-date">2025</span>
-                        </div>
-                        <h3 class="card-title">SANS Holiday Hack Challenge</h3>
-                        <p class="card-description">Finished 5th on the leaderboard. Solved complex challenges involving reverse engineering, web exploitation, and cryptographic analysis.</p>
-                        <div class="card-tags">
-                            <span class="tag">Reverse Engineering</span>
-                            <span class="tag">Web Exploitation</span>
-                            <span class="tag">Crypto</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="card-header">
-                            <span class="card-tag">COMPETITION</span>
-                            <span class="card-date">2025</span>
-                        </div>
-                        <h3 class="card-title">DoD Cyber Sentinel Challenge</h3>
-                        <p class="card-description">Top 5% finish (116/2155 participants) in Department of Defense cybersecurity challenge.</p>
-                        <div class="card-tags">
-                            <span class="tag">CTF</span>
-                            <span class="tag">Defense</span>
-                        </div>
-                    </div>
+            {% if site.posts.size == 0 %}
+            <!-- Placeholder content when no posts exist yet -->
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">DEC 2025</span>
+                    <span class="writeup-category">CTF</span>
                 </div>
+                <h3 class="writeup-title">SANS Holiday Hack Challenge 2025 - Complete Walkthrough</h3>
+                <p class="writeup-excerpt">Deep dive into solving the 2025 SANS Holiday Hack Challenge, including router exploitation (CVE-2023-1389), reverse engineering with Ghidra, and advanced web application attacks.</p>
+                <a href="#" class="writeup-link">Coming soon →</a>
             </div>
 
-            <div class="subsection">
-                <h3 class="subsection-title">Technical Projects</h3>
-                <div class="work-grid">
-                    <div class="project-card">
-                        <div class="card-header">
-                            <span class="card-tag">HOMELAB</span>
-                            <span class="card-date">ONGOING</span>
-                        </div>
-                        <h3 class="card-title">Security Operations Homelab</h3>
-                        <p class="card-description">Self-designed Proxmox infrastructure with Wazuh SIEM, Active Directory, vulnerable systems (Metasploitable, DVWA), and MITRE Caldera for purple team operations.</p>
-                        <div class="card-tags">
-                            <span class="tag">Purple Team</span>
-                            <span class="tag">SIEM</span>
-                            <span class="tag">Detection Engineering</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="card-header">
-                            <span class="card-tag">HOMELAB</span>
-                            <span class="card-date">ONGOING</span>
-                        </div>
-                        <h3 class="card-title">Network Security Lab</h3>
-                        <p class="card-description">Configured network segmentation with VLANs and Suricata IDS/IPS for defensive monitoring.</p>
-                        <div class="card-tags">
-                            <span class="tag">Network Security</span>
-                            <span class="tag">IDS/IPS</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="card-header">
-                            <span class="card-tag">CLOUD</span>
-                            <span class="card-date">2025</span>
-                        </div>
-                        <h3 class="card-title">Cloud Threat Intelligence</h3>
-                        <p class="card-description">Deployed T-Pot honeypot on GCP to capture live attack traffic and analyze adversary TTPs.</p>
-                        <div class="card-tags">
-                            <span class="tag">Threat Intelligence</span>
-                            <span class="tag">Honeypot</span>
-                            <span class="tag">OSINT</span>
-                        </div>
-                    </div>
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">NOV 2025</span>
+                    <span class="writeup-category">COMPETITION</span>
                 </div>
+                <h3 class="writeup-title">Target Cyber Defense Challenge - Blue Team Retrospective</h3>
+                <p class="writeup-excerpt">Lessons learned from placing 2nd in a national cyber defense competition. Team coordination, incident response under pressure, and defensive strategies that worked.</p>
+                <a href="#" class="writeup-link">Coming soon →</a>
             </div>
 
-            <div class="subsection">
-                <h3 class="subsection-title">Speaking Engagements</h3>
-                <div class="speaking-item">
-                    <div class="speaking-header">
-                        <h4 class="speaking-title">"Reverse Engineering with Ghidra for DNS Exfiltration"</h4>
-                        <span class="speaking-date">2026</span>
-                    </div>
-                    <p class="speaking-venue">WiCyS 2026 Conference | Washington, DC</p>
-                    <p class="speaking-description">Co-presenting 45-minute technical session covering novice to professional reverse engineering methodologies.</p>
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">RESEARCH</span>
                 </div>
+                <h3 class="writeup-title">Building a Purple Team Lab with Proxmox and Caldera</h3>
+                <p class="writeup-excerpt">Complete guide to setting up a purple team lab environment for adversary emulation and detection engineering using MITRE Caldera, Wazuh SIEM, and Active Directory.</p>
+                <a href="#" class="writeup-link">Coming soon →</a>
             </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
 
-            <div class="subsection">
-                <h3 class="subsection-title">Technical Writing & Publications</h3>
-                <p class="publications-description">Author of technical reports and analysis documenting CTF challenge solutions, honeypot deployment findings, blockchain security research, and homelab infrastructure. Published 6 articles at <a href="https://medium.com/@aeronique" target="_blank" class="inline-link">medium.com/@aeronique</a></p>
+<!-- Contact Section -->
+<section id="contact" class="section section-dark">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">08.</span> 
+            <span class="section-text">get in touch</span>
+        </h2>
+        <div class="contact-content">
+            <p class="contact-text">Currently open to cybersecurity opportunities, collaboration on security research, and speaking engagements. Co-presenting at WiCyS 2026 Conference.</p>
+            <div class="contact-links">
+                <a href="https://github.com/Aeronique" target="_blank" class="contact-button">
+                    <span class="button-icon">→</span>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/michelle-duell" target="_blank" class="contact-button">
+                    <span class="button-icon">→</span>
+                    LinkedIn
+                </a>
+                <a href="mailto:contact@aerobytes.io" class="contact-button">
+                    <span class="button-icon">→</span>
+                    Email
+                </a>
+            </div>
+            <div class="pgp-section">
+                <p class="pgp-text">
+                    <span class="terminal-prompt">$</span> 
+                    Prefer encrypted communication? 
+                    <a href="#" class="pgp-link">PGP key</a>
+                </p>
             </div>
         </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">06.</span> 
-                <span class="section-text">education</span>
-            </h2>
-            <div class="education-list">
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">Undergraduate Certificate, Computers and Networking</h3>
-                        <span class="education-date">2022</span>
-                    </div>
-                    <p class="education-school">American Military University | GPA: 4.0</p>
-                </div>
-
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">Associate of Applied Science, Intelligence Operations</h3>
-                        <span class="education-date">2019</span>
-                    </div>
-                    <p class="education-school">Cochise College</p>
-                </div>
-
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">Master of Music Education</h3>
-                        <span class="education-date">2010</span>
-                    </div>
-                    <p class="education-school">Lamar University</p>
-                </div>
-
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="education-degree">Bachelor of Music Performance</h3>
-                        <span class="education-date">2007</span>
-                    </div>
-                    <p class="education-school">Lamar University</p>
-                </div>
-            </div>
-
-            <div class="affiliations">
-                <h3 class="subsection-title">Professional Affiliations</h3>
-                <p class="affiliations-list">GIAC Advisory Board • Military Cyber Professionals Association • Women in CyberSecurity (WiCyS) • VetSec • Military Intelligence Corps Association</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Writeups Section -->
-    <section id="writeups" class="section">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">07.</span> 
-                <span class="section-text">writeups & research</span>
-            </h2>
-            <div class="writeups-list">
-                <div class="writeup-item">
-                    <div class="writeup-meta">
-                        <span class="writeup-date">DEC 2025</span>
-                        <span class="writeup-category">CTF</span>
-                    </div>
-                    <h3 class="writeup-title">SANS Holiday Hack Challenge 2025 - Complete Walkthrough</h3>
-                    <p class="writeup-excerpt">Deep dive into solving the 2025 SANS Holiday Hack Challenge, including router exploitation (CVE-2023-1389), reverse engineering with Ghidra, and advanced web application attacks.</p>
-                    <a href="#" class="writeup-link">Read more →</a>
-                </div>
-
-                <div class="writeup-item">
-                    <div class="writeup-meta">
-                        <span class="writeup-date">NOV 2025</span>
-                        <span class="writeup-category">COMPETITION</span>
-                    </div>
-                    <h3 class="writeup-title">Target Cyber Defense Challenge - Blue Team Retrospective</h3>
-                    <p class="writeup-excerpt">Lessons learned from placing 2nd in a national cyber defense competition. Team coordination, incident response under pressure, and defensive strategies that worked.</p>
-                    <a href="#" class="writeup-link">Read more →</a>
-                </div>
-
-                <div class="writeup-item">
-                    <div class="writeup-meta">
-                        <span class="writeup-date">COMING SOON</span>
-                        <span class="writeup-category">RESEARCH</span>
-                    </div>
-                    <h3 class="writeup-title">Building a Purple Team Lab with Proxmox and Caldera</h3>
-                    <p class="writeup-excerpt">Complete guide to setting up a purple team lab environment for adversary emulation and detection engineering using MITRE Caldera, Wazuh SIEM, and Active Directory.</p>
-                    <a href="#" class="writeup-link">Coming soon →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">08.</span> 
-                <span class="section-text">get in touch</span>
-            </h2>
-            <div class="contact-content">
-                <p class="contact-text">Currently open to cybersecurity opportunities, collaboration on security research, and speaking engagements. Co-presenting at WiCyS 2026 Conference.</p>
-                <div class="contact-links">
-                    <a href="https://github.com/Aeronique" target="_blank" class="contact-button">
-                        <span class="button-icon">→</span>
-                        GitHub
-                    </a>
-                    <a href="https://linkedin.com/in/michelle-duell" target="_blank" class="contact-button">
-                        <span class="button-icon">→</span>
-                        LinkedIn
-                    </a>
-                    <a href="mailto:aeronique@proton.me" class="contact-button">
-                        <span class="button-icon">→</span>
-                        Email
-                    </a>
-                </div>
-                <div class="pgp-section">
-                    <p class="pgp-text">
-                        <span class="terminal-prompt">$</span> 
-                        Prefer encrypted communication? 
-                        <a href="#" class="pgp-link">PGP key</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">
-                <span class="terminal-prompt">root@aerobytes:~$</span> 
-                echo "Built with care. No frameworks, just code."
-            </p>
-            <p class="footer-copy">© 2025 aerobytes. All rights reserved.</p>
-            <p class="footer-license">
-                Code is MIT licensed. Content and achievements are not. See <a href="LICENSE.txt" class="license-link">LICENSE.txt</a>
-            </p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    </div>
+</section>
