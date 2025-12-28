@@ -1,0 +1,68 @@
+---
+layout: default
+title: Resume
+robots: noindex, nofollow
+---
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-text">resume</span>
+        </h2>
+        
+        <div class="resume-container">
+            <p class="contact-text" style="text-align: center; margin-bottom: 2rem;">
+                Professional resume and qualifications for cybersecurity opportunities.
+            </p>
+            
+            <div class="resume-actions">
+                <a href="/assets/resume/Michelle_Duell_Resume.pdf" download class="contact-button">
+                    <span class="button-icon">↓</span>
+                    Download PDF
+                </a>
+                <a href="/assets/resume/Michelle_Duell_Resume.pdf" target="_blank" class="contact-button">
+                    <span class="button-icon">→</span>
+                    Open in New Tab
+                </a>
+            </div>
+            
+            <div class="pdf-viewer">
+                <iframe src="/assets/resume/Michelle_Duell_Resume.pdf" 
+                        width="100%" 
+                        height="1100px" 
+                        style="border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 8px; background: var(--card-bg);">
+                    <p>Your browser does not support PDFs. 
+                    <a href="/assets/resume/Michelle_Duell_Resume.pdf" download>Download the PDF</a> instead.</p>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.resume-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.pdf-viewer {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 30px rgba(0, 217, 255, 0.1);
+}
+
+@media (max-width: 640px) {
+    .pdf-viewer iframe {
+        height: 800px;
+    }
+}
+</style>
