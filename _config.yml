@@ -1,0 +1,25 @@
+title: aerobytes
+description: security research • CTF writeups • threat intelligence
+url: "https://aerobytes.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: /writeups/:title/
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /writeups/:title/
+
+# Exclude from build
+exclude:
+  - README.md
+  - LICENSE.txt
+  - DEPLOYMENT.md
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
