@@ -2,30 +2,28 @@
 layout: default
 ---
 
-<section class="section">
+<article class="writeup-page">
     <div class="container">
-        <article class="writeup-full">
-            <header class="writeup-header">
-                <div class="writeup-meta">
-                    <span class="writeup-date">{{ page.date | date: "%B %Y" | upcase }}</span>
-                    <span class="writeup-category">{{ page.category }}</span>
-                </div>
-                <h1 class="section-title">
-                    <span class="section-text">{{ page.title }}</span>
-                </h1>
-            </header>
-            
-            <div class="writeup-content">
-                {{ content }}
+        <div class="writeup-header">
+            <a href="/writeups" class="back-link">← Back to Writeups</a>
+            <div class="writeup-meta">
+                <span class="writeup-date">{{ page.date | date: "%B %d, %Y" }}</span>
+                {% if page.category %}
+                <span class="writeup-category">{{ page.category }}</span>
+                {% endif %}
             </div>
-            
+            <h1 class="writeup-page-title">{{ page.title }}</h1>
             {% if page.tags %}
-            <div class="card-tags">
+            <div class="writeup-tags">
                 {% for tag in page.tags %}
                 <span class="tag">{{ tag }}</span>
                 {% endfor %}
             </div>
             {% endif %}
-        </article>
+        </div>
+
+        <div class="writeup-content">
+            {{ content }}
+        </div>
     </div>
-</section>
+</article>
