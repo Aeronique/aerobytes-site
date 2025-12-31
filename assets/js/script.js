@@ -51,8 +51,9 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all sections and cards
+// Observe all sections and cards (but not writeup pages)
 document.querySelectorAll('.section, .project-card, .writeup-item').forEach(el => {
+    if (el.closest('.writeup-page')) return; // Skip animation on writeup pages
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
