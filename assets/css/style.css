@@ -1201,3 +1201,99 @@ strong {
     color: var(--text-primary);
     font-weight: 700;
 }
+
+/* ===================================
+   ABOUT SECTION WITH CONTACT
+   =================================== */
+.about-contact {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.contact-intro {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--cyber-blue);
+    border-radius: 4px;
+    color: var(--cyber-blue);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.social-link i {
+    font-size: 1.2rem;
+}
+
+.social-link:hover {
+    background: var(--cyber-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+.social-link:hover i {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* View all writeups link */
+.view-all-writeups {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.view-all-link {
+    display: inline-block;
+    color: var(--cyber-blue);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--cyber-blue);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+    background: var(--cyber-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .social-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .social-link {
+        justify-content: center;
+    }
+}
