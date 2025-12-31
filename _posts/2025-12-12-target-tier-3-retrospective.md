@@ -7,7 +7,7 @@ tags: ["blue-team", "incident-response", "red-team", "career-transition"]
 permalink: /writeups/target-tier-3-retrospective/
 excerpt: "Reflections on placing 2nd in the national cyber defense competition. What I learned working through both offensive and defensive scenarios, how it shaped my career transition, and the lessons I'm taking forward."
 ---
-
+![Tier 3 - Presentation](assets/images/tier3.png)
 # 2025 Target x WiCyS Cyber Defense Challenge
 
 ## Tier 3 Presentation Summary
