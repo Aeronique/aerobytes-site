@@ -61,7 +61,7 @@ contract AeroX is ERC20 {
 }
 ```
 
-This contract does a few key things:
+This contract handles three main functions:
 1. Inherits from OpenZeppelin's ERC-20 standard (includes all standard token functions)
 2. Sets the token name and symbol
 3. Mints the initial supply to the deployer's address
@@ -112,7 +112,7 @@ npx hardhat run scripts/deploy.js --network sepolia
 npx hardhat verify --network sepolia 0x2401497657e2dFd81e3B6Eb0287Dbbf059552969 "1000000000000000000000000"
 ```
 
-Verification is crucial because it publishes the source code publicly on Etherscan, allowing anyone to audit the contract and verify it matches what's deployed on-chain.
+Verification publishes the source code publicly on Etherscan, allowing anyone to audit the contract and verify it matches what's deployed on-chain.
 
 ## Security Considerations I Learned
 
@@ -120,16 +120,16 @@ Building this project taught me several important security lessons about blockch
 
 ### Immutability is Permanent
 
-Once deployed, smart contracts cannot be modified. If there's a bug in the code, you can't just patch it like traditional software. This makes pre-deployment security auditing absolutely critical.
+Once deployed, smart contracts cannot be modified. If there's a bug in the code, you can't just patch it like traditional software. This makes pre-deployment security auditing something you can't skip.
 
-### Private Keys Are Everything
+### Private Keys
 
 Your private key is your identity on the blockchain. If someone gets your private key, they control your wallet and any contracts you've deployed. I learned to:
 - Never commit private keys to version control
 - Use environment variables for sensitive data
 - Keep testnet and mainnet keys completely separate
 
-### Gas Costs Matter
+### Gas Costs
 
 Every operation on Ethereum costs gas (transaction fees). Inefficient code doesn't just run slowly, it costs real money. This forces developers to optimize in ways traditional programming doesn't require.
 
@@ -199,13 +199,13 @@ As more applications integrate blockchain technology, understanding the security
 
 This project reinforced several important principles:
 
-Start with tested libraries. Don't reinvent the wheel, especially in security-critical code. OpenZeppelin's contracts are audited and widely used for good reason.
+Start with tested libraries. Don't reinvent the wheel, especially in security code. OpenZeppelin's contracts are audited and widely used for good reason.
 
-Testing is critical. In blockchain, mistakes are permanent and potentially expensive. Thorough testing isn't optional.
+Testing needs to be thorough. In blockchain, mistakes are permanent and potentially expensive. You can't skip this step.
 
 Understand the fundamentals. You can't secure something you don't understand. Building this from scratch forced me to learn how Ethereum actually works.
 
-Documentation matters. Clear documentation and code comments are essential, especially when code is publicly verifiable on-chain.
+Clear documentation and code comments are essential, especially when code is publicly verifiable on-chain.
 
 ## Resources
 
