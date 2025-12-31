@@ -1302,7 +1302,7 @@ strong {
    WRITEUPS PAGE STYLES
    =================================== */
 .writeups-page {
-    padding: calc(var(--section-padding) + 80px) 2rem var(--section-padding) 2rem;
+    padding: calc(var(--section-padding) + 120px) 2rem var(--section-padding) 2rem;
     min-height: 100vh;
 }
 
