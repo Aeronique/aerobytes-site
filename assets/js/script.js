@@ -174,17 +174,20 @@ document.addEventListener('DOMContentLoaded', function() {
         let isDeleting = false;
         let typingSpeed = 100;
         
+        // Hide the separate cursor element
+        cursorElement.style.display = 'none';
+        
         function typeWriter() {
             const currentRole = roles[currentIndex];
             
             if (!isDeleting && charIndex <= currentRole.length) {
-                // Typing
-                rotatingTextElement.textContent = currentRole.substring(0, charIndex);
+                // Typing - add inline cursor
+                rotatingTextElement.innerHTML = currentRole.substring(0, charIndex) + '<span class="cursor">_</span>';
                 charIndex++;
                 typingSpeed = 100;
             } else if (isDeleting && charIndex >= 0) {
-                // Deleting
-                rotatingTextElement.textContent = currentRole.substring(0, charIndex);
+                // Deleting - keep inline cursor
+                rotatingTextElement.innerHTML = currentRole.substring(0, charIndex) + '<span class="cursor">_</span>';
                 charIndex--;
                 typingSpeed = 50;
             }
