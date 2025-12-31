@@ -160,8 +160,9 @@ console.log('%cIf you found something interesting, let me know!', 'color: #9898b
 // ===================================
 document.addEventListener('DOMContentLoaded', function() {
     const rotatingTextElement = document.querySelector('.rotating-text');
+    const cursorElement = document.querySelector('.cursor');
     
-    if (rotatingTextElement) {
+    if (rotatingTextElement && cursorElement) {
         const roles = [
             'intelligence analyst',
             'security researcher',
