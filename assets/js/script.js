@@ -153,5 +153,79 @@ function createMatrixEffect() {
 // CONSOLE EASTER EGG
 // ===================================
 console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold;');
-console.log('%cLooking at the source? Nice! 🔍', 'color: #a855f7; font-size: 14px;');
+console.log('%cLooking at the source? Nice! ðŸ”', 'color: #a855f7; font-size: 14px;');
 console.log('%cIf you found something interesting, let me know!', 'color: #9898b3; font-size: 12px;');
+// ===================================
+// ROTATING TEXT EFFECT FOR LANDING PAGE
+// ===================================
+document.addEventListener('DOMContentLoaded', function() {
+    const rotatingTextElement = document.querySelector('.rotating-text');
+    
+    if (rotatingTextElement) {
+        const roles = [
+            'intelligence analyst',
+            'security researcher',
+            'cybersecurity'
+        ];
+        
+        let currentIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function typeWriter() {
+            const currentRole = roles[currentIndex];
+            
+            if (!isDeleting && charIndex <= currentRole.length) {
+                // Typing
+                rotatingTextElement.textContent = currentRole.substring(0, charIndex);
+                charIndex++;
+                typingSpeed = 100;
+            } else if (isDeleting && charIndex >= 0) {
+                // Deleting
+                rotatingTextElement.textContent = currentRole.substring(0, charIndex);
+                charIndex--;
+                typingSpeed = 50;
+            }
+            
+            // When done typing current word
+            if (!isDeleting && charIndex > currentRole.length) {
+                // Pause before deleting
+                typingSpeed = 2000;
+                isDeleting = true;
+            }
+            
+            // When done deleting
+            if (isDeleting && charIndex < 0) {
+                isDeleting = false;
+                currentIndex = (currentIndex + 1) % roles.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(typeWriter, typingSpeed);
+        }
+        
+        // Start typing effect after a brief delay
+        setTimeout(typeWriter, 1000);
+    }
+});
+
+// ===================================
+// LIVE CLOCK FOR SYSTEM STATUS
+// ===================================
+function updateClock() {
+    const clockElement = document.getElementById('current-time');
+    if (clockElement) {
+        const now = new Date();
+        const hours = String(now.getUTCHours()).padStart(2, '0');
+        const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+        clockElement.textContent = `${hours}:${minutes}:${seconds} UTC`;
+    }
+}
+
+// Update clock every second
+if (document.getElementById('current-time')) {
+    updateClock();
+    setInterval(updateClock, 1000);
+}
