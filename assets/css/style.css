@@ -1297,3 +1297,78 @@ strong {
         justify-content: center;
     }
 }
+
+/* ===================================
+   WRITEUPS PAGE STYLES
+   =================================== */
+.writeups-page {
+    padding: calc(var(--section-padding) + 80px) 2rem var(--section-padding) 2rem;
+    min-height: 100vh;
+}
+
+.page-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.page-title .section-number {
+    color: var(--cyber-blue);
+    font-size: 0.8em;
+}
+
+.page-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.writeups-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.writeups-list .writeup-item {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+.writeups-list .writeup-item:last-child {
+    border-bottom: none;
+}
+
+.writeups-list .writeup-title {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+}
+
+.writeups-list .writeup-excerpt {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.no-posts .terminal-prompt {
+    color: var(--cyber-magenta);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
