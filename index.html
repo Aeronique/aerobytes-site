@@ -20,11 +20,52 @@ title: Home
     </div>
 </section>
 
-<!-- Writeups Section -->
-<section id="writeups" class="section">
+<!-- About Section with Integrated Contact -->
+<section id="about" class="section">
     <div class="container">
         <h2 class="section-title">
             <span class="section-number">01.</span> 
+            <span class="section-text">about</span>
+        </h2>
+        <div class="about-content">
+           <p class="lead">I'm <span class="name-highlight">Elle "Aeronique" Duell</span>, transitioning from military intelligence to cybersecurity with a focus on defensive security and threat intelligence.</p>
+
+           <p>I serve in the Army Reserve in intelligence, where I've spent years analyzing patterns, tracking adversaries, and turning complex data into actionable insights. Those same skills translate directly to what I'm passionate about now: blue team operations, incident response, and threat hunting.</p>
+
+           <p>As a SANS Cyber Academy Scholar, I've earned GSEC and GFACT certifications and I'm currently working toward GCIH (expected March 2026). I've put those skills to the test in competition, placing 2nd in the 2025 WiCyS x Target Cyber Defense Challenge and finishing 5th on the leaderboard in the SANS Holiday Hack Challenge.</p>
+
+           <p>Outside of competitions, I'm building practical experience through my homelab, where I run Proxmox with Wazuh SIEM, Active Directory, and MITRE Caldera. It's where I experiment with purple team operations and detection engineering, constantly learning and staying sharp.</p>
+
+           <div class="about-contact">
+               <p class="contact-intro">Currently open to cybersecurity opportunities, collaboration on security research, and speaking engagements.</p>
+               <div class="social-links">
+                   <a href="https://github.com/Aeronique" target="_blank" class="social-link" aria-label="GitHub">
+                       <i class="fab fa-github"></i>
+                       <span>GitHub</span>
+                   </a>
+                   <a href="https://linkedin.com/in/michelle-duell" target="_blank" class="social-link" aria-label="LinkedIn">
+                       <i class="fab fa-linkedin"></i>
+                       <span>LinkedIn</span>
+                   </a>
+                   <a href="https://medium.com/@aeronique" target="_blank" class="social-link" aria-label="Medium">
+                       <i class="fab fa-medium"></i>
+                       <span>Medium</span>
+                   </a>
+                   <a href="mailto:contact@aerobytes.io" class="social-link" aria-label="Email">
+                       <i class="fas fa-envelope"></i>
+                       <span>Email</span>
+                   </a>
+               </div>
+           </div>
+        </div>
+    </div>
+</section>
+
+<!-- Writeups Section -->
+<section id="writeups" class="section section-dark">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-number">02.</span> 
             <span class="section-text">writeups & research</span>
         </h2>
         <div class="writeups-list">
@@ -73,14 +114,20 @@ title: Home
             </div>
             {% endif %}
         </div>
+        
+        <div class="view-all-writeups">
+            <a href="/writeups" class="view-all-link">
+                View all writeups →
+            </a>
+        </div>
     </div>
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="section section-dark">
+<section id="projects" class="section">
     <div class="container">
         <h2 class="section-title">
-            <span class="section-number">02.</span> 
+            <span class="section-number">03.</span> 
             <span class="section-text">projects & achievements</span>
         </h2>
         
@@ -203,25 +250,6 @@ title: Home
         <h3 class="subsection-title">Technical Writing</h3>
         <div class="writing-item">
             <p>Author of technical reports and analysis documenting CTF challenge solutions, honeypot deployment findings, blockchain security research, and homelab infrastructure. Published 6 articles at <a href="https://medium.com/@aeronique" target="_blank" class="inline-link">medium.com/@aeronique</a></p>
-        </div>
-    </div>
-</section>
-
-<!-- About Section -->
-<section id="about" class="section">
-    <div class="container">
-        <h2 class="section-title">
-            <span class="section-number">03.</span> 
-            <span class="section-text">about</span>
-        </h2>
-        <div class="about-content">
-           <p class="lead">I'm <span class="name-highlight">Elle "Aeronique" Duell</span>, transitioning from military intelligence to cybersecurity with a focus on defensive security and threat intelligence.</p>
-
-           <p>I serve in the Army Reserve in intelligence, where I've spent years analyzing patterns, tracking adversaries, and turning complex data into actionable insights. Those same skills translate directly to what I'm passionate about now: blue team operations, incident response, and threat hunting.</p>
-
-           <p>As a SANS Cyber Academy Scholar, I've earned GSEC and GFACT certifications and I'm currently working toward GCIH (expected March 2026). I've put those skills to the test in competition, placing 2nd in the 2025 WiCyS x Target Cyber Defense Challenge and finishing 5th on the leaderboard in the SANS Holiday Hack Challenge.</p>
-
-           <p>Outside of competitions, I'm building practical experience through my homelab, where I run Proxmox with Wazuh SIEM, Active Directory, and MITRE Caldera. It's where I experiment with purple team operations and detection engineering, constantly learning and staying sharp.</p>
         </div>
     </div>
 </section>
@@ -392,40 +420,6 @@ title: Home
         
         <div class="fun-facts">
             <p class="fun-fact"><span class="prompt">$</span> echo "Fun fact: I was a Blockbuster Video manager in college. Yes, I'm that old."</p>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="section">
-    <div class="container">
-        <h2 class="section-title">
-            <span class="section-number">09.</span> 
-            <span class="section-text">get in touch</span>
-        </h2>
-        <div class="contact-content">
-            <p class="contact-text">Currently open to cybersecurity opportunities, collaboration on security research, and speaking engagements. Co-presenting at WiCyS 2026 Conference.</p>
-            <div class="contact-links">
-                <a href="https://github.com/Aeronique" target="_blank" class="contact-button">
-                    <span class="button-icon">→</span>
-                    GitHub
-                </a>
-                <a href="https://linkedin.com/in/michelle-duell" target="_blank" class="contact-button">
-                    <span class="button-icon">→</span>
-                    LinkedIn
-                </a>
-                <a href="mailto:contact@aerobytes.io" class="contact-button">
-                    <span class="button-icon">→</span>
-                    Email
-                </a>
-            </div>
-            <div class="pgp-section">
-                <p class="pgp-text">
-                    <span class="terminal-prompt">$</span> 
-                    Prefer encrypted communication? 
-                    <a href="#" class="pgp-link">PGP key</a>
-                </p>
-            </div>
         </div>
     </div>
 </section>
