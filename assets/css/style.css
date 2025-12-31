@@ -1763,7 +1763,7 @@ strong {
 
 .main-title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 900;
     color: var(--text-primary);
     margin-bottom: 1rem;
@@ -2115,4 +2115,126 @@ strong {
     color: var(--text-secondary);
     line-height: 1.7;
     margin: 0;
+}
+
+/* ===================================
+   CONTACT PAGE STYLES
+   =================================== */
+.contact-page {
+    padding: calc(var(--section-padding) + 120px) 2rem var(--section-padding) 2rem;
+    min-height: 100vh;
+}
+
+.contact-content-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.contact-info-box {
+    max-width: 700px;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.15);
+}
+
+.contact-heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--cyber-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.contact-text {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.social-links-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.social-link-contact {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(0, 217, 255, 0.05);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 6px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link-contact:hover {
+    background: rgba(0, 217, 255, 0.1);
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+    transform: translateX(10px);
+}
+
+.social-link-contact i {
+    font-size: 2.5rem;
+    color: var(--cyber-blue);
+    width: 50px;
+    text-align: center;
+}
+
+.link-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.link-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.link-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.terminal-box {
+    background: rgba(10, 10, 15, 0.8);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 6px;
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.terminal-box .terminal-prompt {
+    color: var(--cyber-magenta);
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .contact-info-box {
+        padding: 2rem;
+    }
+    
+    .social-link-contact {
+        padding: 1rem;
+    }
+    
+    .social-link-contact i {
+        font-size: 2rem;
+        width: 40px;
+    }
 }
