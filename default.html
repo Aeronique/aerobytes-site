@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}aerobytes</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated background effect -->
+    <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="logo">
+                <span class="bracket">[</span>
+                <span class="logo-text">aerobytes</span>
+                <span class="bracket">]</span>
+            </a>
+            <div class="nav-links">
+                <a href="{{ '/about/' | relative_url }}" class="nav-link">about</a>
+                <a href="{{ '/writeups/' | relative_url }}" class="nav-link">writeups</a>
+                <a href="{{ '/projects/' | relative_url }}" class="nav-link">projects</a>
+                <a href="{{ '/contact/' | relative_url }}" class="nav-link">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    {{ content }}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="terminal-prompt">root@aerobytes:~$</span> 
+                echo "Built with care. No frameworks, just code."
+            </p>
+            <p class="footer-copy">Â© 2025 aerobytes. All rights reserved.</p>
+            <p class="footer-license">
+                Code is MIT licensed. Content and achievements are not. See <a href="{{ '/LICENSE.txt' | relative_url }}" class="license-link">LICENSE.txt</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+</body>
+</html>
