@@ -4,6 +4,7 @@ title: "O5: Tunnel Vision - DNS Exfiltration Protocol Reverse Engineering"
 date: 2025-09-15
 category: "COMPETITION"
 tags: ["reverse-engineering", "ghidra", "dns", "cryptography", "blue-team"]
+permalink: /writeups/tunnel-vision-o5/
 ---
 
 ![Tunnel Vision Challenge](/assets/images/tunnel-vision-banner.png)
