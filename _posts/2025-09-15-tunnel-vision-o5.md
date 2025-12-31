@@ -5,6 +5,7 @@ date: 2025-09-15
 category: "COMPETITION"
 tags: ["reverse-engineering", "ghidra", "dns", "cryptography", "blue-team"]
 permalink: /writeups/tunnel-vision-o5/
+excerpt: "Reverse engineering a DNS exfiltration binary when every other escape route has been cut off. Complete protocol reconstruction from ARM64 assembly using Ghidra static analysis."
 ---
 
 ![Tunnel Vision Challenge](/assets/images/tunnelvision.png)
