@@ -7,7 +7,7 @@ tags: ["reverse-engineering", "ghidra", "dns", "cryptography", "blue-team"]
 permalink: /writeups/tunnel-vision-o5/
 ---
 
-![Tunnel Vision Challenge](/assets/images/tunnel-vision-banner.png)
+![Tunnel Vision Challenge](/assets/images/tunnelvision.png)
 
 # 2025 Target Cyber Defense Challenge: When All Exits Are Blocked, Go Underground
 
