@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const roles = [
             'intelligence analyst',
             'security researcher',
-            'cybersecurity'
+            'defensive cybersecurity'
         ];
         
         let currentIndex = 0;
