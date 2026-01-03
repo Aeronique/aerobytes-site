@@ -13,7 +13,7 @@ AeroLab v1.0 is my personal cybersecurity homelab built to develop hands-on skil
 
 The lab focuses on blue team operations - specifically SOC analysis, digital forensics and incident response (DFIR), and threat intelligence. Every component is designed to simulate real-world enterprise environments where I can practice detection, analysis, and response.
 
-<img src="/assets/images/aerolab.png" alt="Aerolab" style="max-width: 600px; margin: 2rem auto; display: block;">
+<img src="/assets/images/AeroLab.png" alt="Aerolab" style="max-width: 600px; margin: 2rem auto; display: block;">
 
 ## Hardware
 
