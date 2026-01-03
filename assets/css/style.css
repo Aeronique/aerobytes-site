@@ -1834,6 +1834,7 @@ strong {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    padding-top: 120px; /* Extra padding to clear fixed nav */
     gap: 2rem;
     position: relative;
     z-index: 10;
@@ -2161,12 +2162,12 @@ strong {
    SCROLL OFFSET FOR FIXED NAV
    =================================== */
 html {
-    scroll-padding-top: 150px; /* Increased to prevent nav from covering headings */
+    scroll-padding-top: 180px; /* Increased to prevent nav from covering headings */
 }
 
 /* Alternative method for older browsers */
 section[id] {
-    scroll-margin-top: 150px;
+    scroll-margin-top: 180px;
 }
 
 /* ===================================
