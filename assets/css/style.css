@@ -314,6 +314,11 @@ body {
     z-index: 10;
 }
 
+/* First section on page needs extra top padding to clear fixed nav */
+.section:first-of-type {
+    padding-top: calc(var(--section-padding) + 100px);
+}
+
 .section-dark {
     background: linear-gradient(180deg, 
         var(--darker-bg) 0%, 
@@ -2162,12 +2167,12 @@ strong {
    SCROLL OFFSET FOR FIXED NAV
    =================================== */
 html {
-    scroll-padding-top: 180px; /* Increased to prevent nav from covering headings */
+    scroll-padding-top: 220px; /* Increased to prevent nav from covering headings */
 }
 
 /* Alternative method for older browsers */
 section[id] {
-    scroll-margin-top: 180px;
+    scroll-margin-top: 220px;
 }
 
 /* ===================================
