@@ -1,13 +1,13 @@
 ---
 layout: writeup
 title: "KC7: Krusty Krab - Threat Intelligence Investigation"
-date: 2025-03-01
+date: 2025-05-01
 category: THREAT INTELLIGENCE
 tags: [KQL, Phishing, DFIR, CTF, Threat Intelligence, MITRE ATT&CK]
 excerpt: "My first cybersecurity investigation report analyzing a multi-stage phishing campaign, credential harvesting, malware deployment, and data exfiltration using KustoQL (KQL) database queries."
 ---
 
-![KC7 Krusty Krab Banner](/assets/images/kc7-krusty-krab/1.png)
+[![KC7 Krusty Krab Banner](/assets/images/kc7-krusty-krab/1.png)](/assets/images/kc7-krusty-krab/1.png)
 
 ## Background
 
@@ -31,7 +31,8 @@ Our cybersecurity team identified anomalous activity originating from external e
 
 On **2023/03/01**, four employees from Krusty Krab **(Zenaida Warren, Julie Hong, Jon Layman, and Toni Jones)** received a malicious email from **nosferatu.hash@hotmail.com** with the subject line **"[EXTERNAL] RE: Krabby Patty Worm Detected"**. Each email contained an identical URL from the domain **scarynight[.]net**, which requested login credentials once opened. Two of four emails were marked **SUSPICIOUS** by TDR tools, the others marked **CLEAN**. Each employee clicked the malicious link.
 
-![Malicious phishing emails](/assets/images/kc7-krusty-krab/2.png)
+[![Malicious phishing emails](/assets/images/kc7-krusty-krab/2.png)](/assets/images/kc7-krusty-krab/2.png)
+
 *Initial malicious emails targeting Krusty Krab employees*
 
 Upon further investigation, the threat actor used additional email addresses: **nosferatu@gmail.com**, **graveyard@hotmail.com**, and **slasher.graveyard@hotmail.com**. Between **2023/03/01** and **2023/03/15**, there were **26** malicious emails sent to 25 Krusty Krab employees, with one employee (**Les Costain**) targeted twice.
@@ -169,7 +170,8 @@ CW8VCRZ1.dll
 
 **Ten employees** had sensitive files downloaded from their email accounts:
 
-![Compromised email accounts](/assets/images/kc7-krusty-krab/3.png)
+[![Compromised email accounts](/assets/images/kc7-krusty-krab/3.png)](/assets/images/kc7-krusty-krab/3.png)
+
 *List of compromised accounts seen in email data exfiltration*
 
 **50[.]6[.]66[.]245**
@@ -203,7 +205,8 @@ CW8VCRZ1.dll
 
 **26** employees downloaded and opened malicious files, resulting in system compromise.
 
-![Employee systems compromised by malicious files](/assets/images/kc7-krusty-krab/4.png)
+[![Employee systems compromised by malicious files](/assets/images/kc7-krusty-krab/4.png)](/assets/images/kc7-krusty-krab/4.png)
+
 *List of employee IP addresses that downloaded the malicious files*
 
 ## MITRE ATT&CK Technique Mapping
@@ -214,14 +217,16 @@ CW8VCRZ1.dll
 
 The threat actor sent malicious links via email to harvest login credentials. Links redirected employees to external pages prompting them to input usernames and passwords.
 
-![Phishing emails for credential harvesting](/assets/images/kc7-krusty-krab/5.png)
+[![Phishing emails for credential harvesting](/assets/images/kc7-krusty-krab/5.png)](/assets/images/kc7-krusty-krab/5.png)
+
 *Phishing emails sent from threat actor for employee credentials*
 
 **[T1598.002](https://attack.mitre.org/techniques/T1598/002/) - Phishing for Information: Spearphishing Attachment**
 
 The threat actor sent malicious attachments via email to gain system access. Once opened, attachments launched malicious executables that compromised systems.
 
-![Phishing emails with malicious attachments](/assets/images/kc7-krusty-krab/6.png)
+[![Phishing emails with malicious attachments](/assets/images/kc7-krusty-krab/6.png)](/assets/images/kc7-krusty-krab/6.png)
+
 *Phishing emails sent from threat actor to compromise systems*
 
 ### Resource Development
@@ -236,7 +241,8 @@ The threat actor compromised email accounts through spearphishing links.
 
 The threat actor sent spearphishing emails with malicious attachments to gain access to employee systems. Attachments were disguised as .pptx and .pdf documents and deployed malicious executables.
 
-![Malicious file deployment](/assets/images/kc7-krusty-krab/7.png)
+[![Malicious file deployment](/assets/images/kc7-krusty-krab/7.png)](/assets/images/kc7-krusty-krab/7.png)
+
 *FileCreationEvents: Employee downloads Jellyfish_Guide.pptx and krabbypatty.exe is deployed*
 
 ### Execution
@@ -245,7 +251,8 @@ The threat actor sent spearphishing emails with malicious attachments to gain ac
 
 The threat actor used obfuscated files to disguise hidden malicious executables which deployed once .pptx or .pdf files were opened.
 
-![Malicious file execution](/assets/images/kc7-krusty-krab/8.png)
+[![Malicious file execution](/assets/images/kc7-krusty-krab/8.png)](/assets/images/kc7-krusty-krab/8.png)
+
 *ProcessEvents when malicious file Jellyfish_Guide.pptx was opened*
 
 **[T1059.001](https://attack.mitre.org/techniques/T1059/001/) - Command and Scripting Interpreter: PowerShell**
@@ -256,7 +263,8 @@ The threat actor used PowerShell scripts to establish persistence with malicious
 
 The threat actor used Windows Command Shell to establish firewall rules blocking outgoing traffic.
 
-![Firewall manipulation command](/assets/images/kc7-krusty-krab/9.png)
+[![Firewall manipulation command](/assets/images/kc7-krusty-krab/9.png)](/assets/images/kc7-krusty-krab/9.png)
+
 *ProcessEvents showing a command script to block outgoing traffic*
 
 ### Persistence
@@ -275,7 +283,8 @@ The threat actor compromised accounts to access important email documents and es
 
 The threat actor modified firewall rules to block outgoing network traffic, enabling C2 communications and data exfiltration.
 
-![Firewall manipulation timeline](/assets/images/kc7-krusty-krab/10.png)
+[![Firewall manipulation timeline](/assets/images/kc7-krusty-krab/10.png)](/assets/images/kc7-krusty-krab/10.png)
+
 *ProcessEvents showing commands executed immediately before and after the firewall rule manipulation*
 
 ### Collection
@@ -284,7 +293,8 @@ The threat actor modified firewall rules to block outgoing network traffic, enab
 
 The threat actor downloaded sensitive files from email accounts of ten employees.
 
-![Email account compromise and data harvesting](/assets/images/kc7-krusty-krab/11.png)
+[![Email account compromise and data harvesting](/assets/images/kc7-krusty-krab/11.png)](/assets/images/kc7-krusty-krab/11.png)
+
 *InboundNetworkEvents showing compromised email accounts and data harvesting*
 
 ### Command and Control
