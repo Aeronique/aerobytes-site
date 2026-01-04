@@ -2296,3 +2296,55 @@ section[id] {
         width: 40px;
     }
 }
+
+/* ===================================
+   WRITEUP IMAGE ENHANCEMENTS
+   =================================== */
+
+/* Make writeup images larger and clickable */
+.writeup-content img {
+    max-width: 90%;
+    width: 90%;
+    height: auto;
+    display: block;
+    margin: 2rem auto 0.5rem auto;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.writeup-content img:hover {
+    border-color: var(--cyber-blue);
+    box-shadow: 0 5px 30px rgba(0, 217, 255, 0.3);
+    transform: scale(1.02);
+}
+
+/* Force captions below images */
+.writeup-content img + em,
+.writeup-content a img + em {
+    display: block;
+    text-align: center;
+    margin: 0.5rem auto 2rem auto;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Handle linked images */
+.writeup-content a {
+    display: inline-block;
+    width: 100%;
+}
+
+.writeup-content a img {
+    margin: 2rem auto 0.5rem auto;
+}
+
+/* Mobile responsive images */
+@media (max-width: 768px) {
+    .writeup-content img {
+        max-width: 100%;
+        width: 100%;
+    }
+}
