@@ -150,68 +150,44 @@ function createMatrixEffect() {
 // createMatrixEffect();
 
 // ===================================
-// IMAGE LIGHTBOX FOR WRITEUPS
+// CONSOLE EASTER EGG
 // ===================================
+console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold;');
+console.log('%cLooking at the source? Nice! ðŸ”', 'color: #a855f7; font-size: 14px;');
+console.log('%cIf you found something interesting, let me know!', 'color: #9898b3; font-size: 12px;');
+
+// IMAGE LIGHTBOX FOR WRITEUPS
 document.addEventListener('DOMContentLoaded', function() {
-    // Only run on writeup pages
     if (!document.querySelector('.writeup-content')) return;
-    
-    // Create lightbox container
     const lightbox = document.createElement('div');
     lightbox.className = 'image-lightbox';
     lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img src="" alt="">';
     document.body.appendChild(lightbox);
-    
     const lightboxImg = lightbox.querySelector('img');
     const closeBtn = lightbox.querySelector('.image-lightbox-close');
-    
-    // Get all images in writeup content
     const images = document.querySelectorAll('.writeup-content img');
-    
     images.forEach(img => {
-        // Add click handler to image
         img.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
-            // Get the image source
-            const imgSrc = this.src;
-            
-            // Set lightbox image and show
-            lightboxImg.src = imgSrc;
+            lightboxImg.src = this.src;
             lightbox.classList.add('active');
-            
-            // Prevent body scroll when lightbox is open
             document.body.style.overflow = 'hidden';
         });
     });
-    
-    // Close lightbox when clicking close button
     closeBtn.addEventListener('click', closeLightbox);
-    
-    // Close lightbox when clicking outside the image
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox || e.target === closeBtn) {
             closeLightbox();
         }
     });
-    
-    // Close lightbox with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) {
             closeLightbox();
         }
     });
-    
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
     }
 });
-
-// ===================================
-// CONSOLE EASTER EGG
-// ===================================
-console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold;');
-console.log('%cLooking at the source? Nice! 🔍', 'color: #a855f7; font-size: 14px;');
-console.log('%cIf you found something interesting, let me know!', 'color: #9898b3; font-size: 12px;');
