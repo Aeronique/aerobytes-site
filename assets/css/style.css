@@ -2325,13 +2325,25 @@ section[id] {
 }
 
 /* Force captions below images */
-.writeup-content img + em {
+.writeup-content img + em,
+.writeup-content a img + em {
     display: block;
     text-align: center;
     margin: 0.5rem auto 2rem auto;
     font-size: 0.9rem;
     color: var(--text-secondary);
     font-style: italic;
+}
+
+/* Handle linked images */
+.writeup-content a {
+    display: inline-block;
+    width: 100%;
+    cursor: zoom-in;
+}
+
+.writeup-content a img {
+    margin: 2rem auto 0.5rem auto;
 }
 
 /* Image Lightbox Modal */
