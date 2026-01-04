@@ -2310,7 +2310,7 @@ section[id] {
     margin: 2rem auto 0.5rem auto;
     border: 1px solid rgba(0, 217, 255, 0.2);
     border-radius: 8px;
-    cursor: pointer;
+    cursor: zoom-in;
     transition: all 0.3s ease;
 }
 
@@ -2335,10 +2335,70 @@ section[id] {
 .writeup-content a {
     display: inline-block;
     width: 100%;
+    cursor: zoom-in;
 }
 
 .writeup-content a img {
     margin: 2rem auto 0.5rem auto;
+}
+
+/* Image Lightbox Modal */
+.image-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    cursor: zoom-out;
+    animation: fadeIn 0.3s ease;
+}
+
+.image-lightbox.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    width: auto;
+    height: auto;
+    border: 2px solid var(--cyber-blue);
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 217, 255, 0.5);
+    cursor: zoom-out;
+    animation: zoomIn 0.3s ease;
+}
+
+.image-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--cyber-blue);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10000;
+}
+
+.image-lightbox-close:hover {
+    color: var(--cyber-magenta);
+    text-shadow: 0 0 20px var(--cyber-magenta);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 /* Mobile responsive images */
@@ -2346,5 +2406,16 @@ section[id] {
     .writeup-content img {
         max-width: 100%;
         width: 100%;
+    }
+    
+    .image-lightbox img {
+        max-width: 98%;
+        max-height: 98%;
+    }
+    
+    .image-lightbox-close {
+        font-size: 30px;
+        top: 10px;
+        right: 15px;
     }
 }
