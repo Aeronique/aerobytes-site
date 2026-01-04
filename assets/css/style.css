@@ -1096,6 +1096,8 @@ strong {
     max-width: 900px;
     color: var(--text-secondary);
     line-height: 1.8;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .writeup-content h2 {
@@ -1196,6 +1198,8 @@ strong {
     color: var(--cyber-blue);
     text-decoration: underline;
     transition: color 0.3s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .writeup-content a:hover {
