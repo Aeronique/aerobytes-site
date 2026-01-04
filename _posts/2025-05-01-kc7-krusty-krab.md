@@ -11,7 +11,7 @@ excerpt: "My first cybersecurity investigation report analyzing a multi-stage ph
 
 ## Background
 
-In March 2025, I attended the [SANS New2Cyber Summit](https://www.sans.org/cyber-security-training-events/) virtual summit hosted by [SANS Institute](https://www.sans.org/). One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language [KustoQL (KQL)](https://learn.microsoft.com/en-us/kusto/query/).
+In March 2025, I attended the SANS New2Cyber Summit hosted by SANS Institute. One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language KustoQL (KQL).
 
 I completed the CTF in two hours and enjoyed it so much that I started looking for more. Since then, I've completed 16 rooms through KC7. Through their gamified learning platform, I've gained skills in database querying, digital forensics, and developed an investigative mindset.
 
@@ -55,34 +55,38 @@ Threat actors performed reconnaissance on the company website beginning **2023/0
 
 ## Malicious File Deployment
 
-On **2023/03/28**, employee **Timothy Graham** received an email from **legal.vendor@protonmail.com** with subject line **"[EXTERNAL] Holographic meatloaf! The new hot trend!"** The email included a URL to domain **chumsecret[.]biz** containing the file **Jellyfish_Guide.pptx**. The user clicked the link and downloaded the malicious file.
+On **2023/03/28**, employee **Timothy Graham** received an email from **legal.vendor@protonmail.com** with subject line **"[EXTERNAL] Holographic meatloaf! The new hot trend!"** The email included a URL to domain **chumsecret[.]biz** containing the file **Jellyfish\_Guide.pptx**. The user clicked the link and downloaded the malicious file.
 
 Upon opening the .pptx file:
+
 - Malicious executable **krabbypatty.exe** was automatically created
 - File **CX3VBWML.dll** was injected into the system for privilege escalation and defense evasion
 - Connection established to C2 server at IP address **59[.]240[.]32[.]173**
 - Threat actor ran discovery commands: **nltest**, **netsvcs**, and **wbiosvcgroup**
 
-On **2023/03/16**, a malicious link from domain **burgers-formula.biz** containing file **Free_Money.pdf** was sent from **legal@gmail.com** with subject **"[EXTERNAL] Your artistic talents are being wasted at the Krusty Krab"** to employee **Robert Vinson**. The employee downloaded and opened the file which:
+On **2023/03/16**, a malicious link from domain **burgers-formula.biz** containing file **Free\_Money.pdf** was sent from **legal@gmail.com** with subject **"[EXTERNAL] Your artistic talents are being wasted at the Krusty Krab"** to employee **Robert Vinson**. The employee downloaded and opened the file which:
+
 - Contained hidden executable **krabbypatty.exe**
 - Injected file **CW8VCRZ1.dll** into the system
 - Opened connection to C2 server at IP **213[.]173[.]220[.]223**
 - Used **SpyNetServiceDss** to gain elevated privileges with Windows Defender
 
 On **2023/03/17**, the threat actor:
+
 - Initiated PowerShell command to collect sensitive files into staging directory
 - Manipulated firewall rule to "Block Outgoing Traffic"
 - Used **rclone.exe** to exfiltrate data to domain **computer-wifesecret[.]com**
 
 The firewall rule manipulation was observed on **eight** systems.
 
-Two additional malicious files (**Free_Money.pdf** and **Secret_Formula.docx**) executed the same attack pattern.
+Two additional malicious files (**Free\_Money.pdf** and **Secret\_Formula.docx**) executed the same attack pattern.
 
 In total, **26** systems were compromised by malicious file **krabbypatty.exe**.
 
 ## Indicators of Compromise (IoCs)
 
 **Domains:**
+
 ```
 scarynight.net
 nightshift.com
@@ -102,6 +106,7 @@ chumsecret.biz
 ```
 
 **External IP Addresses - Email Exfiltration:**
+
 ```
 50[.]6[.]66[.]245
 54[.]17[.]157[.]246
@@ -114,6 +119,7 @@ chumsecret.biz
 ```
 
 **Command and Control Servers:**
+
 ```
 4[.]151[.]134[.]241
 20[.]32[.]154[.]116
@@ -133,6 +139,7 @@ chumsecret.biz
 ```
 
 **Malicious Files:**
+
 ```
 Jellyfish_Guide.pptx
 Free_Money.pdf
@@ -147,12 +154,14 @@ CW8VCRZ1.dll
 ### Phishing Email Recipients
 
 **Initial Wave (2023/03/01):**
+
 - Zenaida Warren (Marketing Intern)
 - Julie Hong (IT specialist)
 - Jon Layman (Cook)
 - Toni Jones (Cook)
 
 **Complete List of Targeted Employees:**
+
 - Zenaida Warren (Marketing Intern)
 - Julie Hong (IT specialist)
 - Jon Layman (Cook)
@@ -175,29 +184,37 @@ CW8VCRZ1.dll
 *List of compromised accounts seen in email data exfiltration*
 
 **50[.]6[.]66[.]245**
+
 - 2023/03/02 - Julie Hong - important.rar
 
 **54[.]17[.]157[.]246**
+
 - 2023/03/08 - Luther Shearer - contents.rar
 - 2023/03/16 - Hector Duncan - email.7z (downloaded 2023/03/17)
 
 **136[.]61[.]241[.]165**
+
 - 2023/03/07 - Tina Morrow - important.zip
 - 2023/03/15 - Claudia Hoppe - email.rar (downloaded 2023/03/16)
 
 **156[.]122[.]52[.]45**
+
 - 2023/03/13 - James Jefferies - contents.zip (downloaded 2023/03/14)
 
 **166[.]253[.]114[.]187**
+
 - 2023/03/02 - Toni Jones - important.rar
 
 **187[.]111[.]81[.]175**
+
 - 2023/03/15 - Les Costain - email.rar
 
 **197[.]254[.]115[.]67**
+
 - 2023/03/14 - Shane Pierce - messages.7z
 
 **198[.]64[.]168[.]114**
+
 - 2023/03/09 - John Huffman - contents.7z
 - 2023/03/10 - Les Costain - contents.gzip (downloaded 2023/03/11)
 
@@ -243,7 +260,7 @@ The threat actor sent spearphishing emails with malicious attachments to gain ac
 
 ![Malicious file deployment](/assets/images/kc7-krusty-krab/7.png)
 
-*FileCreationEvents: Employee downloads Jellyfish_Guide.pptx and krabbypatty.exe is deployed*
+*FileCreationEvents: Employee downloads Jellyfish\_Guide.pptx and krabbypatty.exe is deployed*
 
 ### Execution
 
@@ -253,7 +270,7 @@ The threat actor used obfuscated files to disguise hidden malicious executables 
 
 ![Malicious file execution](/assets/images/kc7-krusty-krab/8.png)
 
-*ProcessEvents when malicious file Jellyfish_Guide.pptx was opened*
+*ProcessEvents when malicious file Jellyfish\_Guide.pptx was opened*
 
 **[T1059.001](https://attack.mitre.org/techniques/T1059/001/) - Command and Scripting Interpreter: PowerShell**
 
@@ -314,6 +331,7 @@ The threat actor established connections to multiple C2 servers to exfiltrate da
 The threat actor managed to steal critical information from Krusty Krab employees. Further investigation will determine if the company Krabby Patty recipe has been compromised.
 
 **Immediate Actions:**
+
 - Reset compromised passwords
 - Block malicious domains and IP addresses
 - Begin malware removal from affected systems
@@ -321,6 +339,7 @@ The threat actor managed to steal critical information from Krusty Krab employee
 - Conduct remedial cybersecurity training for all employees
 
 **Preventative Measures:**
+
 - Basic cybersecurity awareness training for all employees
 - Training on phishing, malicious files, and social engineering
 - Education on inspecting links and attachments before clicking
@@ -337,5 +356,5 @@ This investigation used KQL queries to analyze email logs, network events, file 
 
 - [KC7 Cyber](https://kc7cyber.com/)
 - [SANS New2Cyber Summit](https://www.sans.org/cyber-security-training-events/)
-- [KustoQL Documentation](https://learn.microsoft.com/en-us/kusto/query/?view=microsoft-fabric)
+- [KustoQL Documentation](https://learn.microsoft.com/en-us/kusto/query/)
 - [The DFIR Report](https://thedfirreport.com/)
