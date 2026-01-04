@@ -155,39 +155,81 @@ function createMatrixEffect() {
 console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold;');
 console.log('%cLooking at the source? Nice! ðŸ”', 'color: #a855f7; font-size: 14px;');
 console.log('%cIf you found something interesting, let me know!', 'color: #9898b3; font-size: 12px;');
-
-// IMAGE LIGHTBOX FOR WRITEUPS
+// ===================================
+// ROTATING TEXT EFFECT FOR LANDING PAGE
+// ===================================
 document.addEventListener('DOMContentLoaded', function() {
-    if (!document.querySelector('.writeup-content')) return;
-    const lightbox = document.createElement('div');
-    lightbox.className = 'image-lightbox';
-    lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img src="" alt="">';
-    document.body.appendChild(lightbox);
-    const lightboxImg = lightbox.querySelector('img');
-    const closeBtn = lightbox.querySelector('.image-lightbox-close');
-    const images = document.querySelectorAll('.writeup-content img');
-    images.forEach(img => {
-        img.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            lightboxImg.src = this.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox || e.target === closeBtn) {
-            closeLightbox();
+    const rotatingTextElement = document.querySelector('.rotating-text');
+    const cursorElement = document.querySelector('.cursor');
+    
+    if (rotatingTextElement && cursorElement) {
+        const roles = [
+            'intelligence analyst',
+            'security researcher',
+            'cybersecurity'
+        ];
+        
+        let currentIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        // Hide the separate cursor element
+        cursorElement.style.display = 'none';
+        
+        function typeWriter() {
+            const currentRole = roles[currentIndex];
+            
+            if (!isDeleting && charIndex <= currentRole.length) {
+                // Typing - add inline cursor
+                rotatingTextElement.innerHTML = currentRole.substring(0, charIndex) + '<span class="cursor">_</span>';
+                charIndex++;
+                typingSpeed = 100;
+            } else if (isDeleting && charIndex >= 0) {
+                // Deleting - keep inline cursor
+                rotatingTextElement.innerHTML = currentRole.substring(0, charIndex) + '<span class="cursor">_</span>';
+                charIndex--;
+                typingSpeed = 50;
+            }
+            
+            // When done typing current word
+            if (!isDeleting && charIndex > currentRole.length) {
+                // Pause before deleting
+                typingSpeed = 2000;
+                isDeleting = true;
+            }
+            
+            // When done deleting
+            if (isDeleting && charIndex < 0) {
+                isDeleting = false;
+                currentIndex = (currentIndex + 1) % roles.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(typeWriter, typingSpeed);
         }
-    });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+        
+        // Start typing effect after a brief delay
+        setTimeout(typeWriter, 1000);
     }
 });
+
+// ===================================
+// LIVE CLOCK FOR SYSTEM STATUS
+// ===================================
+function updateClock() {
+    const clockElement = document.getElementById('current-time');
+    if (clockElement) {
+        const now = new Date();
+        const hours = String(now.getUTCHours()).padStart(2, '0');
+        const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+        clockElement.textContent = `${hours}:${minutes}:${seconds} UTC`;
+    }
+}
+
+// Update clock every second
+if (document.getElementById('current-time')) {
+    updateClock();
+    setInterval(updateClock, 1000);
+}
