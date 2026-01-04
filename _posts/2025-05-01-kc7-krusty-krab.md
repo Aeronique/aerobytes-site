@@ -11,7 +11,7 @@ excerpt: "My first cybersecurity investigation report analyzing a multi-stage ph
 
 ## Background
 
-In March 2025, I attended the [New2Cyber](https://www.sans.org/cyber-security-training-events/?location=americas%2Clatin-america%2Cusa-and-canada) virtual summit hosted by [SANS Institute](https://www.sans.org/). One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language [KustoQL (KQL)](https://learn.microsoft.com/en-us/kusto/query/?view=microsoft-fabric).
+In March 2025, I attended the [SANS New2Cyber Summit](https://www.sans.org/cyber-security-training-events/) virtual summit hosted by [SANS Institute](https://www.sans.org/). One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language [KustoQL (KQL)](https://learn.microsoft.com/en-us/kusto/query/).
 
 I completed the CTF in two hours and enjoyed it so much that I started looking for more. Since then, I've completed 16 rooms through KC7. Through their gamified learning platform, I've gained skills in database querying, digital forensics, and developed an investigative mindset.
 
