@@ -2332,16 +2332,6 @@ section[id] {
 }
 
 /* Handle linked images */
-.writeup-content a {
-    display: inline-block;
-    width: 100%;
-    cursor: zoom-in;
-}
-
-.writeup-content a img {
-    margin: 2rem auto 0.5rem auto;
-}
-
 /* Image Lightbox Modal */
 .image-lightbox {
     display: none;
