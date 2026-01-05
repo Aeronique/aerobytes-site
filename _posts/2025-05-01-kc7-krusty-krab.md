@@ -11,7 +11,7 @@ excerpt: "My first cybersecurity investigation report analyzing a multi-stage ph
 
 ## Background
 
-In March 2025, I attended the SANS New2Cyber Summit hosted by SANS Institute. One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language KustoQL (KQL).
+In March 2025, I attended the SANS New2Cyber Summit hosted by SANS Institute. One of the events was a Capture The Flag (CTF) hosted by KC7. It was my first introduction to threat intelligence in cybersecurity and the database query language KustoQL (KQL).
 
 I completed the CTF in two hours and enjoyed it so much that I started looking for more. Since then, I've completed 16 rooms through KC7. Through their gamified learning platform, I've gained skills in database querying, digital forensics, and developed an investigative mindset.
 
@@ -336,6 +336,6 @@ This investigation used KQL queries to analyze email logs, network events, file 
 ## Resources
 
 - [KC7 Cyber](https://kc7cyber.com/)
-- SANS New2Cyber Summit
-- KustoQL Documentation
-- The DFIR Report
+- [SANS New2Cyber Summit](https://www.sans.org/cyber-security-training-events/)
+- [KustoQL Documentation](https://learn.microsoft.com/en-us/kusto/query/)
+- [The DFIR Report](https://thedfirreport.com/)
