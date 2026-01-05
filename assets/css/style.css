@@ -2423,3 +2423,71 @@ section[id] {
         right: 15px;
     }
 }
+
+/* ===================================
+   IMAGE LIGHTBOX FOR WRITEUPS
+   =================================== */
+
+/* Only images get zoom-in cursor, NOT links */
+.writeup-content img {
+    cursor: zoom-in;
+}
+
+/* Lightbox modal */
+.image-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    cursor: zoom-out;
+}
+
+.image-lightbox.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    width: auto;
+    height: auto;
+    border: 2px solid var(--cyber-blue);
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 217, 255, 0.5);
+    cursor: zoom-out;
+}
+
+.image-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--cyber-blue);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.image-lightbox-close:hover {
+    color: var(--cyber-magenta);
+    text-shadow: 0 0 20px var(--cyber-magenta);
+}
+
+@media (max-width: 768px) {
+    .image-lightbox img {
+        max-width: 98%;
+        max-height: 98%;
+    }
+    
+    .image-lightbox-close {
+        font-size: 30px;
+        top: 10px;
+        right: 15px;
+    }
+}
