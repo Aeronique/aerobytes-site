@@ -11,7 +11,7 @@ excerpt: "My first cybersecurity investigation report analyzing a multi-stage ph
 
 ## Background
 
-In March 2025, I attended the [SANS New2Cyber Summit](https://www.sans.org/cyber-security-training-events/) virtual summit hosted by [SANS Institute](https://www.sans.org/). One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language [KustoQL (KQL)](https://learn.microsoft.com/en-us/kusto/query/).
+In March 2025, I attended the SANS New2Cyber Summit hosted by SANS Institute. One of the events was a Capture The Flag (CTF) hosted by [KC7](https://kc7cyber.com/). It was my first introduction to threat intelligence in cybersecurity and the database query language KustoQL (KQL).
 
 I completed the CTF in two hours and enjoyed it so much that I started looking for more. Since then, I've completed 16 rooms through KC7. Through their gamified learning platform, I've gained skills in database querying, digital forensics, and developed an investigative mindset.
 
@@ -19,7 +19,7 @@ This report does not provide KQL queries or specific answers. All IP addresses a
 
 ## Disclaimer
 
-I am not a professional in the cybersecurity field. I'm a beginner with a passion for learning, information technology, and keeping systems secure. This report is my first attempt at cybersecurity report writing, inspired by the structure of [The DFIR Report](https://thedfirreport.com/). I'm open to constructive feedback.
+I am not a professional in the cybersecurity field. I'm a beginner with a passion for learning, information technology, and keeping systems secure. This report is my first attempt at cybersecurity report writing, inspired by the structure of The DFIR Report. I'm open to constructive feedback.
 
 ## Problem Statement
 
@@ -336,6 +336,6 @@ This investigation used KQL queries to analyze email logs, network events, file 
 ## Resources
 
 - [KC7 Cyber](https://kc7cyber.com/)
-- [SANS New2Cyber Summit](https://www.sans.org/cyber-security-training-events/)
-- [KustoQL Documentation](https://learn.microsoft.com/en-us/kusto/query/?view=microsoft-fabric)
-- [The DFIR Report](https://thedfirreport.com/)
+- SANS New2Cyber Summit
+- KustoQL Documentation
+- The DFIR Report
