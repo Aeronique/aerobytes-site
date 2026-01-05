@@ -233,3 +233,46 @@ if (document.getElementById('current-time')) {
     updateClock();
     setInterval(updateClock, 1000);
 }
+
+// ===================================
+// IMAGE LIGHTBOX FOR WRITEUPS
+// ===================================
+document.addEventListener('DOMContentLoaded', function() {
+    if (!document.querySelector('.writeup-content')) return;
+    
+    const lightbox = document.createElement('div');
+    lightbox.className = 'image-lightbox';
+    lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img src="" alt="">';
+    document.body.appendChild(lightbox);
+    
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = lightbox.querySelector('.image-lightbox-close');
+    const images = document.querySelectorAll('.writeup-content img');
+    
+    images.forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            lightboxImg.src = this.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox || e.target === closeBtn) {
+            closeLightbox();
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+    
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
