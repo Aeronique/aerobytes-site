@@ -2482,3 +2482,69 @@ section[id] {
         right: 15px;
     }
 }
+
+/* ===================================
+   HOLIDAY HACK CALLOUT
+   =================================== */
+.hhc-callout {
+    padding: 1rem 2rem;
+    background: rgba(168, 85, 247, 0.08);
+    border-top: 1px solid rgba(168, 85, 247, 0.2);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.hhc-callout-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    .hhc-callout-link:hover {
+        opacity: 0.8;
+    }
+
+.hhc-trophy {
+    font-size: 1.5rem;
+}
+
+.hhc-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.hhc-award {
+    color: var(--cyber-magenta);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.hhc-event {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.hhc-arrow {
+    color: var(--cyber-purple);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.hhc-callout-link:hover .hhc-arrow {
+    transform: translateX(5px);
+}
+
+@media (max-width: 640px) {
+    .hhc-callout-link {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
