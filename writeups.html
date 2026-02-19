@@ -55,22 +55,24 @@ permalink: /writeups/
 
             {% if site.posts.size > 0 %}
                 {% for post in site.posts %}
-                <div class="writeup-item">
-                    <div class="writeup-meta">
-                        <span class="writeup-date">{{ post.date | date: "%B %d, %Y" | upcase }}</span>
-                        <span class="writeup-category">{{ post.category }}</span>
+                    {% unless post.series == "31 Days Exposed" %}
+                    <div class="writeup-item">
+                        <div class="writeup-meta">
+                            <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
+                            <span class="writeup-category">{{ post.category }}</span>
+                        </div>
+                        <h2 class="writeup-title">{{ post.title }}</h2>
+                        <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                        {% if post.tags %}
+                        <div class="writeup-tags">
+                            {% for tag in post.tags %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <a href="{{ post.url }}" class="writeup-link">Read more →</a>
                     </div>
-                    <h2 class="writeup-title">{{ post.title }}</h2>
-                    <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-                    {% if post.tags %}
-                    <div class="writeup-tags">
-                        {% for tag in post.tags %}
-                        <span class="tag">{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <a href="{{ post.url }}" class="writeup-link">Read more →</a>
-                </div>
+                    {% endunless %}
                 {% endfor %}
             {% endif %}
         </div>
