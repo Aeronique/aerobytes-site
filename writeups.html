@@ -15,67 +15,27 @@ permalink: /writeups/
         </div>
 
         <div class="writeups-list">
-            <!-- 31 Days Exposed Entry 01 -->
+            {% for post in site.posts %}
             <div class="writeup-item">
                 <div class="writeup-meta">
-                    <span class="writeup-date">FEBRUARY 2026</span>
-                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                    <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
+                    <span class="writeup-category">{{ post.category }}</span>
                 </div>
-                <h2 class="writeup-title">5.5 Million Attacks, 31 Days, Three CVEs Worth Talking About</h2>
-                <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">31 Days Exposed // Entry 01</p>
-                <p class="writeup-excerpt">A 31-day T-Pot honeypot deployment on GCP captured over 5.5 million attack events. The three most exploited CVEs were 6, 19, and 20 years old. None of them required authentication to exploit.</p>
+                <h2 class="writeup-title">{{ post.title }}</h2>
+                {% if post.series %}
+                <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">{{ post.series }} // Entry {{ post.entry }}</p>
+                {% endif %}
+                <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                {% if post.tags %}
                 <div class="writeup-tags">
-                    <span class="tag">CVE Analysis</span>
-                    <span class="tag">Honeypot</span>
-                    <span class="tag">Threat Intelligence</span>
-                    <span class="tag">VNC</span>
-                    <span class="tag">VoIP</span>
-                    <span class="tag">WebLogic</span>
+                    {% for tag in post.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
                 </div>
-                <a href="/writeups/31-days-exposed-01/" class="writeup-link">Read more →</a>
+                {% endif %}
+                <a href="{{ post.url }}" class="writeup-link">Read more →</a>
             </div>
-
-            <!-- Jekyll posts render here, newest first, excluding 31 Days Exposed series -->
-            {% if site.posts.size > 0 %}
-                {% for post in site.posts %}
-                    {% unless post.series == "31 Days Exposed" %}
-                    <div class="writeup-item">
-                        <div class="writeup-meta">
-                            <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
-                            <span class="writeup-category">{{ post.category }}</span>
-                        </div>
-                        <h2 class="writeup-title">{{ post.title }}</h2>
-                        <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-                        {% if post.tags %}
-                        <div class="writeup-tags">
-                            {% for tag in post.tags %}
-                            <span class="tag">{{ tag }}</span>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        <a href="{{ post.url }}" class="writeup-link">Read more →</a>
-                    </div>
-                    {% endunless %}
-                {% endfor %}
-            {% endif %}
-
-            <!-- Static Holiday Hack Challenge Entry - pinned at bottom -->
-            <div class="writeup-item">
-                <div class="writeup-meta">
-                    <span class="writeup-date">DECEMBER 2025</span>
-                    <span class="writeup-category">CTF</span>
-                </div>
-                <h2 class="writeup-title">SANS Holiday Hack Challenge 2025</h2>
-                <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">Runner-Up, Most Creative Report</p>
-                <p class="writeup-excerpt">Complete walkthrough solving all 26 challenges. Router exploitation, web application attacks, privilege escalation, cloud security misconfigurations, protocol analysis, and taking down an evil snowman's freezing machine. Finished 5th on the leaderboard.</p>
-                <div class="writeup-tags">
-                    <span class="tag">Web Exploitation</span>
-                    <span class="tag">Privilege Escalation</span>
-                    <span class="tag">Cloud Security</span>
-                    <span class="tag">Reverse Engineering</span>
-                </div>
-                <a href="https://hhc2025.aerobytes.io" target="_blank" class="writeup-link">Read full report →</a>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
