@@ -35,24 +35,7 @@ permalink: /writeups/
                 <a href="/writeups/31-days-exposed-01/" class="writeup-link">Read more →</a>
             </div>
 
-            <!-- Static Holiday Hack Challenge Entry -->
-            <div class="writeup-item">
-                <div class="writeup-meta">
-                    <span class="writeup-date">DECEMBER 2025</span>
-                    <span class="writeup-category">CTF</span>
-                </div>
-                <h2 class="writeup-title">SANS Holiday Hack Challenge 2025</h2>
-                <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">Runner-Up, Most Creative Report</p>
-                <p class="writeup-excerpt">Complete walkthrough solving all 26 challenges. Router exploitation, web application attacks, privilege escalation, cloud security misconfigurations, protocol analysis, and taking down an evil snowman's freezing machine. Finished 5th on the leaderboard.</p>
-                <div class="writeup-tags">
-                    <span class="tag">Web Exploitation</span>
-                    <span class="tag">Privilege Escalation</span>
-                    <span class="tag">Cloud Security</span>
-                    <span class="tag">Reverse Engineering</span>
-                </div>
-                <a href="https://hhc2025.aerobytes.io" target="_blank" class="writeup-link">Read full report →</a>
-            </div>
-
+            <!-- Jekyll posts render here, newest first, excluding 31 Days Exposed series -->
             {% if site.posts.size > 0 %}
                 {% for post in site.posts %}
                     {% unless post.series == "31 Days Exposed" %}
@@ -75,6 +58,24 @@ permalink: /writeups/
                     {% endunless %}
                 {% endfor %}
             {% endif %}
+
+            <!-- Static Holiday Hack Challenge Entry - pinned at bottom -->
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">DECEMBER 2025</span>
+                    <span class="writeup-category">CTF</span>
+                </div>
+                <h2 class="writeup-title">SANS Holiday Hack Challenge 2025</h2>
+                <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">Runner-Up, Most Creative Report</p>
+                <p class="writeup-excerpt">Complete walkthrough solving all 26 challenges. Router exploitation, web application attacks, privilege escalation, cloud security misconfigurations, protocol analysis, and taking down an evil snowman's freezing machine. Finished 5th on the leaderboard.</p>
+                <div class="writeup-tags">
+                    <span class="tag">Web Exploitation</span>
+                    <span class="tag">Privilege Escalation</span>
+                    <span class="tag">Cloud Security</span>
+                    <span class="tag">Reverse Engineering</span>
+                </div>
+                <a href="https://hhc2025.aerobytes.io" target="_blank" class="writeup-link">Read full report →</a>
+            </div>
         </div>
     </div>
 </section>
