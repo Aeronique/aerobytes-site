@@ -2487,7 +2487,7 @@ section[id] {
    HOLIDAY HACK CALLOUT
    =================================== */
 .hhc-callout {
-    padding: 2rem 2rem;
+    padding: 3rem 2rem;
     margin: 0;
     background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(255, 20, 147, 0.1));
     border-top: 1px solid rgba(168, 85, 247, 0.4);
