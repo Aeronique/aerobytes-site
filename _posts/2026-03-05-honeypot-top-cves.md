@@ -161,7 +161,7 @@ An unsafe deserialization flaw in the React Server Components (RSC) "Flight" pro
 
 ---
 
-*All data sourced from Elasticsearch DSL queries against T-Pot honeypot logs, 2026/02/01 through 2026/02/28. Raw query output is preserved in honeypot-threat-research/data[https://github.com/Aeronique/honeypot-threat-research/tree/main/data].*
+*All data sourced from Elasticsearch DSL queries against T-Pot honeypot logs, 2026/02/01 through 2026/02/28. Raw query output is preserved in [honeypot-threat-research/data](https://github.com/Aeronique/honeypot-threat-research/tree/main/data).*
 
 ---
 
