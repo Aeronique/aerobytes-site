@@ -8,8 +8,6 @@ permalink: /writeups/honeypot-threat-research/01
 excerpt: "Analysis of the three highest-volume CVEs observed across a 28-day T-Pot honeypot deployment on Google Cloud Platform, February 2026."
 ---
 
-# Top CVEs by Event Volume: February 2026 Honeypot Deployment
-
 **Deployment Period:** 2026/02/01 to 2026/02/28
 
 **Honeypot:** T-Pot Community Edition, Google Cloud Platform
