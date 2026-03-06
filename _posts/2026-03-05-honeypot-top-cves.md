@@ -154,7 +154,7 @@ An unsafe deserialization flaw in the React Server Components (RSC) "Flight" pro
 
 **CVE-2018-13379 double-signature:** Two Suricata rules fired for this CVE with identical per-day counts, meaning they matched the same traffic. This report uses one signature's count (29,938). The combined total across both signatures is 59,876.
 
-**CVSS sourcing:** NVD is the primary CVSS source in this report. For CVE-2018-13379, NVD publishes 9.8 and Shodan CVEDB returns 9.1. This kind of discrepancy is common. For CVE-2024-14007, NVD has not published a v3 score; the v4.0 score of 8.7 comes from VulnCheck. For CVE-2025-55182, NVD has not completed its analysis; the score of 10.0 comes from the CNA (Meta).
+**CVSS sourcing:** NVD is the primary CVSS source in this report. For CVE-2018-13379, NVD publishes 9.8 and Shodan CVEDB returns 9.1. This kind of discrepancy is common. For CVE-2024-14007, NVD has not published a v3 score; the v4.0 score of 8.7 comes from VulnCheck. For CVE-2025-55182, NVD has not completed its analysis and the score of 10.0 comes from the CNA (Meta).
 
 **EPSS scores** come from Shodan CVEDB and reflect a single point in time snapshot. The score for CVE-2024-14007 (0.07%) may not yet reflect full exploitation data given how recently the CVE was formally published.
 
