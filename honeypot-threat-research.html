@@ -4,19 +4,18 @@ title: "28 Days Exposed: Open Season on a Cloud Honeypot"
 permalink: /honeypot-threat-research/
 ---
 
-<section class="projects-page">
+<section class="writeups-page">
     <div class="container">
-        <div class="page-header" style="text-align: left;">
-            <h1 class="page-title" style="justify-content: flex-start;">
+        <div style="margin-bottom: 4rem;">
+            <h1 class="page-title" style="justify-content: flex-start; text-align: left;">
                 <span class="section-number">//</span>
                 <span>28 Days Exposed</span>
             </h1>
             <p style="color: var(--cyber-purple); font-style: italic; font-size: 1.1rem; margin-bottom: 1.5rem;">Open Season on a Cloud Honeypot</p>
-            <p class="page-description" style="text-align: left;">In February 2026, I deployed a T-Pot honeypot on Google Cloud Platform and left it exposed to the internet for 28 days. No filters, no restrictions. Just a system sitting in the open waiting to see what showed up.</p>
-            <p class="page-description" style="margin-top: 1rem; text-align: left;">What came back was 96 million events across the full deployment, covering everything from decade-old CVEs that should have been patched years ago, to a critical React vulnerability that had been disclosed less than two months before. This series works through the data one topic at a time, documenting the patterns, the actors, and what it all suggests about the current threat landscape.</p>
-            <p class="page-description" style="margin-top: 1rem; text-align: left;">All data was pulled directly from Elasticsearch using DSL queries through Kibana Dev Tools. Every number is verifiable against raw query output saved in the <a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" class="inline-link">project repository</a>.</p>
-
-            <div style="margin-top: 2rem; padding: 1rem 1.5rem; background: rgba(0, 217, 255, 0.05); border-left: 3px solid var(--cyber-blue); border-radius: 4px; font-size: 0.9rem; color: var(--text-secondary); text-align: left;">
+            <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1rem;">In February 2026, I deployed a T-Pot honeypot on Google Cloud Platform and left it exposed to the internet for 28 days. No filters, no restrictions. Just a system sitting in the open waiting to see what showed up.</p>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1rem;">What came back was 96 million events across the full deployment, covering everything from decade-old CVEs that should have been patched years ago, to a critical React vulnerability that had been disclosed less than two months before. This series works through the data one topic at a time, documenting the patterns, the actors, and what it all suggests about the current threat landscape.</p>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1rem;">All data was pulled directly from Elasticsearch using DSL queries through Kibana Dev Tools. Every number is verifiable against raw query output saved in the <a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" class="inline-link">project repository</a>.</p>
+            <div style="margin-top: 2rem; padding: 1rem 1.5rem; background: rgba(0, 217, 255, 0.05); border-left: 3px solid var(--cyber-blue); border-radius: 4px; font-size: 0.9rem; color: var(--text-secondary);">
                 <span style="color: var(--cyber-magenta);">$</span> Deployment period: 2026/02/01 to 2026/02/28 &nbsp;|&nbsp; Platform: T-Pot CE on GCP &nbsp;|&nbsp; Total events: 96,408,585 &nbsp;|&nbsp; TLP: TLP:CLEAR
             </div>
         </div>
