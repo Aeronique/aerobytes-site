@@ -3,7 +3,7 @@ layout: writeup
 title: "T-Pot Honeypot: Legacy Vulnerability Exploitation - February 2026"
 date: 2026-03-07
 category: THREAT INTELLIGENCE
-tags:tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "suricata", "GCP", "cve-analysis", "vulnerability-research", "legacy-vulnerabilities"]
+tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "suricata", "GCP", "cve-analysis", "vulnerability-research", "legacy-vulnerabilities"]
 permalink: /writeups/honeypot-threat-research/08
 excerpt: "Pre-2017 CVEs that still generated inbound scanning activity during a 28-day honeypot deployment, and what the patterns suggest about long-unpatched systems."
 ---
