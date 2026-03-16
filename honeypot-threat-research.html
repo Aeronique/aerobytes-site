@@ -1,0 +1,204 @@
+---
+layout: default
+title: 28 Days Exposed: Open Season on a Cloud Honeypot
+permalink: /writeups/honeypot-threat-research/
+---
+
+<section class="writeups-page">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                <span class="section-number">//</span>
+                <span>28 Days Exposed</span>
+            </h1>
+            <p style="color: var(--cyber-purple); font-style: italic; font-size: 1rem; margin-top: -1rem; margin-bottom: 1.5rem;">Open Season on a Cloud Honeypot</p>
+            <p class="page-description">In February 2026, I deployed a T-Pot honeypot on Google Cloud Platform and left it exposed to the internet for 28 days. No filters, no restrictions. Just a system sitting in the open waiting to see what showed up.</p>
+            <p class="page-description" style="margin-top: 1rem;">What came back was 96 million events across the full deployment, covering everything from decade-old CVEs that should have been patched years ago, to a critical React vulnerability that had been disclosed less than two months before. This series works through the data one topic at a time, documenting the patterns, the actors, and what it all suggests about the current threat landscape.</p>
+            <p class="page-description" style="margin-top: 1rem;">All data was pulled directly from Elasticsearch using DSL queries through Kibana Dev Tools. Every number is verifiable against raw query output saved in the <a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" class="inline-link">project repository</a>.</p>
+
+            <div style="margin-top: 2rem; padding: 1rem 1.5rem; background: rgba(0, 217, 255, 0.05); border-left: 3px solid var(--cyber-blue); border-radius: 4px; font-size: 0.9rem; color: var(--text-secondary);">
+                <span style="color: var(--cyber-magenta);">$</span> Deployment period: 2026/02/01 to 2026/02/28 &nbsp;|&nbsp; Platform: T-Pot CE on GCP &nbsp;|&nbsp; Total events: 96,408,585 &nbsp;|&nbsp; TLP: TLP:CLEAR
+            </div>
+        </div>
+
+        <div class="writeups-list">
+
+            <h3 class="subsection-title">Vulnerability Exploitation</h3>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">MARCH 2026</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title">Report 01: Top CVEs by Event Volume</h2>
+                <p class="writeup-excerpt">The three highest-volume CVEs across the full deployment. A 2019-patched Fortinet flaw still dominated at nearly 30,000 events, a TVT DVR authentication bypass ran steady every single day, and a React RCE disclosed two months before the deployment was already showing up in the data.</p>
+                <div class="writeup-tags">
+                    <span class="tag">honeypot</span>
+                    <span class="tag">threat-intelligence</span>
+                    <span class="tag">CVE</span>
+                    <span class="tag">T-Pot</span>
+                    <span class="tag">GCP</span>
+                    <span class="tag">Fortinet</span>
+                    <span class="tag">IoT</span>
+                </div>
+                <a href="/writeups/honeypot-threat-research/01" class="writeup-link">Read report →</a>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 02: Most Recent CVE</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">How fast attackers picked up a newly disclosed CVE and started scanning for it in the wild.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">honeypot</span>
+                    <span class="tag" style="opacity: 0.5;">CVE</span>
+                    <span class="tag" style="opacity: 0.5;">threat-intelligence</span>
+                </div>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 03: Campaign Analysis</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">Individual reports covering each significant campaign observed during the deployment, including emergence, targeting patterns, infrastructure, and withdrawal.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">honeypot</span>
+                    <span class="tag" style="opacity: 0.5;">campaigns</span>
+                    <span class="tag" style="opacity: 0.5;">threat-intelligence</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title" style="margin-top: 3rem;">Infrastructure & Attribution</h3>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 04: Geographic Attribution</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">Where attacks originated, with discussion of how cloud provider and VPN exit node usage affects attribution confidence.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">attribution</span>
+                    <span class="tag" style="opacity: 0.5;">OSINT</span>
+                    <span class="tag" style="opacity: 0.5;">GCP</span>
+                </div>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 05: Threat Actor Assessment</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">What CVE selection, tooling signatures, and operational patterns suggest about the actors behind the activity.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">threat-actors</span>
+                    <span class="tag" style="opacity: 0.5;">TTPs</span>
+                    <span class="tag" style="opacity: 0.5;">attribution</span>
+                </div>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 09: Cloud Infrastructure Abuse</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">How much attack traffic came from DigitalOcean, Google Cloud, and Amazon, and what attackers are doing with rented infrastructure.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">cloud</span>
+                    <span class="tag" style="opacity: 0.5;">ASN</span>
+                    <span class="tag" style="opacity: 0.5;">infrastructure</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title" style="margin-top: 3rem;">Behavioral Analysis</h3>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 07: Credential Attack Patterns</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">The usernames and passwords that showed up most often, what they target, and which credential pattern dominated the deployment.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">credentials</span>
+                    <span class="tag" style="opacity: 0.5;">brute-force</span>
+                    <span class="tag" style="opacity: 0.5;">honeypot</span>
+                </div>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 10: Port Targeting Analysis</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">Which services attracted the most traffic and how port targeting shifted as campaigns changed across the deployment.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">ports</span>
+                    <span class="tag" style="opacity: 0.5;">scanning</span>
+                    <span class="tag" style="opacity: 0.5;">network</span>
+                </div>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">MARCH 2026</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title">Report 08: Legacy Vulnerability Exploitation</h2>
+                <p class="writeup-excerpt">Six CVEs from 2013 to 2016 that still generated meaningful scanning activity during the deployment. Shellshock, Drupalgeddon, and a 2013 Apache Struts flaw are still on the checklist for automated scanners in 2026.</p>
+                <div class="writeup-tags">
+                    <span class="tag">honeypot</span>
+                    <span class="tag">threat-intelligence</span>
+                    <span class="tag">CVE</span>
+                    <span class="tag">T-Pot</span>
+                    <span class="tag">GCP</span>
+                    <span class="tag">legacy-CVEs</span>
+                </div>
+                <a href="/writeups/honeypot-threat-research/08" class="writeup-link">Read report →</a>
+            </div>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 11: Suricata Signature Analysis</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">What the top alert signatures tell us about attacker tooling and how they correlate with specific campaigns.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">suricata</span>
+                    <span class="tag" style="opacity: 0.5;">IDS</span>
+                    <span class="tag" style="opacity: 0.5;">signatures</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title" style="margin-top: 3rem;">Strategic Assessment</h3>
+
+            <div class="writeup-item">
+                <div class="writeup-meta">
+                    <span class="writeup-date">COMING SOON</span>
+                    <span class="writeup-category">THREAT INTELLIGENCE</span>
+                </div>
+                <h2 class="writeup-title" style="color: var(--text-secondary);">Report 06: Future Attack Trends</h2>
+                <p class="writeup-excerpt" style="opacity: 0.6;">What the observed patterns suggest about where the threat landscape is heading, which vulnerabilities are gaining traction, and what defenders should be watching.</p>
+                <div class="writeup-tags">
+                    <span class="tag" style="opacity: 0.5;">threat-landscape</span>
+                    <span class="tag" style="opacity: 0.5;">trends</span>
+                    <span class="tag" style="opacity: 0.5;">defense</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0, 217, 255, 0.1); text-align: center;">
+            <a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" class="action-button">View Project on GitHub →</a>
+        </div>
+
+    </div>
+</section>
