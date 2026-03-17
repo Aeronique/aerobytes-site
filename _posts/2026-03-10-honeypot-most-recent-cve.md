@@ -11,8 +11,11 @@ excerpt: "Analysis of CVE-2026-24061, the most recently disclosed CVE observed i
 # CVE-2026-24061: GNU InetUtils telnetd Authentication Bypass
 
 **Deployment Period:** 2026/02/01 to 2026/02/28
+
 **Honeypot:** T-Pot Community Edition, Google Cloud Platform
+
 **Data Source:** Elasticsearch DSL queries, Kibana Dev Tools
+
 **TLP:** TLP:CLEAR
 
 ---
