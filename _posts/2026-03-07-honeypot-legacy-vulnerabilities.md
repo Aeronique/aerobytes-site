@@ -6,6 +6,8 @@ category: THREAT INTELLIGENCE
 tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "legacy-CVEs"]
 permalink: /writeups/honeypot-threat-research/08
 excerpt: "Pre-2017 CVEs that still generated inbound scanning activity during a 28-day honeypot deployment, and what the patterns suggest about long-unpatched systems."
+back_url: /honeypot-threat-research/
+back_label: Back to 28 Days Exposed
 ---
 
 **Deployment Period:** 2026/02/01 to 2026/02/28

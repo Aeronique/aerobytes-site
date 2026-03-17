@@ -6,6 +6,8 @@ category: THREAT INTELLIGENCE
 tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "CVE", "telnet"]
 permalink: /writeups/honeypot-threat-research/02
 excerpt: "Analysis of CVE-2026-24061, the most recently disclosed CVE observed in the February 2026 T-Pot honeypot deployment, including observed activity, scoring data, and defender guidance."
+back_url: /honeypot-threat-research/
+back_label: Back to 28 Days Exposed
 ---
 
 # CVE-2026-24061: GNU InetUtils telnetd Authentication Bypass

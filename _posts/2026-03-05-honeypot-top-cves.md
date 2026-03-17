@@ -6,6 +6,8 @@ category: THREAT INTELLIGENCE
 tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "Fortinet", "IoT"]
 permalink: /writeups/honeypot-threat-research/01
 excerpt: "Analysis of the three highest-volume CVEs observed across a 28-day T-Pot honeypot deployment on Google Cloud Platform, February 2026."
+back_url: /honeypot-threat-research/
+back_label: Back to 28 Days Exposed
 ---
 
 **Deployment Period:** 2026/02/01 to 2026/02/28
