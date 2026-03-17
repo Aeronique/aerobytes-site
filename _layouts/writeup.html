@@ -16,7 +16,7 @@ body .cyber-grid {
 <article class="writeup-page">
     <div class="container">
         <div class="writeup-header">
-            <a href="/writeups" class="back-link">← Back to Writeups</a>
+            <a href="{{ page.back_url | default: '/writeups' }}" class="back-link">← {{ page.back_label | default: 'Back to Writeups' }}</a>
             <div class="writeup-meta">
                 <span class="writeup-date">{{ page.date | date: "%B %d, %Y" }}</span>
                 {% if page.category %}
