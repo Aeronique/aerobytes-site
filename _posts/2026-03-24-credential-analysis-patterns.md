@@ -140,4 +140,4 @@ Exact credential counts were not part of the daily query set. Rankings are based
 | SANS ISC: Top Not-So-Common SSH Usernames and Passwords | https://isc.sans.edu/diary/31360 |
 | Aalborg University: SweetCam IP Camera Honeypot (2023) | https://vbn.aau.dk/ws/portalfiles/portal/573748244/sweetcam_honeypot_paper_1_.pdf |
 | IMC 2025: Long-Term SSH Honeynet Observations | https://gsmaragd.github.io/publications/IMC2025-Honeynet/IMC2025-Honeynet.pdf |
-| CISA: Avoid Bad Practices | https://www.cisa.gov/resources-tools/resources/bad-practices |
+
