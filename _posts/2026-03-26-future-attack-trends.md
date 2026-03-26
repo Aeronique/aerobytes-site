@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: "Future Attack Trends"
-date: 2026-03-27
+date: 2026-03-26
 category: THREAT INTELLIGENCE
 tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "trends", "CVE"]
 permalink: /writeups/honeypot-threat-research/06
