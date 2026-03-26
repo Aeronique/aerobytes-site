@@ -22,7 +22,7 @@ back_label: Back to 28 Days Exposed
 
 ## About This Report
 
-This report is part of a hands-on project focused on building practical skills in cyber threat intelligence. It is one report in an ongoing series covering a 28-day T-Pot honeypot deployment on Google Cloud Platform during February 2026. I'm open to constructive feedback.
+This report is part of a hands-on project focused on building practical skills in cyber threat intelligence. It is one report in an ongoing series covering a 28-day T-Pot honeypot deployment on Google Cloud Platform during February 2026.
 
 ---
 
@@ -58,7 +58,7 @@ Port 22 received **2,127,074** events across all 28 days, averaging approximatel
 
 ### SNMP (Port 161)
 
-Port 161 produced **1,328,119** events, but all traffic arrived on two consecutive days: **312,927** on 2026/02/03 and **1,015,192** on 2026/02/04. Every remaining day recorded zero. SNMP is used to enumerate device configurations. A burst of this scale concentrated into 48 hours, followed by complete silence, is consistent with a targeted sweep rather than background scanning.
+Port 161 produced **1,328,119** events, but all traffic arrived on two consecutive days: **312,927** on 2026/02/03 and **1,015,192** on 2026/02/04. Every remaining day recorded zero. SNMP is used to enumerate device configurations. A burst of this scale concentrated into 48 hours, followed by complete silence, is consistent with a targeted sweep.
 
 ### SIP/VoIP (Port 5060)
 
