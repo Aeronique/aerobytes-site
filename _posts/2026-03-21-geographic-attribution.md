@@ -1,6 +1,6 @@
 ---
 layout: writeup
-title: "Geographic Attribution: February 2026 Honeypot Deployment"
+title: "Geographic Attribution"
 date: 2026-03-21
 category: THREAT INTELLIGENCE
 tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "geographic-attribution"]
