@@ -1,6 +1,6 @@
 ---
 layout: writeup
-title: "Cloud Infrastructure Abuse: February 2026 Honeypot Deployment"
+title: "Cloud Infrastructure Abuse"
 date: 2026-03-23
 category: THREAT INTELLIGENCE
 tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "cloud", "attribution"]
