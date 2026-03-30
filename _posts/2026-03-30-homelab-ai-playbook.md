@@ -14,9 +14,9 @@ tags:
   - Cloud Security Alliance
 ---
 
-This playbook is a personal reference built from completing the TAISE (Trusted AI Safety Expert) certification course from the Cloud Security Alliance. The course covers AI safety, governance, security, and responsible implementation across the full AI lifecycle. My AI background going into this was pretty casual — I use it for learning and brainstorming project ideas — so this is written with that same beginner to intermediate mindset.
+This playbook is a personal reference built from completing the TAISE certification course from the Cloud Security Alliance. The course covers AI safety, governance, security, and responsible implementation across the full AI lifecycle. My AI background going into this was pretty casual. I use it for learning and brainstorming project ideas, so this is written with that same beginner to intermediate level in mind.
 
-The goal here is to take what the course teaches about responsible AI at an enterprise level and translate it into something that actually makes sense for a homelab environment.
+The overall goal with this playbook is to take what the course teaches about responsible AI at an enterprise level and translate it into a smaller scale AI implementation, particularly those in a homelab environment.
 
 ---
 
