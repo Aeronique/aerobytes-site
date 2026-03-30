@@ -28,7 +28,7 @@ The course makes this point early. A lot of time gets wasted building machine le
 
 ---
 
-## 2. Know Your Data Before You Touch a Model
+## 2. Know Your Data
 
 A model is only as good as what it is trained on. There are four pillars of data quality to keep in mind: accuracy, completeness, consistency, and timeliness. Is the data correct? Is anything missing? Does it follow a predictable format? Is it current enough to be useful?
 
@@ -36,7 +36,7 @@ Beyond quality, you also need to think about bias. If your training data does no
 
 ---
 
-## 3. Pick the Right Service Model for Your Setup
+## 3. Pick the Right Service Model
 
 The course breaks down three ways to run AI systems, and the same thinking applies to a homelab.
 
@@ -46,7 +46,7 @@ Your security approach needs to match whichever model you choose. The more of th
 
 ---
 
-## 4. Build with Zero Trust from the Start
+## 4. Build with Zero Trust
 
 Zero Trust is a security model defined by NIST where every user, service, and agent gets the minimum access they need to do their job and nothing more. All communication is secured regardless of where it happens on your network. The guiding principle is never trust, always verify.
 
@@ -61,7 +61,7 @@ AI security requires continuous attention throughout the life of your system.
 
 ---
 
-## 5. Think About Responsible AI from Day One
+## 5. Responsible AI from Day One
 
 Responsible AI runs through every phase of development and gets built in from the start.
 
@@ -79,7 +79,7 @@ Even in a homelab, skipping these steps creates problems later that are much har
 
 ---
 
-## 6. Know the Threats Specific to AI Systems
+## 6. Know Specific AI Threats
 
 Traditional cybersecurity threats still apply to AI, but AI introduces some unique ones. The course covers the OWASP threat taxonomy for generative and agentic AI. The ones most relevant to a local implementation are:
 
@@ -124,7 +124,7 @@ Even a lightweight version of this loop will save you significant headaches over
 
 ---
 
-## 9. Plan for Incidents Before They Happen
+## 9. Plan for Incidents
 
 Define two things before you go live with anything.
 
@@ -136,7 +136,7 @@ Write a simple runbook, which is a step-by-step document of what to do when some
 
 ---
 
-## 10. Document Everything
+## 10. Document
 
 Document what model you are using and why, what version you are running, where your data came from, who or what has access to the system, and when and why you made changes. The course calls this model lineage and provenance tracking. In practice it is a changelog and some notes, but when something breaks or behaves unexpectedly you will be glad you kept records.
 
@@ -150,7 +150,7 @@ The threat landscape evolves, models drift, data goes stale, and requirements ch
 
 ## Summary Checklist
 
-| Area | Key Action |
+| Area | Action |
 |---|---|
 | Problem Framing | Define the use case and consider ethical implications first |
 | Data Quality | Check accuracy, completeness, consistency, and timeliness |
