@@ -4,38 +4,854 @@ title: Writeups & Research
 permalink: /writeups/
 ---
 
+<style>
+/* =============================================
+   WRITEUPS PAGE — scoped styles
+   ============================================= */
+
+.writeups-page {
+    padding: calc(var(--section-padding) + 120px) 2rem var(--section-padding) 2rem;
+    min-height: 100vh;
+}
+
+/* Search */
+.wu-search-wrap {
+    position: relative;
+    max-width: 480px;
+    margin-bottom: 1rem;
+}
+
+.wu-search-wrap i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.wu-search {
+    width: 100%;
+    padding: 0.65rem 1rem 0.65rem 2.25rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.wu-search:focus {
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 12px rgba(0, 217, 255, 0.15);
+}
+
+.wu-search::placeholder { color: var(--text-secondary); }
+
+/* Tier 1 filters */
+.wu-filters {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.wu-btn {
+    padding: 0.5rem 1.4rem;
+    background: transparent;
+    border: 2px solid rgba(0, 217, 255, 0.25);
+    border-radius: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+}
+
+.wu-btn:hover { color: var(--cyber-blue); border-color: var(--cyber-blue); }
+
+.wu-btn.active                  { color: var(--dark-bg); background: var(--cyber-blue);    border-color: var(--cyber-blue);    box-shadow: 0 0 14px rgba(0, 217, 255, 0.3); }
+.wu-btn.active.f-research       { background: var(--cyber-purple); border-color: var(--cyber-purple); box-shadow: 0 0 14px rgba(168, 85, 247, 0.3); }
+.wu-btn.active.f-competition    { background: var(--cyber-pink);   border-color: var(--cyber-pink);   box-shadow: 0 0 14px rgba(255, 20, 147, 0.3); }
+.wu-btn.active.f-labs           { background: var(--cyber-blue);   border-color: var(--cyber-blue); }
+.wu-btn.active.f-reflection     { background: var(--cyber-magenta);border-color: var(--cyber-magenta);box-shadow: 0 0 14px rgba(255, 0, 255, 0.3); }
+
+/* Tier 2 sub-filters (labs only) */
+.wu-tier2 {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.wu-tier2.visible {
+    opacity: 1;
+}
+
+.wu-tier2-inner {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    padding: 0.6rem 0 0.75rem;
+    align-items: center;
+}
+
+.wu-tier2-label {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    font-family: var(--font-mono);
+}
+
+.wu-sub-btn {
+    padding: 0.3rem 0.9rem;
+    background: transparent;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.wu-sub-btn:hover { border-color: var(--cyber-blue); color: var(--cyber-blue); }
+.wu-sub-btn.on    { background: var(--cyber-blue); border-color: var(--cyber-blue); color: var(--dark-bg); }
+
+/* Results label */
+.wu-results {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-family: var(--font-mono);
+}
+
+.wu-results .prompt { color: var(--cyber-magenta); margin-right: 4px; }
+.wu-results span    { color: var(--cyber-blue); }
+
+/* Section headers */
+.wu-section { margin-bottom: 3.5rem; }
+
+.wu-section-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.wu-section-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.wu-section-title.purple  { color: var(--cyber-purple); }
+.wu-section-title.pink    { color: var(--cyber-pink); }
+.wu-section-title.blue    { color: var(--cyber-blue); }
+.wu-section-title.magenta { color: var(--cyber-magenta); }
+
+.wu-section-line {
+    flex: 1;
+    height: 1px;
+}
+
+.wu-section-line.purple  { background: linear-gradient(90deg, rgba(168, 85, 247, 0.5), transparent); }
+.wu-section-line.pink    { background: linear-gradient(90deg, rgba(255, 20, 147, 0.5), transparent); }
+.wu-section-line.blue    { background: linear-gradient(90deg, rgba(0, 217, 255, 0.5), transparent); }
+.wu-section-line.magenta { background: linear-gradient(90deg, rgba(255, 0, 255, 0.5), transparent); }
+
+/* Sub-section headers inside labs */
+.wu-sub-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.wu-sub-title {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+/* Stats terminals */
+.wu-terminal {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0 25px rgba(0, 217, 255, 0.07);
+}
+
+.wu-terminal.kc7 { border-color: rgba(45, 212, 191, 0.25); }
+
+.wu-terminal-bar {
+    background: rgba(0, 217, 255, 0.07);
+    padding: 0.55rem 1rem;
+    border-bottom: 1px solid rgba(0, 217, 255, 0.18);
+    font-size: 0.78rem;
+    color: var(--cyber-blue);
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wu-terminal-bar.kc7 { background: rgba(45, 212, 191, 0.07); border-color: rgba(45, 212, 191, 0.18); color: #2dd4bf; }
+
+.wu-terminal-stats {
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.wu-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.wu-stat-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.wu-stat-label .ps { color: var(--cyber-magenta); margin-right: 3px; }
+
+.wu-stat-num {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.wu-stat-num.blue    { color: var(--cyber-blue);   text-shadow: 0 0 10px rgba(0, 217, 255, 0.4); }
+.wu-stat-num.veasygr { color: #a8f0c6;             text-shadow: 0 0 10px rgba(168, 240, 198, 0.4); }
+.wu-stat-num.green   { color: #22c55e;             text-shadow: 0 0 10px rgba(34, 197, 94, 0.4); }
+.wu-stat-num.amber   { color: #f59e0b;             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+.wu-stat-num.red     { color: #ef4444;             text-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+.wu-stat-num.wblue   { color: #5ba4e0;             text-shadow: 0 0 10px rgba(91, 164, 224, 0.4); }
+.wu-stat-num.kc7col  { color: #2dd4bf;             text-shadow: 0 0 10px rgba(45, 212, 191, 0.4); }
+.wu-stat-num.sm      { font-size: 1.1rem; padding-top: 0.2rem; }
+
+.wu-stat-sub { font-size: 0.7rem; color: var(--text-secondary); font-family: var(--font-mono); }
+
+/* HTB difficulty filters */
+.wu-diff-filters {
+    display: flex;
+    gap: 0.45rem;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+}
+
+.wu-diff-btn {
+    padding: 0.28rem 0.85rem;
+    background: transparent;
+    border: 1px solid rgba(0, 217, 255, 0.18);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.wu-diff-btn:hover { border-color: var(--cyber-blue); color: var(--cyber-blue); }
+.wu-diff-btn.on { color: var(--dark-bg); }
+.wu-diff-btn.on.d-all    { background: var(--cyber-blue);   border-color: var(--cyber-blue); }
+.wu-diff-btn.on.d-veasy  { background: #a8f0c6;             border-color: #a8f0c6; color: #0a0a0f; }
+.wu-diff-btn.on.d-easy   { background: #22c55e;             border-color: #22c55e; }
+.wu-diff-btn.on.d-medium { background: #f59e0b;             border-color: #f59e0b; }
+.wu-diff-btn.on.d-hard   { background: #ef4444;             border-color: #ef4444; }
+.wu-diff-btn.on.d-insane { background: var(--cyber-purple); border-color: var(--cyber-purple); }
+
+.wu-diff-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.wu-dot-veasy  { background: #a8f0c6; }
+.wu-dot-easy   { background: #22c55e; }
+.wu-dot-medium { background: #f59e0b; }
+.wu-dot-hard   { background: #ef4444; }
+.wu-dot-insane { background: var(--cyber-purple); }
+
+/* Card grid (HTB + KC7) */
+.wu-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 1rem;
+}
+
+.wu-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 217, 255, 0.18);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.wu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-magenta), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+
+.wu-card:hover::before { transform: scaleX(1); }
+.wu-card:hover { border-color: var(--cyber-blue); box-shadow: 0 8px 28px rgba(0, 217, 255, 0.18); transform: translateY(-4px); }
+
+.wu-card.kc7::before { background: linear-gradient(90deg, #2dd4bf, transparent); }
+.wu-card.kc7 { border-color: rgba(45, 212, 191, 0.18); }
+.wu-card.kc7:hover { border-color: #2dd4bf; box-shadow: 0 8px 28px rgba(45, 212, 191, 0.18); }
+
+.wu-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.55rem;
+}
+
+.wu-card-name {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.wu-os-tag {
+    font-size: 0.62rem;
+    padding: 0.18rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.wu-os-linux   { background: rgba(0, 217, 255, 0.08);  color: var(--cyber-blue); border: 1px solid rgba(0, 217, 255, 0.25); }
+.wu-os-windows { background: rgba(0, 120, 215, 0.1);   color: #5ba4e0;           border: 1px solid rgba(0, 120, 215, 0.25); }
+
+.wu-card-diff {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.wu-card-desc {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: 0.7rem;
+}
+
+.wu-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.wu-card-tag {
+    font-size: 0.63rem;
+    padding: 0.13rem 0.48rem;
+    border: 1px solid rgba(168, 85, 247, 0.22);
+    color: var(--cyber-purple);
+    border-radius: 2px;
+    background: rgba(168, 85, 247, 0.05);
+    font-family: var(--font-mono);
+}
+
+.wu-card.kc7 .wu-card-tag {
+    border-color: rgba(45, 212, 191, 0.25);
+    color: #2dd4bf;
+    background: rgba(45, 212, 191, 0.05);
+}
+
+.wu-placeholder {
+    border: 1px dashed rgba(0, 217, 255, 0.12);
+    border-radius: 8px;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-style: italic;
+    font-family: var(--font-mono);
+    opacity: 0.45;
+}
+
+/* Empty states */
+.wu-empty {
+    display: none;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-family: var(--font-mono);
+}
+
+.wu-empty .prompt { color: var(--cyber-magenta); margin-right: 4px; }
+
+/* Lab sub-section spacing */
+.wu-lab-sub { margin-bottom: 3rem; }
+.wu-lab-sub:last-child { margin-bottom: 0; }
+
+@media (max-width: 700px) {
+    .wu-filters { gap: 0.4rem; }
+    .wu-btn { font-size: 0.72rem; padding: 0.4rem 1rem; }
+    .wu-card-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .wu-terminal-stats { gap: 1.2rem; }
+}
+</style>
+
 <section class="writeups-page">
     <div class="container">
+
         <div class="page-header">
             <h1 class="page-title">
                 <span class="section-number">//</span>
                 <span>Writeups & Research</span>
             </h1>
-            <p class="page-description">Technical writeups from CTF competitions, security research, and hands-on projects. Documenting the learning process from intelligence analyst to cybersecurity professional.</p>
+            <p class="page-description">Technical writeups from CTF competitions, security research, and hands-on projects. Documenting the path from intelligence analyst to cybersecurity professional.</p>
         </div>
 
-        <div class="writeups-list">
-            {% for post in site.posts %}
-            <div class="writeup-item">
-                <div class="writeup-meta">
-                    <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
-                    <span class="writeup-category">{{ post.category }}</span>
-                </div>
-                <h2 class="writeup-title">{{ post.title }}</h2>
-                {% if post.series %}
-                <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">{{ post.series }} // Entry {{ post.entry }}</p>
-                {% endif %}
-                <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-                {% if post.tags %}
-                <div class="writeup-tags">
-                    {% for tag in post.tags %}
-                    <span class="tag">{{ tag }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                <a href="{{ post.url }}" class="writeup-link">Read more →</a>
-            </div>
-            {% endfor %}
+        <!-- Search -->
+        <div class="wu-search-wrap">
+            <i class="fas fa-search"></i>
+            <input class="wu-search" id="wuSearch" type="text" placeholder="search writeups..." oninput="wuFilterAll()">
         </div>
+
+        <!-- Tier 1 filters -->
+        <div class="wu-filters">
+            <button class="wu-btn active f-all"         onclick="wuSetT1('all',this)">all</button>
+            <button class="wu-btn f-research"            onclick="wuSetT1('research',this)">research</button>
+            <button class="wu-btn f-competition"         onclick="wuSetT1('competition',this)">competition</button>
+            <button class="wu-btn f-labs"                onclick="wuSetT1('labs',this)">labs</button>
+            <button class="wu-btn f-reflection"          onclick="wuSetT1('reflection',this)">reflection</button>
+        </div>
+
+        <!-- Tier 2 (labs only) -->
+        <div class="wu-tier2" id="wuTier2">
+            <div class="wu-tier2-inner">
+                <span class="wu-tier2-label">show</span>
+                <button class="wu-sub-btn on" data-p="all" onclick="wuSetT2('all',this)">all</button>
+                <button class="wu-sub-btn"    data-p="htb" onclick="wuSetT2('htb',this)">hackthebox</button>
+                <button class="wu-sub-btn"    data-p="kc7" onclick="wuSetT2('kc7',this)">kc7</button>
+            </div>
+        </div>
+
+        <div class="wu-results">
+            <span class="prompt">$</span> showing <span id="wuResultSpan">all writeups</span>
+        </div>
+
+        <!-- ====== RESEARCH ====== -->
+        <div class="wu-section" id="sec-research">
+            <div class="wu-section-head">
+                <h2 class="wu-section-title purple">Research & Projects</h2>
+                <div class="wu-section-line purple"></div>
+            </div>
+            <div class="writeups-list">
+                {% assign research_posts = site.posts | where: "category", "research" %}
+                {% for post in research_posts %}
+                <div class="writeup-item" data-type="research" data-s="{{ post.title | downcase }} {{ post.tags | join: ' ' | downcase }} {{ post.excerpt | strip_html | downcase | truncatewords: 20 }}">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
+                        <span class="writeup-category">{{ post.category }}</span>
+                    </div>
+                    <h2 class="writeup-title">{{ post.title }}</h2>
+                    {% if post.series %}
+                    <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">{{ post.series }} // Entry {{ post.entry }}</p>
+                    {% endif %}
+                    <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                    {% if post.tags %}
+                    <div class="writeup-tags">
+                        {% for tag in post.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{{ post.url }}" class="writeup-link">Read more →</a>
+                </div>
+                {% endfor %}
+                {% if research_posts.size == 0 %}
+                <div class="wu-empty" style="display:block;"><span class="prompt">$</span> no research posts found</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ====== COMPETITION ====== -->
+        <div class="wu-section" id="sec-competition">
+            <div class="wu-section-head">
+                <h2 class="wu-section-title pink">CTF & Competition</h2>
+                <div class="wu-section-line pink"></div>
+            </div>
+            <div class="writeups-list">
+                {% assign ctf_posts = site.posts | where: "category", "ctf" %}
+                {% for post in ctf_posts %}
+                <div class="writeup-item" data-type="ctf" data-s="{{ post.title | downcase }} {{ post.tags | join: ' ' | downcase }} {{ post.excerpt | strip_html | downcase | truncatewords: 20 }}">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
+                        <span class="writeup-category">{{ post.category }}</span>
+                    </div>
+                    <h2 class="writeup-title">{{ post.title }}</h2>
+                    {% if post.series %}
+                    <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">{{ post.series }} // Entry {{ post.entry }}</p>
+                    {% endif %}
+                    <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                    {% if post.tags %}
+                    <div class="writeup-tags">
+                        {% for tag in post.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{{ post.url }}" class="writeup-link">Read more →</a>
+                </div>
+                {% endfor %}
+                {% if ctf_posts.size == 0 %}
+                <div class="wu-empty" style="display:block;"><span class="prompt">$</span> no competition writeups yet</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ====== LABS ====== -->
+        <div class="wu-section" id="sec-labs">
+            <div class="wu-section-head">
+                <h2 class="wu-section-title blue">Labs & Practice</h2>
+                <div class="wu-section-line blue"></div>
+            </div>
+
+            <!-- HTB -->
+            <div class="wu-lab-sub" id="sub-htb">
+                <div class="wu-sub-head">
+                    <h3 class="wu-sub-title" style="color: var(--cyber-blue);">// HackTheBox</h3>
+                    <div class="wu-section-line blue" style="opacity:0.4;"></div>
+                </div>
+
+                <div class="wu-terminal">
+                    <div class="wu-terminal-bar"><i class="fas fa-terminal"></i> htb_stats.sh</div>
+                    <div class="wu-terminal-stats">
+                        {% assign htb_posts = site.posts | where: "category", "htb" %}
+                        {% assign htb_veasy  = htb_posts | where: "difficulty", "veasy" %}
+                        {% assign htb_easy   = htb_posts | where: "difficulty", "easy" %}
+                        {% assign htb_medium = htb_posts | where: "difficulty", "medium" %}
+                        {% assign htb_linux  = htb_posts | where: "os", "linux" %}
+                        {% assign htb_win    = htb_posts | where: "os", "windows" %}
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> boxes_rooted</div>
+                            <div class="wu-stat-num blue">{{ htb_posts.size }}</div>
+                            <div class="wu-stat-sub">total</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> difficulty --very-easy</div>
+                            <div class="wu-stat-num veasygr">{{ htb_veasy.size }}</div>
+                            <div class="wu-stat-sub">very easy</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> difficulty --easy</div>
+                            <div class="wu-stat-num green">{{ htb_easy.size }}</div>
+                            <div class="wu-stat-sub">easy</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> os --linux</div>
+                            <div class="wu-stat-num blue">{{ htb_linux.size }}</div>
+                            <div class="wu-stat-sub">linux</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> os --windows</div>
+                            <div class="wu-stat-num wblue">{{ htb_win.size }}</div>
+                            <div class="wu-stat-sub">windows</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wu-diff-filters" id="htbDiffs">
+                    <button class="wu-diff-btn on d-all"   data-d="all"    onclick="wuSetDiff('all',this)">all</button>
+                    <button class="wu-diff-btn d-veasy"    data-d="veasy"  onclick="wuSetDiff('veasy',this)"><span class="wu-diff-dot wu-dot-veasy"></span> very easy</button>
+                    <button class="wu-diff-btn d-easy"     data-d="easy"   onclick="wuSetDiff('easy',this)"><span class="wu-diff-dot wu-dot-easy"></span> easy</button>
+                    <button class="wu-diff-btn d-medium"   data-d="medium" onclick="wuSetDiff('medium',this)"><span class="wu-diff-dot wu-dot-medium"></span> medium</button>
+                    <button class="wu-diff-btn d-hard"     data-d="hard"   onclick="wuSetDiff('hard',this)"><span class="wu-diff-dot wu-dot-hard"></span> hard</button>
+                    <button class="wu-diff-btn d-insane"   data-d="insane" onclick="wuSetDiff('insane',this)"><span class="wu-diff-dot wu-dot-insane"></span> insane</button>
+                </div>
+
+                <div class="wu-card-grid" id="htbGrid">
+                    {% for post in htb_posts %}
+                    <a href="{{ post.url }}" class="wu-card" data-diff="{{ post.difficulty }}" data-os="{{ post.os }}">
+                        <div class="wu-card-head">
+                            <span class="wu-card-name">{{ post.title }}</span>
+                            {% if post.os == "linux" %}<span class="wu-os-tag wu-os-linux">Linux</span>{% endif %}
+                            {% if post.os == "windows" %}<span class="wu-os-tag wu-os-windows">Windows</span>{% endif %}
+                        </div>
+                        <div class="wu-card-diff">
+                            {% if post.difficulty == "veasy"  %}<span class="wu-diff-dot wu-dot-veasy"></span>  Very Easy{% endif %}
+                            {% if post.difficulty == "easy"   %}<span class="wu-diff-dot wu-dot-easy"></span>   Easy{% endif %}
+                            {% if post.difficulty == "medium" %}<span class="wu-diff-dot wu-dot-medium"></span> Medium{% endif %}
+                            {% if post.difficulty == "hard"   %}<span class="wu-diff-dot wu-dot-hard"></span>   Hard{% endif %}
+                            {% if post.difficulty == "insane" %}<span class="wu-diff-dot wu-dot-insane"></span> Insane{% endif %}
+                        </div>
+                        {% if post.tags %}
+                        <div class="wu-card-tags">
+                            {% for tag in post.tags limit:4 %}
+                            <span class="wu-card-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                    {% if htb_posts.size == 0 %}
+                    <div class="wu-placeholder">boxes coming soon...</div>
+                    {% endif %}
+                </div>
+                <div class="wu-empty" id="htbEmpty"><span class="prompt">$</span> no boxes match that filter</div>
+            </div>
+
+            <!-- KC7 -->
+            <div class="wu-lab-sub" id="sub-kc7">
+                <div class="wu-sub-head">
+                    <h3 class="wu-sub-title" style="color: #2dd4bf;">// KC7</h3>
+                    <div class="wu-section-line" style="flex:1;height:1px;background:linear-gradient(90deg,rgba(45,212,191,0.4),transparent);opacity:0.4;"></div>
+                </div>
+
+                <div class="wu-terminal kc7">
+                    <div class="wu-terminal-bar kc7"><i class="fas fa-terminal"></i> kc7_stats.sh</div>
+                    <div class="wu-terminal-stats">
+                        {% assign kc7_posts = site.posts | where: "category", "kc7" %}
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> scenarios_completed</div>
+                            <div class="wu-stat-num kc7col">{{ kc7_posts.size }}</div>
+                            <div class="wu-stat-sub">total</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> primary_tool</div>
+                            <div class="wu-stat-num kc7col sm">KQL</div>
+                            <div class="wu-stat-sub">kusto query lang</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> frameworks</div>
+                            <div class="wu-stat-num kc7col sm">ATT&CK</div>
+                            <div class="wu-stat-sub">MITRE mapped</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wu-card-grid" id="kc7Grid">
+                    {% for post in kc7_posts %}
+                    <a href="{{ post.url }}" class="wu-card kc7">
+                        <div class="wu-card-head">
+                            <span class="wu-card-name">{{ post.title }}</span>
+                        </div>
+                        {% if post.excerpt %}
+                        <div class="wu-card-desc">{{ post.excerpt | strip_html | truncatewords: 10 }}</div>
+                        {% endif %}
+                        {% if post.tags %}
+                        <div class="wu-card-tags">
+                            {% for tag in post.tags limit:3 %}
+                            <span class="wu-card-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                    {% if kc7_posts.size == 0 %}
+                    <div class="wu-placeholder">scenarios coming soon...</div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ====== REFLECTION ====== -->
+        <div class="wu-section" id="sec-reflection">
+            <div class="wu-section-head">
+                <h2 class="wu-section-title magenta">Reflection</h2>
+                <div class="wu-section-line magenta"></div>
+            </div>
+            <div class="writeups-list">
+                {% assign reflection_posts = site.posts | where: "category", "reflection" %}
+                {% for post in reflection_posts %}
+                <div class="writeup-item" data-type="reflection" data-s="{{ post.title | downcase }} {{ post.tags | join: ' ' | downcase }} {{ post.excerpt | strip_html | downcase | truncatewords: 20 }}">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
+                        <span class="writeup-category">{{ post.category }}</span>
+                    </div>
+                    <h2 class="writeup-title">{{ post.title }}</h2>
+                    <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                    {% if post.tags %}
+                    <div class="writeup-tags">
+                        {% for tag in post.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{{ post.url }}" class="writeup-link">Read more →</a>
+                </div>
+                {% endfor %}
+                {% if reflection_posts.size == 0 %}
+                <div class="wu-empty" style="display:block;"><span class="prompt">$</span> no reflection posts found</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="wu-empty" id="wuGlobalEmpty" style="padding:3rem;">
+            <span class="prompt">$</span> no results — try a different search
+        </div>
+
     </div>
 </section>
+
+<script>
+(function() {
+    var activeT1   = 'all';
+    var activeT2   = 'all';
+    var activeDiff = 'all';
+    var T2_HEIGHT  = 48;
+
+    function wuSetT1(type, btn) {
+        activeT1 = type;
+        document.querySelectorAll('.wu-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var wrap = document.getElementById('wuTier2');
+        if (type === 'labs') {
+            wrap.style.height = T2_HEIGHT + 'px';
+            wrap.classList.add('visible');
+        } else {
+            wrap.style.height = '0';
+            wrap.classList.remove('visible');
+            activeT2 = 'all';
+            document.querySelectorAll('.wu-sub-btn').forEach(function(b) { b.classList.remove('on'); });
+            var allBtn = document.querySelector('.wu-sub-btn[data-p="all"]');
+            if (allBtn) allBtn.classList.add('on');
+        }
+        wuFilterAll();
+    }
+
+    function wuSetT2(platform, btn) {
+        activeT2 = platform;
+        document.querySelectorAll('.wu-sub-btn').forEach(function(b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        wuFilterAll();
+    }
+
+    function wuSetDiff(diff, btn) {
+        activeDiff = diff;
+        document.querySelectorAll('#htbDiffs .wu-diff-btn').forEach(function(b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        wuFilterHTB();
+    }
+
+    function wuFilterHTB() {
+        var cards = document.querySelectorAll('#htbGrid .wu-card');
+        var visible = 0;
+        cards.forEach(function(card) {
+            var match = activeDiff === 'all' || card.dataset.diff === activeDiff;
+            card.style.display = match ? '' : 'none';
+            if (match) visible++;
+        });
+        var empty = document.getElementById('htbEmpty');
+        if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    function wuFilterAll() {
+        var q = document.getElementById('wuSearch').value.toLowerCase().trim();
+
+        var showResearch    = activeT1 === 'all' || activeT1 === 'research';
+        var showCompetition = activeT1 === 'all' || activeT1 === 'competition';
+        var showLabs        = activeT1 === 'all' || activeT1 === 'labs';
+        var showReflection  = activeT1 === 'all' || activeT1 === 'reflection';
+
+        document.getElementById('sec-research').style.display    = showResearch    ? '' : 'none';
+        document.getElementById('sec-competition').style.display = showCompetition ? '' : 'none';
+        document.getElementById('sec-labs').style.display        = showLabs        ? '' : 'none';
+        document.getElementById('sec-reflection').style.display  = showReflection  ? '' : 'none';
+
+        if (showLabs) {
+            var showHTB = activeT2 === 'all' || activeT2 === 'htb';
+            var showKC7 = activeT2 === 'all' || activeT2 === 'kc7';
+            document.getElementById('sub-htb').style.display = showHTB ? '' : 'none';
+            document.getElementById('sub-kc7').style.display = showKC7 ? '' : 'none';
+            wuFilterHTB();
+        }
+
+        var total = 0;
+
+        if (showResearch) {
+            document.querySelectorAll('[data-type="research"]').forEach(function(item) {
+                var match = !q || (item.dataset.s && item.dataset.s.includes(q));
+                item.style.display = match ? '' : 'none';
+                if (match) total++;
+            });
+        }
+
+        if (showCompetition) {
+            document.querySelectorAll('[data-type="ctf"]').forEach(function(item) {
+                var match = !q || (item.dataset.s && item.dataset.s.includes(q));
+                item.style.display = match ? '' : 'none';
+                if (match) total++;
+            });
+        }
+
+        if (showLabs) {
+            total += document.querySelectorAll('#htbGrid .wu-card:not([style*="none"])').length;
+            total += document.querySelectorAll('#kc7Grid .wu-card').length;
+        }
+
+        if (showReflection) {
+            document.querySelectorAll('[data-type="reflection"]').forEach(function(item) {
+                var match = !q || (item.dataset.s && item.dataset.s.includes(q));
+                item.style.display = match ? '' : 'none';
+                if (match) total++;
+            });
+        }
+
+        var span = document.getElementById('wuResultSpan');
+        var t2labels = { all: 'all labs', htb: 'hackthebox', kc7: 'kc7' };
+        var t1labels = {
+            all: 'all writeups',
+            research: 'research & projects',
+            competition: 'ctf & competition',
+            labs: 'labs & practice',
+            reflection: 'reflection'
+        };
+
+        if (q) {
+            span.textContent = '"' + q + '"';
+        } else if (activeT1 === 'labs' && activeT2 !== 'all') {
+            span.textContent = t2labels[activeT2] || 'all labs';
+        } else {
+            span.textContent = t1labels[activeT1] || 'all writeups';
+        }
+
+        var globalEmpty = document.getElementById('wuGlobalEmpty');
+        if (globalEmpty) globalEmpty.style.display = total === 0 ? 'block' : 'none';
+    }
+
+    /* Expose functions to global scope for onclick handlers */
+    window.wuSetT1   = wuSetT1;
+    window.wuSetT2   = wuSetT2;
+    window.wuSetDiff = wuSetDiff;
+    window.wuFilterAll = wuFilterAll;
+})();
+</script>
