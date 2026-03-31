@@ -2,8 +2,8 @@
 layout: writeup
 title: "Campaign Report: Fortinet FortiOS SSL VPN Scanning"
 date: 2026-03-14
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "FortiOS", "CVE-2018-13379", "GCP"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "FortiOS", "CVE-2018-13379", "GCP", "Fortinet", "SSL-VPN", "path-traversal", "CISA-KEV", "campaign-analysis", "burst-scanning", "credential-theft", "Metasploit", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/03a
 excerpt: "Analysis of 29,938 scanning events targeting CVE-2018-13379 across a 28-day T-Pot honeypot deployment on Google Cloud Platform."
 back_url: /honeypot-threat-research/

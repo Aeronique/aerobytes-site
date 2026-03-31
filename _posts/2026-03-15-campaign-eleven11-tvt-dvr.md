@@ -2,8 +2,8 @@
 layout: writeup
 title: "Campaign Report: ELEVEN11 Botnet and TVT DVR Probing"
 date: 2026-03-15
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "botnet", "IoT", "Mirai"]
+category: research
+tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "botnet", "IoT", "Mirai", "CVE-2024-14007", "TVT-NVMS", "ELEVEN11", "DVR", "NVR", "authentication-bypass", "DDoS", "campaign-analysis", "GreyNoise", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/03b
 excerpt: "28 days of flat, uninterrupted scanning tied to the ELEVEN11 botnet targeting TVT NVMS-9000 DVRs via CVE-2024-14007."
 back_url: /honeypot-threat-research/

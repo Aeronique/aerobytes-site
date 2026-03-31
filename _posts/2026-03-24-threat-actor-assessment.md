@@ -2,8 +2,8 @@
 layout: writeup
 title: "Threat Actor Assessment"
 date: 2026-03-24
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "threat-actors", "attribution"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "threat-actors", "attribution", "behavioral-analysis", "TTPs", "Iran-nexus", "China-nexus", "ELEVEN11", "UNC5454", "operational-patterns", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/05
 excerpt: "Three CVEs, three distinct operational patterns. Burst scanning, steady botnet activity, and post-disclosure opportunistic scanning each point to different infrastructure behind the top threats in this dataset."
 back_url: /honeypot-threat-research/

@@ -1,9 +1,9 @@
 ---
 layout: writeup
-title: "T-Pot Honeypot: Top CVEs by Event Volume - February 2026"
+title: "Top CVEs by Event Volume"
 date: 2026-03-05
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "Fortinet", "IoT"]
+category: research
+tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "Fortinet", "IoT", "CVE-2018-13379", "CVE-2024-14007", "CVE-2025-55182", "FortiOS", "TVT-NVMS", "React-RCE", "Suricata", "CISA-KEV", "botnet", "Mirai", "ELEVEN11", "exploit-detection", "IDS", "cloud-security", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/01
 excerpt: "Analysis of the three highest-volume CVEs observed across a 28-day T-Pot honeypot deployment on Google Cloud Platform, February 2026."
 back_url: /honeypot-threat-research/

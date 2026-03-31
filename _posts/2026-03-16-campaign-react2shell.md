@@ -2,8 +2,8 @@
 layout: writeup
 title: "Campaign Report: React Server Components RCE Scanning (CVE-2025-55182)"
 date: 2026-03-16
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "React", "RCE", "web"]
+category: research
+tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "React", "RCE", "web", "CVE-2025-55182", "React2Shell", "deserialization", "Next.js", "CISA-KEV", "China-nexus", "Cobalt-Strike", "campaign-analysis", "post-disclosure-scanning", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/03c
 excerpt: "28 days of declining RCE scanning targeting CVE-2025-55182, a critical flaw in React Server Components disclosed two months before this deployment."
 back_url: /honeypot-threat-research/

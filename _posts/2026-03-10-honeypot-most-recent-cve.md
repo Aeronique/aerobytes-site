@@ -1,9 +1,9 @@
 ---
 layout: writeup
-title: "T-Pot Honeypot: Most Recently Disclosed CVE Observed - February 2026"
+title: "Most Recently Disclosed CVE Observed"
 date: 2026-03-10
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "CVE", "telnet"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "CVE", "telnet", "CVE-2026-24061", "GNU-InetUtils", "authentication-bypass", "CISA-KEV", "rapid-exploitation", "telnetd", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/02
 excerpt: "Analysis of CVE-2026-24061, the most recently disclosed CVE observed in the February 2026 T-Pot honeypot deployment, including observed activity, scoring data, and defender guidance."
 back_url: /honeypot-threat-research/

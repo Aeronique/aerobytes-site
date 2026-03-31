@@ -2,16 +2,10 @@
 layout: writeup
 title: "Homelab AI Implementation Playbook"
 date: 2026-03-30
-category: AI Security
+category: research
+tags: ["ai-security", "homelab", "zero-trust", "mlops", "responsible-ai", "TAISE", "cloud-security-alliance", "RAG", "prompt-injection", "data-poisoning", "LLM-security", "OWASP-AI", "ai-governance", "model-security", "least-privilege"]
 excerpt: "Lessons from the Cloud Security Alliance TAISE certification course, translated into practical guidance for homelab AI deployments."
-tags:
-  - AI Security
-  - Homelab
-  - Zero Trust
-  - MLOps
-  - Responsible AI
-  - TAISE
-  - Cloud Security Alliance
+
 ---
 
 This playbook is a personal reference built from completing the TAISE certification course from the Cloud Security Alliance. The course covers AI safety, governance, security, and responsible implementation across the full AI lifecycle. My AI background going into this was pretty casual. I use it for learning and brainstorming project ideas, so this is written with that same beginner to intermediate level in mind.

@@ -2,8 +2,8 @@
 layout: writeup
 title: "KC7: Convoy Street Interactive - APT41 Threat Hunt"
 date: 2025-07-28
-category: THREAT INTELLIGENCE
-tags: [KQL, Threat Hunting, DFIR, CTF, APT41, MITRE ATT&CK]
+category: kc7
+tags: ["KQL", "threat-hunting", "DFIR", "CTF", "APT41", "MITRE-ATT&CK", "kc7", "Brass-Typhoon", "China-nexus", "lateral-movement", "RDP", "credential-dumping", "C2", "spearphishing", "log-analysis", "Azure-Data-Explorer", "Diamond-Model", "nation-state"]
 excerpt: "Threat hunting investigation tracking APT41 (Brass Typhoon) from initial reconnaissance through data exfiltration in a gaming company breach. Participated in KC7's Threat Hunting in Action workshop."
 ---
 

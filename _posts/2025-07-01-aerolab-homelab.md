@@ -2,8 +2,8 @@
 layout: writeup
 title: "AeroLab v1.0: Building a Personal Cybersecurity Homelab"
 date: 2025-07-01
-category: HOMELAB
-tags: [Proxmox, Wazuh, SIEM, Active Directory, Suricata, Network Security]
+category: research
+tags: ["proxmox", "wazuh", "siem", "active-directory", "suricata", "network-security", "homelab", "blue-team", "detection-engineering", "purple-team", "mitre-caldera", "threat-detection", "windows-server", "virtualization"]
 excerpt: "Building a hands-on cybersecurity lab focused on blue team operations, threat detection, and enterprise environment simulation using clustered Proxmox nodes."
 ---
 

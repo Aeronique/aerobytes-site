@@ -2,8 +2,8 @@
 layout: writeup
 title: "Campaign Report: RDP Scanning and Authentication Bypass Attempts"
 date: 2026-03-17
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "RDP", "scanning"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "RDP", "scanning", "Remote-Desktop", "authentication-bypass", "port-3389", "brute-force", "ransomware", "Windows", "campaign-analysis", "mass-scanning", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/03d
 excerpt: "321,116 RDP-related events in February 2026, with over 60% occurring in a single day on 2026/02/17."
 back_url: /honeypot-threat-research/

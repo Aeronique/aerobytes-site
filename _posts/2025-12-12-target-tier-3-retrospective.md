@@ -2,8 +2,8 @@
 layout: writeup
 title: "Target x WiCyS Cyber Defense Challenge - Lessons from 2nd Place"
 date: 2025-12-12
-category: "COMPETITION"
-tags: ["blue-team", "incident-response", "red-team", "career-transition"]
+category: reflection
+tags: ["blue-team", "incident-response", "red-team", "career-transition", "WiCyS", "Target", "cyber-defense", "competition", "DNS-exfiltration", "Wireshark", "forensics", "reverse-engineering", "offensive-security", "LDAP", "SMB", "network-forensics"]
 permalink: /writeups/target-tier-3-retrospective/
 excerpt: "Reflections on placing 2nd in the national cyber defense competition. What I learned working through both offensive and defensive scenarios, how it shaped my career transition, and the lessons I'm taking forward."
 ---

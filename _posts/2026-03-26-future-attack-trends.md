@@ -2,8 +2,8 @@
 layout: writeup
 title: "Future Attack Trends"
 date: 2026-03-26
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "trends", "CVE"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "trends", "CVE", "Fortinet", "IoT-botnet", "RondoDox", "Verizon-DBIR", "exploitation-trends", "Vite", "PHP-CGI", "CVE-2024-4577", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/06
 excerpt: "Three patterns from this deployment align with broader reporting from early 2026: a 2019-patched Fortinet flaw still leading by volume, IoT botnet scanning running every single day, and a critical RCE active within two months of disclosure."
 back_url: /honeypot-threat-research/

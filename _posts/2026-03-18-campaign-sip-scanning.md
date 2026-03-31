@@ -2,8 +2,8 @@
 layout: writeup
 title: "Campaign Report: SIP Scanning with sipsak"
 date: 2026-03-18
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "SIP", "VoIP", "scanning"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "SIP", "VoIP", "scanning", "sipsak", "toll-fraud", "port-5060", "campaign-analysis", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/03f
 excerpt: "6,213 SIP scan events across just 3 days in February 2026, with 73.5% occurring on a single day."
 back_url: /honeypot-threat-research/

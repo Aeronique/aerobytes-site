@@ -2,8 +2,8 @@
 layout: writeup
 title: "Port Targeting Analysis"
 date: 2026-03-26
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "ports", "scanning"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "ports", "scanning", "HTTPS", "VNC", "SNMP", "SMB", "SSH", "port-analysis", "MikroTik", "Asterisk", "CISA-BOD-23-02", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/10
 excerpt: "Three ports accounted for 88% of all inbound traffic across 28 days. HTTPS, VNC, and an alternate HTTPS port dominated, with a concentrated SNMP burst hitting 1.3 million events in just 48 hours before going completely silent."
 back_url: /honeypot-threat-research/

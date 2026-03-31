@@ -2,8 +2,8 @@
 layout: writeup
 title: "KC7: Krusty Krab - Threat Intelligence Investigation"
 date: 2025-05-01
-category: THREAT INTELLIGENCE
-tags: [KQL, Phishing, DFIR, CTF, Threat Intelligence, MITRE ATT&CK]
+category: kc7
+tags: ["KQL", "phishing", "DFIR", "CTF", "threat-intelligence", "MITRE-ATT&CK", "kc7", "credential-harvesting", "C2", "data-exfiltration", "spearphishing", "malware", "log-analysis", "Azure-Data-Explorer", "rclone", "PowerShell", "incident-response"]
 excerpt: "My first cybersecurity investigation report analyzing a multi-stage phishing campaign, credential harvesting, malware deployment, and data exfiltration using KustoQL (KQL) database queries."
 ---
 

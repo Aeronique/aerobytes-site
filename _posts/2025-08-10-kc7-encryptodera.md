@@ -2,8 +2,8 @@
 layout: writeup
 title: "KC7: Encryptodera - Multi-Stage Insider Threat & Ransomware Investigation"
 date: 2025-08-10
-category: THREAT INTELLIGENCE
-tags: [KQL, Insider Threat, Ransomware, DFIR, Credential Dumping, MITRE ATT&CK]
+category: kc7
+tags: ["KQL", "insider-threat", "ransomware", "DFIR", "credential-dumping", "MITRE-ATT&CK", "kc7", "mimikatz", "GPO-abuse", "lateral-movement", "FTP-exfiltration", "log-analysis", "Azure-Data-Explorer", "data-exfiltration", "PowerShell", "ScreenConnect", "domain-controller", "incident-response", "cryptocurrency"]
 excerpt: "Technical analysis of three connected security incidents: insider data theft, ransomware deployment via compromised account, and cryptocurrency exfiltration over FTP spanning 40+ days."
 ---
 

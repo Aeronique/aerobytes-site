@@ -2,8 +2,8 @@
 layout: writeup
 title: "AeroX: Building and Deploying My First ERC-20 Token"
 date: 2025-08-20
-category: "RESEARCH"
-tags: ["blockchain", "solidity", "smart-contracts", "web3"]
+category: research
+tags: ["blockchain", "solidity", "smart-contracts", "web3", "ethereum", "ERC-20", "web3-security", "hardhat", "defi-security", "smart-contract-security", "reentrancy", "crypto-forensics"]
 permalink: /writeups/aerox-token/
 excerpt: "Exploring blockchain security by building and deploying an ERC-20 token on the Sepolia testnet. Understanding smart contract vulnerabilities, transaction security, and the fundamentals of decentralized systems."
 ---

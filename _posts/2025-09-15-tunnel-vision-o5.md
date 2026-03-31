@@ -2,8 +2,8 @@
 layout: writeup
 title: "O5: Tunnel Vision - DNS Exfiltration Protocol Reverse Engineering"
 date: 2025-09-15
-category: "COMPETITION"
-tags: ["reverse-engineering", "ghidra", "dns", "cryptography", "blue-team"]
+category: ctf
+tags: ["reverse-engineering", "ghidra", "dns", "cryptography", "blue-team", "DNS-exfiltration", "ARM64", "static-analysis", "binary-analysis", "protocol-analysis", "WiCyS", "Target", "DoH", "malware-analysis", "CTF"]
 permalink: /writeups/tunnel-vision-o5/
 excerpt: "Reverse engineering a DNS exfiltration binary when every other escape route has been cut off. Complete protocol reconstruction from ARM64 assembly using Ghidra static analysis."
 ---

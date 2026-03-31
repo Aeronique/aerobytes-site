@@ -2,8 +2,8 @@
 layout: writeup
 title: "Geographic Attribution"
 date: 2026-03-21
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "geographic-attribution"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "geographic-attribution", "ASN-analysis", "DigitalOcean", "MaxMind", "cloud-attribution", "Netherlands", "Brazil", "Ukraine", "botnet", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/04
 excerpt: "Where attack traffic originated during a 28-day T-Pot honeypot deployment, and why cloud provider and VPN exit node usage limits attribution confidence."
 back_url: /honeypot-threat-research/

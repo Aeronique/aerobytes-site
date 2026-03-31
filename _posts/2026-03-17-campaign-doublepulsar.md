@@ -2,8 +2,8 @@
 layout: writeup
 title: "Campaign Report: DoublePulsar Backdoor Communication"
 date: 2026-03-17
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "DoublePulsar", "EternalBlue", "SMB", "legacy"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "DoublePulsar", "EternalBlue", "SMB", "legacy", "CVE-2017-0144", "MS17-010", "NSA-tools", "Shadow-Brokers", "WannaCry", "NotPetya", "Windows", "implant", "campaign-analysis", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/03e
 excerpt: "13,522 events flagging DoublePulsar backdoor communication across February 2026, nearly a decade after the NSA implant was leaked."
 back_url: /honeypot-threat-research/

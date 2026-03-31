@@ -1,9 +1,9 @@
 ---
 layout: writeup
-title: "T-Pot Honeypot: Legacy Vulnerability Exploitation - February 2026"
+title: "Legacy Vulnerability Exploitation"
 date: 2026-03-07
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "legacy-CVEs"]
+category: research
+tags: ["honeypot", "threat-intelligence", "CVE", "T-Pot", "GCP", "legacy-CVEs", "CVE-2014-6271", "CVE-2013-2251", "CVE-2013-4810", "CVE-2014-3704", "CVE-2016-20016", "CVE-2016-20017", "Shellshock", "Drupalgeddon", "Apache-Struts", "D-Link", "CCTV-DVR", "28-days-exposed", "patch-management"]
 permalink: /writeups/honeypot-threat-research/08
 excerpt: "Pre-2017 CVEs that still generated inbound scanning activity during a 28-day honeypot deployment, and what the patterns suggest about long-unpatched systems."
 back_url: /honeypot-threat-research/

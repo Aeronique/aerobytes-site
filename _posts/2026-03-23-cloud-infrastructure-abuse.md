@@ -2,8 +2,8 @@
 layout: writeup
 title: "Cloud Infrastructure Abuse"
 date: 2026-03-23
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "cloud", "attribution"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "cloud", "attribution", "DigitalOcean", "Amazon-AWS", "cloud-abuse", "VPS", "attack-infrastructure", "ASN-analysis", "abuse-reporting", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/09
 excerpt: "Three major cloud providers contributed 17.4 million events across 28 days, accounting for 18.1% of all inbound attack traffic. DigitalOcean alone was responsible for 14.3%."
 back_url: /honeypot-threat-research/

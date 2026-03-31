@@ -2,8 +2,8 @@
 layout: writeup
 title: "Credential Attack Patterns"
 date: 2026-03-24
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "credentials", "SSH"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "credentials", "SSH", "Cowrie", "brute-force", "default-credentials", "password-spraying", "IoT", "Telnet", "coinminer", "Polycom", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/07
 excerpt: "28 days of Cowrie credential logs show root as the top username and two IoT device defaults accounting for roughly 30% of global SSH brute-force attempts embedded in scanning tooling worldwide."
 back_url: /honeypot-threat-research/

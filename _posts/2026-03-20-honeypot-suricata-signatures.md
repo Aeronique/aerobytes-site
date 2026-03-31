@@ -2,8 +2,8 @@
 layout: writeup
 title: "Suricata Signature Analysis"
 date: 2026-03-20
-category: THREAT INTELLIGENCE
-tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "Suricata", "IDS"]
+category: research
+tags: ["honeypot", "threat-intelligence", "T-Pot", "GCP", "Suricata", "IDS", "IDS-rules", "Emerging-Threats", "VNC", "python-requests", "Nmap", "Dshield", "signature-analysis", "28-days-exposed"]
 permalink: /writeups/honeypot-threat-research/11
 excerpt: "A breakdown of the top Suricata signatures fired across 28 days, from 3.4 million VNC alerts to FortiOS exploitation attempts and DoublePulsar backdoor communication."
 back_url: /honeypot-threat-research/
