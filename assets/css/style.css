@@ -610,13 +610,20 @@ strong {
     gap: 0.5rem;
 }
 
+.writeup-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+}
+
 .tag {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.55rem;
     background: rgba(0, 217, 255, 0.1);
     color: var(--cyber-blue);
     border: 1px solid rgba(0, 217, 255, 0.3);
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 /* Speaking & Publications */
