@@ -610,20 +610,13 @@ strong {
     gap: 0.5rem;
 }
 
-.writeup-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.75rem;
-}
-
 .tag {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.55rem;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
     background: rgba(0, 217, 255, 0.1);
     color: var(--cyber-blue);
     border: 1px solid rgba(0, 217, 255, 0.3);
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 /* Speaking & Publications */
@@ -1152,8 +1145,52 @@ strong {
     border: 1px solid rgba(0, 217, 255, 0.2);
     border-radius: 8px;
     padding: 1.5rem;
+    padding-top: 3rem;
     overflow-x: auto;
     margin: 1.5rem 0;
+    position: relative;
+}
+
+.writeup-content pre::before {
+    content: 'terminal';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 217, 255, 0.06);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.15);
+    border-radius: 8px 8px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgba(152, 152, 179, 0.4);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.writeup-content pre::after {
+    content: '\25CF  \25CF  \25CF';
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    /* blue pink purple via individual spans not possible in pseudo,
+       so we layer colors: first dot blue, second pink, third purple */
+    background: linear-gradient(
+        to right,
+        var(--cyber-blue)   0%   33%,
+        var(--cyber-pink)  34%   66%,
+        var(--cyber-purple) 67%  100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .writeup-content pre code {
