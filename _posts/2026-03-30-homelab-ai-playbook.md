@@ -18,7 +18,7 @@ The overall goal with this playbook is to take what the course teaches about res
 
 Before anything else, **ask yourself if you actually need AI to solve this problem**.
 
-The course makes this point early. A lot of time gets wasted building machine learning solutions for problems that a simpler tool or even a user-controlled setting would handle better. Scope your problem carefully. Define what you want the system to do, who will use it, and what could go wrong if it behaves unexpectedly. This is called problem framing, and it is the foundation of the Responsible AI Lifecycle.
+The course makes this point early. A lot of time gets wasted building machine learning solutions for problems that a simpler tool or even a user-controlled setting would handle better. Scope your problem carefully. Define what you want the system to do, who will use it, and what could go wrong if it behaves unexpectedly. This is called **problem framing**, and it is the foundation of the **Responsible AI Lifecycle**.
 
 ---
 
@@ -44,7 +44,7 @@ Your security approach needs to match whichever model you choose. The more of th
 
 Zero Trust is a security model defined by NIST where every user, service, and agent gets the minimum access they need to do their job and nothing more. All communication is secured regardless of where it happens on your network. The guiding principle is never trust, always verify.
 
-For a homelab AI setup this means:
+Applied to a homelab AI setup:
 
 - Assigning least-privilege permissions to every component
 - Treating AI agents the same as user accounts and verifying them every time
@@ -126,13 +126,13 @@ Define two things before you go live with anything.
 
 **RPO (Recovery Point Objective)** — How much data or model state you can afford to lose.
 
-Write a simple runbook, which is a step-by-step document of what to do when something goes wrong. Use Infrastructure as Code wherever you can so your setup is reproducible and you are not rebuilding from memory after an incident. Take those recovery snapshots often.
+Write a simple runbook, which is a step-by-step document of what to do when something goes wrong. Use **Infrastructure as Code** wherever you can so your setup is reproducible and you are not rebuilding from memory after an incident. Take those recovery snapshots often.
 
 ---
 
 ## 10. Document
 
-Document what model you are using and why, what version you are running, where your data came from, who or what has access to the system, and when and why you made changes. The course calls this model lineage and provenance tracking. In practice it is a changelog and some notes, but when something breaks or behaves unexpectedly you will be glad you kept records. 
+Document what model you are using and why, what version you are running, where your data came from, who or what has access to the system, and when and why you made changes. The course calls this model lineage and provenance tracking. In practice it is a changelog and some notes, but when something breaks or behaves unexpectedly this will definitely come in handy. 
 
 ---
 
