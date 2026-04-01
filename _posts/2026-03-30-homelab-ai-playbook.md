@@ -95,7 +95,7 @@ Knowing these exist means you can design your setup to watch for them.
 
 Retrieval-Augmented Generation (RAG) is one of the most practical concepts from the course. Instead of retraining a model on everything you need it to know, RAG lets you connect a standard language model to your own documents or knowledge sources at query time.
 
-**Why it works well for a homelab:**
+**Homelab advantages:**
 - Your model stays current because you update the knowledge source and the model itself stays unchanged
 - Sensitive data stays local
 - You can specialize the AI on your own notes or documentation without expensive fine-tuning
@@ -114,7 +114,7 @@ MLOps is the practice of combining machine learning, DevOps, and data engineerin
 - Monitor for drift as the world changes and new data patterns emerge
 - Automate your feedback loop so the system collects data, validates it, retrains when it hits a threshold, evaluates, and deploys
 
-Even a lightweight version of this loop will save you significant headaches over time.
+Even a lighter version of this loop will save you issues over time.
 
 ---
 
@@ -126,19 +126,19 @@ Define two things before you go live with anything.
 
 **RPO (Recovery Point Objective)** — How much data or model state you can afford to lose.
 
-Write a simple runbook, which is a step-by-step document of what to do when something goes wrong. Use Infrastructure as Code wherever you can so your setup is reproducible and you are not rebuilding from memory after an incident.
+Write a simple runbook, which is a step-by-step document of what to do when something goes wrong. Use Infrastructure as Code wherever you can so your setup is reproducible and you are not rebuilding from memory after an incident. Take those recovery snapshots often.
 
 ---
 
 ## 10. Document
 
-Document what model you are using and why, what version you are running, where your data came from, who or what has access to the system, and when and why you made changes. The course calls this model lineage and provenance tracking. In practice it is a changelog and some notes, but when something breaks or behaves unexpectedly you will be glad you kept records.
+Document what model you are using and why, what version you are running, where your data came from, who or what has access to the system, and when and why you made changes. The course calls this model lineage and provenance tracking. In practice it is a changelog and some notes, but when something breaks or behaves unexpectedly you will be glad you kept records. 
 
 ---
 
 ## 11. Keep Reviewing
 
-The threat landscape evolves, models drift, data goes stale, and requirements change. Schedule regular reviews of your setup covering model performance, access controls, data quality, and output fairness. What looks fine today may need attention in six months.
+The threat landscape evolves, model reasoning drifts, data becomes stagnant, and requirements change. Schedule regular reviews of your setup covering model performance, access controls, data quality, and output fairness. What looks great today may need attention in six months.
 
 ---
 
