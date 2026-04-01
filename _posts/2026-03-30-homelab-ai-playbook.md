@@ -8,7 +8,7 @@ excerpt: "Lessons from the Cloud Security Alliance TAISE certification course, t
 
 ---
 
-This playbook is a personal reference built from completing the TAISE certification course from the Cloud Security Alliance. The course covers AI safety, governance, security, and responsible implementation across the full AI lifecycle. My AI background going into this was pretty casual. I use it for learning and brainstorming project ideas, so this is written with that same beginner to intermediate level in mind.
+This playbook is a personal reference built from completing the TAISE certification course from the Cloud Security Alliance. The course covers AI safety, governance, security, and responsible implementation across the full AI lifecycle. My AI background going into this was pretty casual. I use it for learning, brainstorming project ideas, technical troubleshooting, and documentation QA, so this is written with that same beginner to intermediate level in mind.
 
 The overall goal with this playbook is to take what the course teaches about responsible AI at an enterprise level and translate it into a smaller scale AI implementation, particularly those in a homelab environment.
 
@@ -16,7 +16,7 @@ The overall goal with this playbook is to take what the course teaches about res
 
 ## 1. Start by Asking the Right Question
 
-Before anything else, ask yourself if you actually need AI to solve this problem.
+Before anything else, **ask yourself if you actually need AI to solve this problem**.
 
 The course makes this point early. A lot of time gets wasted building machine learning solutions for problems that a simpler tool or even a user-controlled setting would handle better. Scope your problem carefully. Define what you want the system to do, who will use it, and what could go wrong if it behaves unexpectedly. This is called problem framing, and it is the foundation of the Responsible AI Lifecycle.
 
@@ -24,9 +24,9 @@ The course makes this point early. A lot of time gets wasted building machine le
 
 ## 2. Know Your Data
 
-A model is only as good as what it is trained on. There are four pillars of data quality to keep in mind: accuracy, completeness, consistency, and timeliness. Is the data correct? Is anything missing? Does it follow a predictable format? Is it current enough to be useful?
+A model is only as good as what it is trained on. There are four pillars of data quality to keep in mind: **accuracy, completeness, consistency, and timeliness**. Is the data correct? Is anything missing? Does it follow a predictable format? Is it current enough to be useful?
 
-Beyond quality, you also need to think about bias. If your training data does not represent the people or scenarios your model will encounter in the real world, your outputs will reflect that gap. Check your data sources, document where they came from (this is called data provenance), and flag anything that looks skewed before you start building.
+Beyond quality, you also need to think about bias. If your training data does not represent the people or scenarios your model will encounter in the real world, your outputs will reflect that gap. Check your data sources, document where they came from (this is called data provenance), and flag anything that looks weird before you start building.
 
 ---
 
