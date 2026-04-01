@@ -277,3 +277,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
 });
+
+// ===================================
+// PROMPT HIGHLIGHTING FOR WRITEUPS
+// ===================================
+document.addEventListener('DOMContentLoaded', function() {
+    if (!document.querySelector('.writeup-content')) return;
+
+    document.querySelectorAll('.writeup-content pre code').forEach(function(block) {
+        block.innerHTML = block.innerHTML.replace(
+            /(aero@aerobytes:~\$)/g,
+            '<span style="color: var(--cyber-pink); font-weight: 700;">$1</span>'
+        );
+    });
+});
