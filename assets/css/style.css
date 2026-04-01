@@ -1145,7 +1145,7 @@ strong {
     border: 1px solid rgba(0, 217, 255, 0.2);
     border-radius: 8px;
     padding: 1.5rem;
-    padding-top: 3rem;
+    padding-top: 3.25rem;
     overflow-x: auto;
     margin: 1.5rem 0;
     position: relative;
@@ -1157,17 +1157,17 @@ strong {
     top: 0;
     left: 0;
     right: 0;
-    padding: 0.5rem 1rem;
-    background: rgba(0, 217, 255, 0.06);
-    border-bottom: 1px solid rgba(0, 217, 255, 0.15);
+    padding: 0.55rem 1rem;
+    background: rgba(0, 217, 255, 0.08);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.18);
     border-radius: 8px 8px 0 0;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: rgba(152, 152, 179, 0.4);
-    letter-spacing: 1px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cyber-blue);
+    letter-spacing: 2px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .writeup-content pre::after {
@@ -1175,18 +1175,16 @@ strong {
     position: absolute;
     top: 0;
     right: 1rem;
-    height: 2rem;
+    height: 2.1rem;
     display: flex;
     align-items: center;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    /* blue pink purple via individual spans not possible in pseudo,
-       so we layer colors: first dot blue, second pink, third purple */
+    font-size: 0.95rem;
+    letter-spacing: 4px;
     background: linear-gradient(
         to right,
-        var(--cyber-blue)   0%   33%,
-        var(--cyber-pink)  34%   66%,
-        var(--cyber-purple) 67%  100%
+        var(--cyber-blue)    0%   33%,
+        var(--cyber-pink)   34%   66%,
+        var(--cyber-purple)  67%  100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1196,7 +1194,9 @@ strong {
 .writeup-content pre code {
     background: none;
     padding: 0;
-    color: var(--text-primary);
+    color: #c8d0e0;
+    font-size: 0.9rem;
+    line-height: 1.7;
 }
 
 .writeup-content img {
