@@ -190,7 +190,7 @@ When you're done, go back through your index and take detailed notes on every qu
 
 Use your second practice exam after you've refined the index from the first one. By then you'll have a much better sense of where the gaps are and how fast you can actually navigate your materials under time pressure.
 
-The practice exam should give you an accurate expectation of what you'll score on the actual exam. I would say if you're scoring 90%+ on your first practice exam, you probably do not need to take your second practice exam. You're most likely ready to schedule your test within the next few days. Try not to leave too much time between your practice and your actual exam, it's a lot of information, and unintentional brain dumping can set in!
+**The practice exam should give you an accurate expectation of what you'll score on the actual exam**. I would say if you're scoring 90%+ on your first practice exam, you probably do not need to take your second practice exam. You're most likely ready to schedule your test within the next few days. Try not to leave too much time between your practice and your actual exam, it's a lot of information, and unintentional brain dumping can set in!
 
 ---
 
