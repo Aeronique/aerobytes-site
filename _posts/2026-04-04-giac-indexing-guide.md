@@ -10,7 +10,7 @@ excerpt: "How I scored 95%+ on three GIAC exams and made the Advisory Board, and
 
 When I went through the SANS Cyber Academy, I had no idea where to start. There's a lot of material, not a lot of guidance on how to manage it, and the open-book format catches people off guard. I scored 95%+ on each exam and made it onto the GIAC Advisory Board, which is open to anyone who scores 90% or higher on qualifying exams like GSEC and GCIH. I'm sharing this because I really wish I'd had a starting point.
 
-My approach grew out of Lesley Carhart's ([@hacks4pancakes](https://tisiphone.net/2015/08/18/giac-testing/)) foundational post, which I'd still recommend reading alongside this one. Her system is what a lot of us built on.
+My approach grew out of *the OG* Lesley Carhart's ([@hacks4pancakes](https://tisiphone.net/2015/08/18/giac-testing/)) foundational post, which I'd still recommend reading alongside this one. Her system is what a lot of us built on.
 
 This post is for anyone taking a SANS course and sitting for a GIAC exam, but especially for people going through the SANS Cyber Academy working toward GFACT, GSEC, and GCIH. Take what works, and create something that works for you!
 
