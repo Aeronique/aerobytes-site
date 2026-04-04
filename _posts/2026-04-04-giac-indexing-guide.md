@@ -16,6 +16,8 @@ This post is for anyone taking a SANS course and sitting for a GIAC exam, but es
 
 > Links in this post are not affiliate links and are included only for reference. Feel free to shop around.
 
+> **And no, I will absolutely not share my index. Please don't ask.**
+
 ---
 
 ## TL;DR? No Problem. Here's the Whole Thing.
