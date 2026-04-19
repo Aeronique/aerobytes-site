@@ -181,9 +181,9 @@ body {
 }
 
 .hero-banner {
-    max-width: 1584px;
-    width: 95%;
-    aspect-ratio: 1584 / 672;
+    max-width: 1583px;
+    width: 90%;
+    height: 320px;
     z-index: 10;
     animation: fadeInDown 1s ease-out;
 }
