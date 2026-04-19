@@ -183,7 +183,7 @@ body {
 .hero-banner {
     max-width: 4000px;
     width: 100%;
-    height: 550px;
+    height: 400px;
     z-index: 10;
     animation: fadeInDown 1s ease-out;
 }
