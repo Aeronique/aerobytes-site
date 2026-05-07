@@ -291,3 +291,228 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     });
 });
+
+// ===================================
+// AEROTUNES MUSIC PLAYER
+// ===================================
+(function() {
+    var YT_VIDEO_ID = '0w80F8FffQ4';
+    var BAR_COUNT = 32;
+    var playing = false;
+    var ytPlayer = null;
+    var ytReady = false;
+    var rafId = null;
+    var bars = [];
+    var barData = [];
+    var volume = 80;
+
+    function buildPlayer() {
+        // Floating button
+        var btn = document.createElement('button');
+        btn.className = 'aerotunes-btn';
+        btn.id = 'aerotunesBtn';
+        btn.setAttribute('aria-label', 'Open Aerotunes music player');
+        btn.innerHTML = '<i class="fas fa-music"></i>';
+        btn.addEventListener('click', togglePanel);
+        document.body.appendChild(btn);
+
+        // Panel
+        var panel = document.createElement('div');
+        panel.className = 'aerotunes-panel';
+        panel.id = 'aerotunesPanel';
+        panel.innerHTML =
+            '<div class="aerotunes-topbar">' +
+                '<span>/bin/aerotunes</span>' +
+                '<div class="aerotunes-dots">' +
+                    '<div class="aerotunes-dot aerotunes-dot-1"></div>' +
+                    '<div class="aerotunes-dot aerotunes-dot-2"></div>' +
+                    '<div class="aerotunes-dot aerotunes-dot-3"></div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="aerotunes-body">' +
+                '<div class="aerotunes-viz" id="aerotunesViz"></div>' +
+                '<div class="aerotunes-np-label">NOW PLAYING</div>' +
+                '<div class="aerotunes-np-title">lofi hip hop radio &mdash; beats to study to</div>' +
+                '<div class="aerotunes-np-sub">&#9658; streaming via aerotunes</div>' +
+                '<div class="aerotunes-controls">' +
+                    '<button class="aerotunes-play-btn" id="aerotunesPlayBtn" aria-label="Play or pause">' +
+                        '<i class="fas fa-play"></i>' +
+                    '</button>' +
+                    '<button class="aerotunes-close-btn" id="aerotunesCloseBtn" aria-label="Close player">&#x2715;</button>' +
+                '</div>' +
+                '<div class="aerotunes-vol-row">' +
+                    '<span class="aerotunes-vol-label">vol</span>' +
+                    '<div class="aerotunes-vol-track" id="aerotunesVolTrack">' +
+                        '<div class="aerotunes-vol-fill" id="aerotunesVolFill"></div>' +
+                    '</div>' +
+                    '<span class="aerotunes-vol-label" id="aerotunesVolPct">80%</span>' +
+                '</div>' +
+            '</div>' +
+            '<div class="aerotunes-footer">' +
+                '<span class="aerotunes-footer-tag">&#9672; AEROTUNES</span>' +
+                '<span id="aerotunesStatus">click &#9658; to begin</span>' +
+            '</div>';
+        document.body.appendChild(panel);
+
+        // Hidden YouTube iframe container
+        var ytWrap = document.createElement('div');
+        ytWrap.className = 'aerotunes-yt';
+        ytWrap.innerHTML = '<div id="aerotunesYT"></div>';
+        document.body.appendChild(ytWrap);
+
+        // Wire up controls
+        document.getElementById('aerotunesPlayBtn').addEventListener('click', togglePlay);
+        document.getElementById('aerotunesCloseBtn').addEventListener('click', closePanel);
+
+        // Volume track click
+        document.getElementById('aerotunesVolTrack').addEventListener('click', function(e) {
+            var rect = this.getBoundingClientRect();
+            var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            volume = Math.round(pct * 100);
+            document.getElementById('aerotunesVolFill').style.width = volume + '%';
+            document.getElementById('aerotunesVolPct').textContent = volume + '%';
+            if (ytPlayer && ytReady) {
+                ytPlayer.setVolume(volume);
+            }
+        });
+
+        buildBars();
+        loadYouTubeAPI();
+    }
+
+    function buildBars() {
+        var viz = document.getElementById('aerotunesViz');
+        for (var i = 0; i < BAR_COUNT; i++) {
+            var bar = document.createElement('div');
+            bar.className = 'aerotunes-bar';
+            viz.appendChild(bar);
+            bars.push(bar);
+            barData.push({
+                cur: 4 + Math.random() * 6,
+                min: 4 + Math.random() * 6,
+                max: 22 + Math.random() * 40,
+                dir: 1,
+                speed: 0.7 + Math.random() * 2.2
+            });
+        }
+    }
+
+    function animateBars() {
+        barData.forEach(function(d, i) {
+            d.cur += d.dir * d.speed * (0.4 + Math.random() * 1.4);
+            if (d.cur >= d.max) { d.cur = d.max; d.dir = -1; }
+            if (d.cur <= d.min) { d.cur = d.min; d.dir = 1; }
+            bars[i].style.height = d.cur + 'px';
+            bars[i].classList.add('playing');
+        });
+        rafId = requestAnimationFrame(animateBars);
+    }
+
+    function stopBars() {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+        bars.forEach(function(bar, i) {
+            bar.style.height = barData[i].min + 'px';
+            bar.classList.remove('playing');
+        });
+    }
+
+    function togglePanel() {
+        var panel = document.getElementById('aerotunesPanel');
+        var btn = document.getElementById('aerotunesBtn');
+        if (panel.classList.contains('open')) {
+            panel.classList.remove('open');
+            btn.classList.remove('panel-open');
+        } else {
+            panel.classList.add('open');
+            btn.classList.add('panel-open');
+        }
+    }
+
+    function closePanel() {
+        document.getElementById('aerotunesPanel').classList.remove('open');
+        document.getElementById('aerotunesBtn').classList.remove('panel-open');
+        if (playing) pauseAudio();
+    }
+
+    function togglePlay() {
+        if (playing) {
+            pauseAudio();
+        } else {
+            playAudio();
+        }
+    }
+
+    function playAudio() {
+        playing = true;
+        var btn = document.getElementById('aerotunesPlayBtn');
+        btn.innerHTML = '<i class="fas fa-pause"></i>';
+        btn.classList.add('active');
+        document.getElementById('aerotunesStatus').textContent = 'streaming...';
+        if (ytPlayer && ytReady) {
+            ytPlayer.setVolume(volume);
+            ytPlayer.playVideo();
+        }
+        animateBars();
+    }
+
+    function pauseAudio() {
+        playing = false;
+        var btn = document.getElementById('aerotunesPlayBtn');
+        btn.innerHTML = '<i class="fas fa-play"></i>';
+        btn.classList.remove('active');
+        document.getElementById('aerotunesStatus').textContent = 'paused';
+        if (ytPlayer && ytReady) {
+            ytPlayer.pauseVideo();
+        }
+        stopBars();
+    }
+
+    function loadYouTubeAPI() {
+        if (window.YT && window.YT.Player) {
+            initYTPlayer();
+            return;
+        }
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+    }
+
+    function initYTPlayer() {
+        ytPlayer = new YT.Player('aerotunesYT', {
+            videoId: YT_VIDEO_ID,
+            playerVars: {
+                autoplay: 0,
+                controls: 0,
+                disablekb: 1,
+                fs: 0,
+                modestbranding: 1,
+                rel: 0
+            },
+            events: {
+                onReady: function() {
+                    ytReady = true;
+                    ytPlayer.setVolume(volume);
+                },
+                onStateChange: function(e) {
+                    if (e.data === YT.PlayerState.ENDED) {
+                        ytPlayer.seekTo(0);
+                        ytPlayer.playVideo();
+                    }
+                }
+            }
+        });
+    }
+
+    window.onYouTubeIframeAPIReady = function() {
+        initYTPlayer();
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', buildPlayer);
+    } else {
+        buildPlayer();
+    }
+})();
