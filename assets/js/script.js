@@ -293,226 +293,276 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===================================
-// AEROTUNES MUSIC PLAYER
+// SPA NAVIGATION (keeps Aerotunes alive)
 // ===================================
 (function() {
-    var YT_VIDEO_ID = '0w80F8FffQ4';
-    var BAR_COUNT = 32;
-    var playing = false;
-    var ytPlayer = null;
-    var ytReady = false;
-    var rafId = null;
-    var bars = [];
-    var barData = [];
-    var volume = 80;
+    var EXCLUDED_PATHS = ['/resume/'];
+    var currentPath = window.location.pathname;
 
-    function buildPlayer() {
-        // Floating button
-        var btn = document.createElement('button');
-        btn.className = 'aerotunes-btn';
-        btn.id = 'aerotunesBtn';
-        btn.setAttribute('aria-label', 'Open Aerotunes music player');
-        btn.innerHTML = '<i class="fas fa-music"></i>';
-        btn.addEventListener('click', togglePanel);
-        document.body.appendChild(btn);
-
-        // Panel
-        var panel = document.createElement('div');
-        panel.className = 'aerotunes-panel';
-        panel.id = 'aerotunesPanel';
-        panel.innerHTML =
-            '<div class="aerotunes-topbar">' +
-                '<span>/bin/aerotunes</span>' +
-                '<div class="aerotunes-dots">' +
-                    '<div class="aerotunes-dot aerotunes-dot-1"></div>' +
-                    '<div class="aerotunes-dot aerotunes-dot-2"></div>' +
-                    '<div class="aerotunes-dot aerotunes-dot-3"></div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="aerotunes-body">' +
-                '<div class="aerotunes-viz" id="aerotunesViz"></div>' +
-                '<div class="aerotunes-np-label">NOW PLAYING</div>' +
-                '<div class="aerotunes-np-title">lofi hip hop radio &mdash; beats to study to</div>' +
-                '<div class="aerotunes-np-sub">&#9658; streaming via aerotunes</div>' +
-                '<div class="aerotunes-controls">' +
-                    '<button class="aerotunes-play-btn" id="aerotunesPlayBtn" aria-label="Play or pause">' +
-                        '<i class="fas fa-play"></i>' +
-                    '</button>' +
-                    '<button class="aerotunes-close-btn" id="aerotunesCloseBtn" aria-label="Close player">&#x2715;</button>' +
-                '</div>' +
-                '<div class="aerotunes-vol-row">' +
-                    '<span class="aerotunes-vol-label">vol</span>' +
-                    '<div class="aerotunes-vol-track" id="aerotunesVolTrack">' +
-                        '<div class="aerotunes-vol-fill" id="aerotunesVolFill"></div>' +
-                    '</div>' +
-                    '<span class="aerotunes-vol-label" id="aerotunesVolPct">80%</span>' +
-                '</div>' +
-            '</div>' +
-            '<div class="aerotunes-footer">' +
-                '<span class="aerotunes-footer-tag">&#9672; AEROTUNES</span>' +
-                '<span id="aerotunesStatus">click &#9658; to begin</span>' +
-            '</div>';
-        document.body.appendChild(panel);
-
-        // Hidden YouTube iframe container
-        var ytWrap = document.createElement('div');
-        ytWrap.className = 'aerotunes-yt';
-        ytWrap.innerHTML = '<div id="aerotunesYT"></div>';
-        document.body.appendChild(ytWrap);
-
-        // Wire up controls
-        document.getElementById('aerotunesPlayBtn').addEventListener('click', togglePlay);
-        document.getElementById('aerotunesCloseBtn').addEventListener('click', closePanel);
-
-        // Volume track click
-        document.getElementById('aerotunesVolTrack').addEventListener('click', function(e) {
-            var rect = this.getBoundingClientRect();
-            var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-            volume = Math.round(pct * 100);
-            document.getElementById('aerotunesVolFill').style.width = volume + '%';
-            document.getElementById('aerotunesVolPct').textContent = volume + '%';
-            if (ytPlayer && ytReady) {
-                ytPlayer.setVolume(volume);
-            }
-        });
-
-        buildBars();
-        loadYouTubeAPI();
+    function isExcluded(href) {
+        // External links
+        if (href.startsWith('http://') || href.startsWith('https://')) return true;
+        // Hash-only links
+        if (href.startsWith('#')) return true;
+        // Excluded paths
+        for (var i = 0; i < EXCLUDED_PATHS.length; i++) {
+            if (href === EXCLUDED_PATHS[i] || href.startsWith(EXCLUDED_PATHS[i])) return true;
+        }
+        return false;
     }
 
-    function buildBars() {
-        var viz = document.getElementById('aerotunesViz');
-        for (var i = 0; i < BAR_COUNT; i++) {
-            var bar = document.createElement('div');
-            bar.className = 'aerotunes-bar';
-            viz.appendChild(bar);
-            bars.push(bar);
-            barData.push({
-                cur: 4 + Math.random() * 6,
-                min: 4 + Math.random() * 6,
-                max: 22 + Math.random() * 40,
-                dir: 1,
-                speed: 0.7 + Math.random() * 2.2
+    function getInternalHref(anchor) {
+        var href = anchor.getAttribute('href');
+        if (!href) return null;
+        if (anchor.target === '_blank') return null;
+        if (isExcluded(href)) return null;
+        // Only intercept same-origin links
+        if (href.startsWith('/') || href.startsWith('./') || href.startsWith('../')) return href;
+        return null;
+    }
+
+    function updateActiveNavLink(path) {
+        document.querySelectorAll('.nav-link').forEach(function(link) {
+            var linkPath = link.getAttribute('href');
+            link.classList.toggle('active', linkPath === path);
+        });
+    }
+
+    function cleanupWriteupStyles() {
+        // Remove any inline style blocks injected by writeup layout
+        var existing = document.getElementById('spa-writeup-style');
+        if (existing) existing.remove();
+
+        // Reset scan-line and cyber-grid to default state
+        var scanLine = document.querySelector('.scan-line');
+        var cyberGrid = document.querySelector('.cyber-grid');
+        if (scanLine) scanLine.style.display = '';
+        if (cyberGrid) cyberGrid.style.opacity = '';
+    }
+
+    function applyWriteupStyles(doc) {
+        // Find any <style> blocks in the fetched content
+        var styles = doc.querySelectorAll('#spa-content style');
+        styles.forEach(function(style) {
+            var tag = document.createElement('style');
+            tag.id = 'spa-writeup-style';
+            tag.textContent = style.textContent;
+            document.head.appendChild(tag);
+            style.remove();
+        });
+    }
+
+    function reinitPage() {
+        // Intersection observer for fade-in animations
+        var observerOpts = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOpts);
+
+        document.querySelectorAll('.section, .project-card, .writeup-item').forEach(function(el) {
+            if (el.closest('.writeup-page')) return;
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            obs.observe(el);
+        });
+
+        // Image lightbox
+        if (document.querySelector('.writeup-content')) {
+            var existing = document.querySelector('.image-lightbox');
+            if (existing) existing.remove();
+
+            var lightbox = document.createElement('div');
+            lightbox.className = 'image-lightbox';
+            lightbox.innerHTML = '<span class="image-lightbox-close">&times;</span><img src="" alt="">';
+            document.body.appendChild(lightbox);
+
+            var lightboxImg = lightbox.querySelector('img');
+            var closeBtn = lightbox.querySelector('.image-lightbox-close');
+
+            document.querySelectorAll('.writeup-content img').forEach(function(img) {
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeBtn.addEventListener('click', closeLb);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox || e.target === closeBtn) closeLb();
+            });
+
+            function closeLb() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLb();
             });
         }
-    }
 
-    function animateBars() {
-        barData.forEach(function(d, i) {
-            d.cur += d.dir * d.speed * (0.4 + Math.random() * 1.4);
-            if (d.cur >= d.max) { d.cur = d.max; d.dir = -1; }
-            if (d.cur <= d.min) { d.cur = d.min; d.dir = 1; }
-            bars[i].style.height = d.cur + 'px';
-            bars[i].classList.add('playing');
+        // Prompt highlighter
+        if (document.querySelector('.writeup-content')) {
+            document.querySelectorAll('.writeup-content pre code').forEach(function(block) {
+                block.innerHTML = block.innerHTML.replace(
+                    /(aero@aerobytes:~\$)/g,
+                    '<span style="color: var(--cyber-pink); font-weight: 700;">$1</span>'
+                );
+            });
+        }
+
+        // Rotating text (index page only)
+        var rotatingEl = document.querySelector('.rotating-text');
+        var cursorEl = document.querySelector('.cursor');
+        if (rotatingEl && cursorEl) {
+            var roles = ['intelligence analyst', 'security researcher', 'threat hunter', 'ctf competitor'];
+            var idx = 0, charIdx = 0, deleting = false, speed = 100;
+            cursorEl.style.display = 'none';
+
+            function typeIt() {
+                var role = roles[idx];
+                if (!deleting && charIdx <= role.length) {
+                    rotatingEl.innerHTML = role.substring(0, charIdx) + '<span class="cursor">_</span>';
+                    charIdx++;
+                    speed = 100;
+                } else if (deleting && charIdx >= 0) {
+                    rotatingEl.innerHTML = role.substring(0, charIdx) + '<span class="cursor">_</span>';
+                    charIdx--;
+                    speed = 50;
+                }
+                if (!deleting && charIdx > role.length) { speed = 2000; deleting = true; }
+                if (deleting && charIdx < 0) { deleting = false; idx = (idx + 1) % roles.length; speed = 500; }
+                setTimeout(typeIt, speed);
+            }
+            setTimeout(typeIt, 1000);
+        }
+
+        // Live clock (index page only)
+        var clockEl = document.getElementById('current-time');
+        if (clockEl) {
+            function tick() {
+                var now = new Date();
+                clockEl.textContent =
+                    String(now.getUTCHours()).padStart(2,'0') + ':' +
+                    String(now.getUTCMinutes()).padStart(2,'0') + ':' +
+                    String(now.getUTCSeconds()).padStart(2,'0') + ' UTC';
+            }
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        // Smooth scroll for in-page hash links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         });
-        rafId = requestAnimationFrame(animateBars);
+
+        // Re-attach SPA intercept to any new links in the swapped content
+        attachLinkInterceptors();
     }
 
-    function stopBars() {
-        if (rafId) {
-            cancelAnimationFrame(rafId);
-            rafId = null;
-        }
-        bars.forEach(function(bar, i) {
-            bar.style.height = barData[i].min + 'px';
-            bar.classList.remove('playing');
+    function navigateTo(href, pushState) {
+        fetch(href)
+            .then(function(res) {
+                if (!res.ok) throw new Error('fetch failed');
+                return res.text();
+            })
+            .then(function(html) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(html, 'text/html');
+
+                var newMain = doc.querySelector('#spa-content');
+                if (!newMain) {
+                    // Fallback: just do a normal navigation
+                    window.location.href = href;
+                    return;
+                }
+
+                var newTitle = doc.title;
+
+                // Clean up any writeup-specific styles from previous page
+                cleanupWriteupStyles();
+
+                // Swap content
+                var currentMain = document.querySelector('#spa-content');
+                currentMain.innerHTML = newMain.innerHTML;
+
+                // Apply any styles from the new page (writeup layout injects a <style> block)
+                applyWriteupStyles(currentMain);
+
+                // Update browser history and title
+                if (pushState) {
+                    window.history.pushState({ path: href }, newTitle, href);
+                }
+                document.title = newTitle;
+                currentPath = href;
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                // Update active nav state
+                updateActiveNavLink(href);
+
+                // Re-initialize page scripts
+                reinitPage();
+            })
+            .catch(function() {
+                // Network error or something unexpected, fall back to normal navigation
+                window.location.href = href;
+            });
+    }
+
+    function attachLinkInterceptors() {
+        // Nav links and logo
+        document.querySelectorAll('.nav-link, .logo').forEach(function(anchor) {
+            // Remove old listener by cloning (simplest approach for nav which is always present)
         });
+
+        // Use event delegation on the whole document so we catch nav + any in-content links
+        // (delegation is already set up once at init, so this function is a no-op after first run)
     }
 
-    function togglePanel() {
-        var panel = document.getElementById('aerotunesPanel');
-        var btn = document.getElementById('aerotunesBtn');
-        if (panel.classList.contains('open')) {
-            panel.classList.remove('open');
-            btn.classList.remove('panel-open');
-        } else {
-            panel.classList.add('open');
-            btn.classList.add('panel-open');
-        }
-    }
+    // Single delegated listener on document — handles all clicks, present and future
+    document.addEventListener('click', function(e) {
+        var anchor = e.target.closest('a');
+        if (!anchor) return;
 
-    function closePanel() {
-        document.getElementById('aerotunesPanel').classList.remove('open');
-        document.getElementById('aerotunesBtn').classList.remove('panel-open');
-        if (playing) pauseAudio();
-    }
+        var href = getInternalHref(anchor);
+        if (!href) return;
 
-    function togglePlay() {
-        if (playing) {
-            pauseAudio();
-        } else {
-            playAudio();
-        }
-    }
+        // Don't intercept if it's the same page
+        if (href === currentPath || href === currentPath + '/') return;
 
-    function playAudio() {
-        playing = true;
-        var btn = document.getElementById('aerotunesPlayBtn');
-        btn.innerHTML = '<i class="fas fa-pause"></i>';
-        btn.classList.add('active');
-        document.getElementById('aerotunesStatus').textContent = 'streaming...';
-        if (ytPlayer && ytReady) {
-            ytPlayer.setVolume(volume);
-            ytPlayer.playVideo();
-        }
-        animateBars();
-    }
+        e.preventDefault();
+        navigateTo(href, true);
+    });
 
-    function pauseAudio() {
-        playing = false;
-        var btn = document.getElementById('aerotunesPlayBtn');
-        btn.innerHTML = '<i class="fas fa-play"></i>';
-        btn.classList.remove('active');
-        document.getElementById('aerotunesStatus').textContent = 'paused';
-        if (ytPlayer && ytReady) {
-            ytPlayer.pauseVideo();
-        }
-        stopBars();
-    }
-
-    function loadYouTubeAPI() {
-        if (window.YT && window.YT.Player) {
-            initYTPlayer();
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function(e) {
+        var path = window.location.pathname;
+        if (isExcluded(path)) {
+            window.location.reload();
             return;
         }
-        var tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-    }
+        navigateTo(path, false);
+    });
 
-    function initYTPlayer() {
-        ytPlayer = new YT.Player('aerotunesYT', {
-            videoId: YT_VIDEO_ID,
-            playerVars: {
-                autoplay: 0,
-                controls: 0,
-                disablekb: 1,
-                fs: 0,
-                modestbranding: 1,
-                rel: 0
-            },
-            events: {
-                onReady: function() {
-                    ytReady = true;
-                    ytPlayer.setVolume(volume);
-                },
-                onStateChange: function(e) {
-                    if (e.data === YT.PlayerState.ENDED) {
-                        ytPlayer.seekTo(0);
-                        ytPlayer.playVideo();
-                    }
-                }
-            }
-        });
-    }
+    // Set initial active nav link
+    updateActiveNavLink(currentPath);
 
-    window.onYouTubeIframeAPIReady = function() {
-        initYTPlayer();
-    };
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', buildPlayer);
-    } else {
-        buildPlayer();
-    }
 })();
