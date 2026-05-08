@@ -266,10 +266,12 @@ function updateClock() {
 }
 
 // Update clock every second
-if (document.getElementById('current-time')) {
-    updateClock();
-    setInterval(updateClock, 1000);
-}
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('current-time')) {
+        updateClock();
+        setInterval(updateClock, 1000);
+    }
+});
 
 // ===================================
 // IMAGE LIGHTBOX FOR WRITEUPS
@@ -1080,20 +1082,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTerminal);
-    } else {
+    // Wait for DOM, then init once
+    document.addEventListener('DOMContentLoaded', function() {
         initTerminal();
-    }
-
-    // Re-init after SPA navigation
-    document.addEventListener('spa-navigated', initTerminal);
-    var _origReinit = window._spaReinit;
-    var origInterval = setInterval(function() {
-        var prompt = document.getElementById('footerPrompt');
-        if (prompt && !initialized) {
-            initTerminal();
-            clearInterval(origInterval);
-        }
-    }, 500);
+    });
 })();
