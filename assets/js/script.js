@@ -190,7 +190,7 @@ console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold
 console.log('%c' + ASCII_ART.join('\n'), 'color: #a855f7; font-size: 10px; line-height: 1.1; font-family: monospace;');
 console.log('%cLooking at the source? Nice! 🔍', 'color: #a855f7; font-size: 14px; font-family: monospace;');
 console.log('%cIf you found something interesting, reach out:', 'color: #9898b3; font-size: 12px;');
-console.log('%caeroni que@proton.me', 'color: #ff1493; font-size: 13px; font-weight: bold;');
+console.log('%caeronique@proton.me', 'color: #ff1493; font-size: 13px; font-weight: bold;');
 // ===================================
 // ROTATING TEXT EFFECT FOR LANDING PAGE
 // ===================================
@@ -917,7 +917,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'secret.txt':          'file',
         'flag.txt':            'file',
         '.bashrc':             'hidden',
-        '.you_found_me.txt':   'hidden',
+        '.you_found_me.txt': 'okay fine. you\'re good.\n\naeronique@proton.me',
         '.flag.txt':           'hidden',
     };
 
@@ -926,7 +926,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'todo.txt':          '1. world domination\n2. get hired in threat intel\n3. touch grass\n4. repeat step 1',
         'definitely_not_malware.sh': '#!/bin/bash\n# totally normal script\necho "just vibing"',
         'flag.txt':          'FLAG{y0u_f0und_m3_n0w_h1r3_m3}',
-        '.you_found_me.txt': 'okay fine. you\\'re good.\n\naeroni que@proton.me',
+        '.you_found_me.txt': 'okay fine. you\'re good.\n\naeronique@proton.me',
         '.flag.txt':         'FLAG{ls_-la_gang_represent}',
         '.bashrc':           'alias ls="ls --color=auto"\nalias cls="clear"\nalias hacker="echo \\"i am in\\""\nexport COFFEE_LEVEL=critical',
     };
@@ -1025,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', function() {
             addLine(output, '1st place WiCyS 2026 CTF · 2nd place Target x WiCyS Cyber Defense');
             addLine(output, '5th place SANS Holiday Hack Challenge 2025');
             addLine(output, '');
-            addLine(output, 'contact: aeroni que@proton.me', '#ff1493');
+            addLine(output, 'contact: aeronique@proton.me', '#ff1493');
 
         } else if (cmd === 'ls') {
             var visible = Object.keys(FILES).filter(function(f) { return FILES[f] === 'file'; });
