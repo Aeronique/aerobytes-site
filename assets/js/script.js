@@ -153,44 +153,33 @@ function createMatrixEffect() {
 // CONSOLE EASTER EGG
 // ===================================
 const ASCII_ART = [
-  `:;;;i11LCLfLCLiLti;::,,:;:::::::::::;::;:;;::::;:;;;;:::;;;;`,
-  `:;;iitiCCLfCLL:fL11ii;;ii;;i;;;;:::::::::::::::::;::::::i;;;`,
-  `:::;ii1L;,,:tCiifL111ii11ii1iiii;;;::::::::::::::;::::::;:i;`,
-  `::::;:;i:;;,1f;,LGi11i11t111iiiiii;;;:::::::;;;::ii::;;;;:ii`,
-  `:,::;1,;;:::f1:;CGii11ii:..    ..,,;iii;;;;:;;;:;i1;:;;;;;;;`,
-  `;:::;Lti;:;iC0fL08111:     ..        .,;iii;;;;:;1t;;;;;;;;i`,
-  `;::;1CLi;:;1LCG880f1;         .,,.   ,.  ,1i;;;;;1fiiii;iiii`,
-  `:;;f8G.::,,:;1888ti,.            ..:L88L. ,tiiiiitL1ii1ii111`,
-  `:;i1tt,,:.,::ittLi,.            .ifG88@@t .it1iiifCfLCf11f11`,
-  `;;;,,,:;;;;;i;,;i,.           :tLt11;1G01 ,itt1fLC0G8@Lttf1t`,
-  `iii,:,,...,;;;:ii.      .,:. ,tC0GLLCG0C  .;tttLLfLL0@Cffftf`,
-  `ii1::::;;;i;:i;11,      .;i,.iitL08@8GC0L .ittt1t11ftLLLLffL`,
-  `111::::;ii;iitft:           :tLLfCCCGCLL;.;iCL1ifLt1;LLCLfLL`,
-  `111:;,,.if1i1tti,            ,ifLC0CfLL; .:ii;;:;CCtt0LGCGGG`,
-  `111:11;it111tffi.     :i:,.    .;tL080L  .:;:,..,ii1iGttttf0`,
-  `;,,;;i1i1;i11ti:      .itft;, .;,  ,;i,   ,:ii;:;,;t1G1i1f1G`,
-  `,:,;;i11fiittt:.       ..,;tt. ....       ::;ii;,:tLtC1;ittG`,
-  `,:;;;;11ffL1;:,... .. .:;t;         .,  .;:i:i;:,,tCG0Cffft0`,
-  `...;i;ttttf1::,.,.  .  ,,it1,       ,. ,.;iii;...:ffL0Cffff0`,
-  `.  ;;;11ti;i11,.       ,,.,,;i:    ,   ,;i;11i,.,ifL00Cti1tC`,
-  `...:;;11i11;:;.         .,.,.;::  ,    ,11ii1ii;;ttG00ftt1LG`,
-  `.:::;itt;1: ,.    ....,:::;;:: :. :   .;;1i;ii;;ttLCCCfffLGG`,
-  `.,,,:1ti1:  :.    .,:1ttt1ii1, .1 .:  .:iii;ii;;i;;1ffftfLCC`,
-  `:,,:;111i     ..  .,:ttttftit; :t1.:;..,i11iiii;;;;1LCttCfff`,
-  `:::;i111,    ;:    . ..,,,,;1:  :1t.:,..it1i11ii;itLCLfLCttG`,
-  `.,,;1ii:.   ,,         .,:;:i:  .,ti ;.;i;ii;;:;;;1fffLLLLC8`,
-  `,::it1;,,             .,::ii;.   ;,t.,;11t1i1iii1;i1i1ii1L8@`,
-  `:;:ftt;..     .,       ,ii:;;,  :, ;i ttttt1t11111111t1;1tLf`,
-  `:;it1i;       ..        1t:.,, ,.. .:.fi::::;:......,fCLfttt`,
-  `;it;ii:                 ,ft,:.      .,;.        1t1;,:i;;;L0`,
-  `i11,ii:        .,        ,:.,.       ,,;i11:,tfi,;t1;  ,..:C`,
+  `==++++++++++++++==;-:;=;-                    \`......`,
+  `++++++++++++++++==;:::;;-  \`\`\`\`\`             \`......`,
+  `#############*****=::===-\`\`.\`\` \`\`   \`        \`......`,
+  `#%%%%%%%%%%%%%%%%#+:;+*+--:::::--\`\`          \`\`.....`,
+  `%%%%%%%%%%%%%%####+:;+=;=+++++++=;-.         \`......`,
+  `%%%%%%%%%%%%%%%###+:;;-:;+++++++==;:-..  \`\`  \`......`,
+  `%%%%%%%%%%%%%%%%%#+:;:::-:++++====;;::-.      \`.....`,
+  `%%%%%%%%%%%%%%%%%%+:;::::;++=:-...-::--.       \`....`,
+  `%%%%%%%%%%%%%%%%%%*==;:;;==:::::::..--.         \`...`,
+  `%%%%%%%%%%%%%%%%%%+++++==;:-:;-:-----.           ...`,
+  `%%%%%%%%%%%%%%%%%#=+====::::==;::-:---           ...`,
+  `%%%%%%%%%%%%%%%%%*;;;:;-----=+==;::--            ...`,
+  `%%%%%%%%%%%%%%%%%*;:;;;:--:;===;:---. \`..       ....`,
+  `%%%%%%%%%#*=;:--. =:-;=;:-:;=;:---...--.-      .....`,
+  `%%%%#*=-           ;;--:---:;;---.....--.       \`\`\`..`,
+  `#+:.               ;;;:::::::----...\`\`.\`             `,
+  `\`                  ;=;;;;;-..........               `,
+  `                   \`::::-..\`\`\`\`\`\`....               `,
+  `                     ;;.\`\`\`\`\`\`....-.               `,
 ];
 
 console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold; font-family: monospace;');
+console.log('%cyou don\'t say?', 'color: #ff1493; font-size: 11px; font-family: monospace;');
 console.log('%c' + ASCII_ART.join('\n'), 'color: #a855f7; font-size: 10px; line-height: 1.1; font-family: monospace;');
 console.log('%cLooking at the source? Nice! 🔍', 'color: #a855f7; font-size: 14px; font-family: monospace;');
 console.log('%cIf you found something interesting, reach out:', 'color: #9898b3; font-size: 12px;');
-console.log('%caeronique@proton.me', 'color: #ff1493; font-size: 13px; font-weight: bold;');
+console.log('%chttps://www.linkedin.com/in/michelle-duell', 'color: #ff1493; font-size: 13px; font-weight: bold;');
 // ===================================
 // ROTATING TEXT EFFECT FOR LANDING PAGE
 // ===================================
@@ -923,7 +912,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var FILE_CONTENTS = {
         'secret.txt':        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        'todo.txt':          '1. world domination\n2. get hired in threat intel\n3. touch grass\n4. repeat step 1',
+        'todo.txt':          '1. world domination\n2. get hired as a soc analyst\n3. touch grass\n4. repeat step 1',
         'definitely_not_malware.sh': '#!/bin/bash\n# totally normal script\necho "just vibing"',
         'flag.txt':          'FLAG{y0u_f0und_m3_n0w_h1r3_m3}',
         '.you_found_me.txt': 'okay fine. you\'re good.\n\naeronique@proton.me',
