@@ -152,9 +152,45 @@ function createMatrixEffect() {
 // ===================================
 // CONSOLE EASTER EGG
 // ===================================
-console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold;');
-console.log('%cLooking at the source? Nice! ðŸ”', 'color: #a855f7; font-size: 14px;');
-console.log('%cIf you found something interesting, let me know!', 'color: #9898b3; font-size: 12px;');
+const ASCII_ART = [
+  `:;;;i11LCLfLCLiLti;::,,:;:::::::::::;::;:;;::::;:;;;;:::;;;;`,
+  `:;;iitiCCLfCLL:fL11ii;;ii;;i;;;;:::::::::::::::::;::::::i;;;`,
+  `:::;ii1L;,,:tCiifL111ii11ii1iiii;;;::::::::::::::;::::::;:i;`,
+  `::::;:;i:;;,1f;,LGi11i11t111iiiiii;;;:::::::;;;::ii::;;;;:ii`,
+  `:,::;1,;;:::f1:;CGii11ii:..    ..,,;iii;;;;:;;;:;i1;:;;;;;;;`,
+  `;:::;Lti;:;iC0fL08111:     ..        .,;iii;;;;:;1t;;;;;;;;i`,
+  `;::;1CLi;:;1LCG880f1;         .,,.   ,.  ,1i;;;;;1fiiii;iiii`,
+  `:;;f8G.::,,:;1888ti,.            ..:L88L. ,tiiiiitL1ii1ii111`,
+  `:;i1tt,,:.,::ittLi,.            .ifG88@@t .it1iiifCfLCf11f11`,
+  `;;;,,,:;;;;;i;,;i,.           :tLt11;1G01 ,itt1fLC0G8@Lttf1t`,
+  `iii,:,,...,;;;:ii.      .,:. ,tC0GLLCG0C  .;tttLLfLL0@Cffftf`,
+  `ii1::::;;;i;:i;11,      .;i,.iitL08@8GC0L .ittt1t11ftLLLLffL`,
+  `111::::;ii;iitft:           :tLLfCCCGCLL;.;iCL1ifLt1;LLCLfLL`,
+  `111:;,,.if1i1tti,            ,ifLC0CfLL; .:ii;;:;CCtt0LGCGGG`,
+  `111:11;it111tffi.     :i:,.    .;tL080L  .:;:,..,ii1iGttttf0`,
+  `;,,;;i1i1;i11ti:      .itft;, .;,  ,;i,   ,:ii;:;,;t1G1i1f1G`,
+  `,:,;;i11fiittt:.       ..,;tt. ....       ::;ii;,:tLtC1;ittG`,
+  `,:;;;;11ffL1;:,... .. .:;t;         .,  .;:i:i;:,,tCG0Cffft0`,
+  `...;i;ttttf1::,.,.  .  ,,it1,       ,. ,.;iii;...:ffL0Cffff0`,
+  `.  ;;;11ti;i11,.       ,,.,,;i:    ,   ,;i;11i,.,ifL00Cti1tC`,
+  `...:;;11i11;:;.         .,.,.;::  ,    ,11ii1ii;;ttG00ftt1LG`,
+  `.:::;itt;1: ,.    ....,:::;;:: :. :   .;;1i;ii;;ttLCCCfffLGG`,
+  `.,,,:1ti1:  :.    .,:1ttt1ii1, .1 .:  .:iii;ii;;i;;1ffftfLCC`,
+  `:,,:;111i     ..  .,:ttttftit; :t1.:;..,i11iiii;;;;1LCttCfff`,
+  `:::;i111,    ;:    . ..,,,,;1:  :1t.:,..it1i11ii;itLCLfLCttG`,
+  `.,,;1ii:.   ,,         .,:;:i:  .,ti ;.;i;ii;;:;;;1fffLLLLC8`,
+  `,::it1;,,             .,::ii;.   ;,t.,;11t1i1iii1;i1i1ii1L8@`,
+  `:;:ftt;..     .,       ,ii:;;,  :, ;i ttttt1t11111111t1;1tLf`,
+  `:;it1i;       ..        1t:.,, ,.. .:.fi::::;:......,fCLfttt`,
+  `;it;ii:                 ,ft,:.      .,;.        1t1;,:i;;;L0`,
+  `i11,ii:        .,        ,:.,.       ,,;i11:,tfi,;t1;  ,..:C`,
+];
+
+console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold; font-family: monospace;');
+console.log('%c' + ASCII_ART.join('\n'), 'color: #a855f7; font-size: 10px; line-height: 1.1; font-family: monospace;');
+console.log('%cLooking at the source? Nice! 🔍', 'color: #a855f7; font-size: 14px; font-family: monospace;');
+console.log('%cIf you found something interesting, reach out:', 'color: #9898b3; font-size: 12px;');
+console.log('%caeroni que@proton.me', 'color: #ff1493; font-size: 13px; font-weight: bold;');
 // ===================================
 // ROTATING TEXT EFFECT FOR LANDING PAGE
 // ===================================
@@ -775,4 +811,289 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         buildPlayer();
     }
+})();
+
+// ===================================
+// KONAMI CODE — MATRIX RAIN SPLASH
+// ===================================
+(function() {
+    var KONAMI = [38,38,40,40,37,39,37,39,66,65];
+    var pos = 0;
+
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode === KONAMI[pos]) {
+            pos++;
+            if (pos === KONAMI.length) {
+                pos = 0;
+                triggerMatrixSplash();
+            }
+        } else {
+            pos = 0;
+        }
+    });
+
+    function triggerMatrixSplash() {
+        var existing = document.getElementById('konamiCanvas');
+        if (existing) return;
+
+        var canvas = document.createElement('canvas');
+        canvas.id = 'konamiCanvas';
+        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none;opacity:0;transition:opacity 0.3s ease;';
+        document.body.appendChild(canvas);
+
+        var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var colors = ['#00d9ff', '#a855f7', '#ff1493', '#ff00ff'];
+        var fontSize = 14;
+        var columns = Math.floor(canvas.width / fontSize);
+        var drops = Array(columns).fill(0).map(function() { return Math.random() * -50; });
+
+        requestAnimationFrame(function() { canvas.style.opacity = '1'; });
+
+        var interval = setInterval(function() {
+            ctx.fillStyle = 'rgba(10, 10, 15, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (var i = 0; i < drops.length; i++) {
+                var char = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 96));
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.font = fontSize + 'px monospace';
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.97) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }, 40);
+
+        setTimeout(function() {
+            canvas.style.opacity = '0';
+            setTimeout(function() {
+                clearInterval(interval);
+                canvas.remove();
+            }, 400);
+        }, 4000);
+    }
+})();
+
+// ===================================
+// SUDO EASTER EGG
+// ===================================
+(function() {
+    var buffer = '';
+    document.addEventListener('keydown', function(e) {
+        if (e.key.length === 1) {
+            buffer += e.key;
+            if (buffer.length > 10) buffer = buffer.slice(-10);
+            if (buffer.toLowerCase().includes('sudo')) {
+                buffer = '';
+                console.log('%c$ sudo su', 'color: #00d9ff; font-family: monospace; font-size: 13px;');
+                setTimeout(function() {
+                    console.log('%cPassword:', 'color: #9898b3; font-family: monospace; font-size: 13px;');
+                }, 400);
+                setTimeout(function() {
+                    console.log('%cPermission denied.', 'color: #ff1493; font-family: monospace; font-size: 13px;');
+                }, 1200);
+                setTimeout(function() {
+                    console.log('%cNice try though. 😏', 'color: #a855f7; font-family: monospace; font-size: 13px;');
+                }, 1800);
+            }
+        }
+    });
+})();
+
+// ===================================
+// FOOTER TERMINAL
+// ===================================
+(function() {
+    var FILES = {
+        'resume.pdf':          'file',
+        'definitely_not_malware.sh': 'file',
+        'todo.txt':            'file',
+        'secret.txt':          'file',
+        'flag.txt':            'file',
+        '.bashrc':             'hidden',
+        '.you_found_me.txt':   'hidden',
+        '.flag.txt':           'hidden',
+    };
+
+    var FILE_CONTENTS = {
+        'secret.txt':        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'todo.txt':          '1. world domination\n2. get hired in threat intel\n3. touch grass\n4. repeat step 1',
+        'definitely_not_malware.sh': '#!/bin/bash\n# totally normal script\necho "just vibing"',
+        'flag.txt':          'FLAG{y0u_f0und_m3_n0w_h1r3_m3}',
+        '.you_found_me.txt': 'okay fine. you\\'re good.\n\naeroni que@proton.me',
+        '.flag.txt':         'FLAG{ls_-la_gang_represent}',
+        '.bashrc':           'alias ls="ls --color=auto"\nalias cls="clear"\nalias hacker="echo \\"i am in\\""\nexport COFFEE_LEVEL=critical',
+    };
+
+    var PROCESSES = [
+        'PID   USER       COMMAND',
+        '1     root       /sbin/init',
+        '42    aero       threat_hunting.py --target=all',
+        '314   aero       coffee_dependency.service --level=critical',
+        '420   aero       clarinet_practice.sh --scales --forever',
+        '666   aero       definitely_not_hacking.exe (wine)',
+        '1337  aero       ctf_solver.py --autopwn --plz',
+        '2048  aero       wazuh_siem --watching_everything',
+        '9000  root       its_over_9000.sh',
+        '9001  aero       vim (not exiting, send help)',
+    ];
+
+    var history = [];
+    var historyIdx = -1;
+    var initialized = false;
+
+    function initTerminal() {
+        if (initialized) return;
+        initialized = true;
+
+        var prompt = document.getElementById('footerPrompt');
+        var terminal = document.getElementById('footerTerminal');
+        var input = document.getElementById('footerTerminalInput');
+        var output = document.getElementById('footerTerminalOutput');
+
+        if (!prompt || !terminal || !input || !output) return;
+
+        prompt.addEventListener('click', function() {
+            terminal.style.display = terminal.style.display === 'none' ? 'block' : 'none';
+            if (terminal.style.display === 'block') {
+                if (output.children.length === 0) {
+                    addLine(output, 'Terminal initialized. Type "help" to get started.', '#00d9ff');
+                }
+                setTimeout(function() { input.focus(); }, 50);
+            }
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                var cmd = input.value.trim();
+                if (!cmd) return;
+                history.unshift(cmd);
+                historyIdx = -1;
+                addLine(output, 'aero@aerobytes:~$ ' + cmd, '#ff1493');
+                handleCommand(cmd.toLowerCase(), output);
+                input.value = '';
+                terminal.scrollTop = terminal.scrollHeight;
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIdx < history.length - 1) {
+                    historyIdx++;
+                    input.value = history[historyIdx];
+                }
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIdx > 0) {
+                    historyIdx--;
+                    input.value = history[historyIdx];
+                } else {
+                    historyIdx = -1;
+                    input.value = '';
+                }
+            }
+        });
+    }
+
+    function addLine(output, text, color) {
+        var line = document.createElement('div');
+        line.style.cssText = 'font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap; word-break: break-all;';
+        line.style.color = color || '#e8e8f0';
+        line.textContent = text;
+        output.appendChild(line);
+    }
+
+    function handleCommand(cmd, output) {
+        if (cmd === 'help') {
+            addLine(output, 'available commands:', '#00d9ff');
+            addLine(output, '  whoami       find out who runs this place');
+            addLine(output, '  ls           list files');
+            addLine(output, '  ls -la       list all files (including hidden)');
+            addLine(output, '  ps aux       check what\'s running');
+            addLine(output, '  cat <file>   read a file');
+            addLine(output, '  clear        clear terminal');
+            addLine(output, '  exit         close terminal');
+
+        } else if (cmd === 'whoami') {
+            addLine(output, 'aeronique (michelle duell)', '#a855f7');
+            addLine(output, 'intelligence analyst → cybersecurity');
+            addLine(output, 'blue team | threat intel | CTF competitor');
+            addLine(output, 'GFACT · GSEC · GCIH (98%) · TAISE');
+            addLine(output, '1st place WiCyS 2026 CTF · 2nd place Target x WiCyS Cyber Defense');
+            addLine(output, '5th place SANS Holiday Hack Challenge 2025');
+            addLine(output, '');
+            addLine(output, 'contact: aeroni que@proton.me', '#ff1493');
+
+        } else if (cmd === 'ls') {
+            var visible = Object.keys(FILES).filter(function(f) { return FILES[f] === 'file'; });
+            addLine(output, visible.join('  '), '#00d9ff');
+
+        } else if (cmd === 'ls -la') {
+            addLine(output, 'total 48', '#9898b3');
+            Object.keys(FILES).forEach(function(f) {
+                var hidden = FILES[f] === 'hidden';
+                var color = hidden ? '#a855f7' : '#e8e8f0';
+                addLine(output, '-rw-r--r--  aero  aero  ' + f, color);
+            });
+
+        } else if (cmd === 'ps aux') {
+            PROCESSES.forEach(function(p, i) {
+                addLine(output, p, i === 0 ? '#00d9ff' : '#e8e8f0');
+            });
+
+        } else if (cmd.startsWith('cat ')) {
+            var filename = cmd.slice(4).trim();
+            if (FILE_CONTENTS[filename]) {
+                var content = FILE_CONTENTS[filename];
+                if (filename === 'secret.txt') {
+                    addLine(output, content, '#ff1493');
+                    addLine(output, '(you know what to do)', '#9898b3');
+                } else {
+                    addLine(output, content, '#e8e8f0');
+                }
+            } else if (Object.keys(FILES).indexOf(filename) !== -1) {
+                addLine(output, 'cat: ' + filename + ': binary file, cannot display', '#9898b3');
+            } else {
+                addLine(output, 'cat: ' + filename + ': no such file or directory', '#ff4444');
+            }
+
+        } else if (cmd === 'clear') {
+            document.getElementById('footerTerminalOutput').innerHTML = '';
+
+        } else if (cmd === 'exit') {
+            document.getElementById('footerTerminal').style.display = 'none';
+
+        } else if (cmd.startsWith('sudo')) {
+            addLine(output, 'Password:', '#9898b3');
+            setTimeout(function() {
+                addLine(output, 'Permission denied. Nice try though. 😏', '#ff4444');
+                document.getElementById('footerTerminal').scrollTop = 99999;
+            }, 800);
+
+        } else if (cmd === 'rm -rf /') {
+            addLine(output, 'lol no.', '#ff1493');
+
+        } else {
+            addLine(output, 'bash: ' + cmd + ': command not found', '#ff4444');
+            addLine(output, 'try "help" for available commands', '#9898b3');
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTerminal);
+    } else {
+        initTerminal();
+    }
+
+    // Re-init after SPA navigation
+    document.addEventListener('spa-navigated', initTerminal);
+    var _origReinit = window._spaReinit;
+    var origInterval = setInterval(function() {
+        var prompt = document.getElementById('footerPrompt');
+        if (prompt && !initialized) {
+            initTerminal();
+            clearInterval(origInterval);
+        }
+    }, 500);
 })();

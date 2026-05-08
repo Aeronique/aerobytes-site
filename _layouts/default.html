@@ -44,14 +44,23 @@
         {{ content }}
     </main>
 
+    <!-- ↑ ↑ ↓ ↓ ← → ← → B A ... you know what to do -->
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p class="footer-text">
-                <span class="terminal-prompt">root@aerobytes:~$</span> 
+                <span class="terminal-prompt" id="footerPrompt" style="cursor:pointer;" title="click me">root@aerobytes:~$</span> 
                 echo "Built with care. No frameworks, just code."
             </p>
-            <p class="footer-copy">Ã‚Â© 2025 aerobytes. All rights reserved.</p>
+            <div class="footer-terminal" id="footerTerminal" style="display:none;">
+                <div class="footer-terminal-output" id="footerTerminalOutput"></div>
+                <div class="footer-terminal-input-row">
+                    <span style="color:var(--cyber-pink);font-family:var(--font-mono);font-size:0.85rem;">aero@aerobytes:~$&nbsp;</span>
+                    <input type="text" id="footerTerminalInput" class="footer-terminal-input" autocomplete="off" spellcheck="false" placeholder="type a command..." />
+                </div>
+            </div>
+            <p class="footer-copy">&copy; 2025 aerobytes. All rights reserved.</p>
             <p class="footer-license">
                 Code is MIT licensed. Content and achievements are not. See <a href="{{ '/LICENSE.txt' | relative_url }}" class="license-link">LICENSE.txt</a>
             </p>

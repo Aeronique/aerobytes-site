@@ -2885,3 +2885,50 @@ section[id] {
         right: 20px;
     }
 }
+
+/* ===================================
+   FOOTER TERMINAL
+   =================================== */
+.footer-terminal {
+    background: #050507;
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 600px;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.footer-terminal-output {
+    min-height: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-terminal-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer-terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e8e8f0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    flex: 1;
+    caret-color: #ff1493;
+}
+
+.footer-terminal-input::placeholder {
+    color: #9898b3;
+    opacity: 0.5;
+}
+
+#footerPrompt:hover {
+    color: #ff1493;
+    transition: color 0.2s ease;
+}
