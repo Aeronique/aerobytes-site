@@ -162,7 +162,6 @@ const ASCII_ART = [
 ];
 
 console.log('%c[aerobytes]', 'color: #00d9ff; font-size: 24px; font-weight: bold; font-family: monospace;');
-console.log('%cyou don\'t say?', 'color: #ff1493; font-size: 11px; font-family: monospace;');
 console.log('%c' + ASCII_ART.join('\n'), 'color: #a855f7; font-size: 10px; line-height: 1.1; font-family: monospace;');
 console.log('%cLooking at the source? Nice! 🔍', 'color: #a855f7; font-size: 14px; font-family: monospace;');
 console.log('%cIf you found something interesting, reach out:', 'color: #9898b3; font-size: 12px;');
