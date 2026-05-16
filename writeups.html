@@ -196,7 +196,8 @@ permalink: /writeups/
     box-shadow: 0 0 25px rgba(0, 217, 255, 0.07);
 }
 
-.wu-terminal.kc7 { border-color: rgba(45, 212, 191, 0.25); }
+.wu-terminal.kc7    { border-color: rgba(45, 212, 191, 0.25); }
+.wu-terminal.picoctf { border-color: rgba(245, 158, 11, 0.25); }
 
 .wu-terminal-bar {
     background: rgba(0, 217, 255, 0.07);
@@ -210,7 +211,8 @@ permalink: /writeups/
     gap: 0.5rem;
 }
 
-.wu-terminal-bar.kc7 { background: rgba(45, 212, 191, 0.07); border-color: rgba(45, 212, 191, 0.18); color: #2dd4bf; }
+.wu-terminal-bar.kc7     { background: rgba(45, 212, 191, 0.07);  border-color: rgba(45, 212, 191, 0.18);  color: #2dd4bf; }
+.wu-terminal-bar.picoctf { background: rgba(245, 158, 11, 0.07);  border-color: rgba(245, 158, 11, 0.18);  color: #f59e0b; }
 
 .wu-terminal-stats {
     padding: 1.1rem 1.5rem;
@@ -243,6 +245,7 @@ permalink: /writeups/
 .wu-stat-num.red     { color: #ef4444;             text-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
 .wu-stat-num.wblue   { color: #5ba4e0;             text-shadow: 0 0 10px rgba(91, 164, 224, 0.4); }
 .wu-stat-num.kc7col  { color: #2dd4bf;             text-shadow: 0 0 10px rgba(45, 212, 191, 0.4); }
+.wu-stat-num.pcol    { color: #f59e0b;             text-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
 .wu-stat-num.sm      { font-size: 1.1rem; padding-top: 0.2rem; }
 
 .wu-stat-sub { font-size: 0.7rem; color: var(--text-secondary); font-family: var(--font-mono); }
@@ -291,7 +294,7 @@ permalink: /writeups/
 .wu-dot-hard   { background: #ef4444; }
 .wu-dot-insane { background: var(--cyber-purple); }
 
-/* Card grid (HTB + KC7) */
+/* Card grid (HTB + KC7 + PicoCTF) */
 .wu-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -327,6 +330,10 @@ permalink: /writeups/
 .wu-card.kc7::before { background: linear-gradient(90deg, #2dd4bf, transparent); }
 .wu-card.kc7 { border-color: rgba(45, 212, 191, 0.18); }
 .wu-card.kc7:hover { border-color: #2dd4bf; box-shadow: 0 8px 28px rgba(45, 212, 191, 0.18); }
+
+.wu-card.picoctf::before { background: linear-gradient(90deg, #f59e0b, transparent); }
+.wu-card.picoctf { border-color: rgba(245, 158, 11, 0.18); }
+.wu-card.picoctf:hover { border-color: #f59e0b; box-shadow: 0 8px 28px rgba(245, 158, 11, 0.18); }
 
 .wu-card-head {
     display: flex;
@@ -389,6 +396,12 @@ permalink: /writeups/
     border-color: rgba(45, 212, 191, 0.25);
     color: #2dd4bf;
     background: rgba(45, 212, 191, 0.05);
+}
+
+.wu-card.picoctf .wu-card-tag {
+    border-color: rgba(245, 158, 11, 0.25);
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.05);
 }
 
 .wu-placeholder {
@@ -459,9 +472,10 @@ permalink: /writeups/
         <div class="wu-tier2" id="wuTier2">
             <div class="wu-tier2-inner">
                 <span class="wu-tier2-label">show</span>
-                <button class="wu-sub-btn on" data-p="all" onclick="wuSetT2('all',this)">all</button>
-                <button class="wu-sub-btn"    data-p="htb" onclick="wuSetT2('htb',this)">hackthebox</button>
-                <button class="wu-sub-btn"    data-p="kc7" onclick="wuSetT2('kc7',this)">kc7</button>
+                <button class="wu-sub-btn on" data-p="all"     onclick="wuSetT2('all',this)">all</button>
+                <button class="wu-sub-btn"    data-p="htb"     onclick="wuSetT2('htb',this)">hackthebox</button>
+                <button class="wu-sub-btn"    data-p="kc7"     onclick="wuSetT2('kc7',this)">kc7</button>
+                <button class="wu-sub-btn"    data-p="picoctf" onclick="wuSetT2('picoctf',this)">picoctf</button>
             </div>
         </div>
 
@@ -713,6 +727,59 @@ permalink: /writeups/
                 </div>
             </div>
 
+            <!-- PicoCTF -->
+            <div class="wu-lab-sub" id="sub-picoctf">
+                <div class="wu-sub-head">
+                    <h3 class="wu-sub-title" style="color: #f59e0b;">// PicoCTF</h3>
+                    <div class="wu-section-line" style="flex:1;height:1px;background:linear-gradient(90deg,rgba(245,158,11,0.4),transparent);opacity:0.4;"></div>
+                </div>
+
+                <div class="wu-terminal picoctf">
+                    <div class="wu-terminal-bar picoctf"><i class="fas fa-terminal"></i> picoctf_stats.sh</div>
+                    <div class="wu-terminal-stats">
+                        {% assign picoctf_posts = site.posts | where: "category", "picoctf" %}
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> challenges_completed</div>
+                            <div class="wu-stat-num pcol">{{ picoctf_posts.size }}</div>
+                            <div class="wu-stat-sub">total</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> platform</div>
+                            <div class="wu-stat-num pcol sm">CMU</div>
+                            <div class="wu-stat-sub">carnegie mellon</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> categories</div>
+                            <div class="wu-stat-num pcol sm">RE / CRYPTO</div>
+                            <div class="wu-stat-sub">covered so far</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wu-card-grid" id="picoctfGrid">
+                    {% for post in picoctf_posts %}
+                    <a href="{{ post.url }}" class="wu-card picoctf">
+                        <div class="wu-card-head">
+                            <span class="wu-card-name">{{ post.title }}</span>
+                        </div>
+                        {% if post.excerpt %}
+                        <div class="wu-card-desc">{{ post.excerpt | strip_html | truncatewords: 10 }}</div>
+                        {% endif %}
+                        {% if post.tags %}
+                        <div class="wu-card-tags">
+                            {% for tag in post.tags limit:3 %}
+                            <span class="wu-card-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                    {% if picoctf_posts.size == 0 %}
+                    <div class="wu-placeholder">challenges coming soon...</div>
+                    {% endif %}
+                </div>
+            </div>
+
         </div>
 
         <!-- ====== REFLECTION ====== -->
@@ -823,10 +890,12 @@ permalink: /writeups/
         document.getElementById('sec-reflection').style.display  = showReflection  ? '' : 'none';
 
         if (showLabs) {
-            var showHTB = activeT2 === 'all' || activeT2 === 'htb';
-            var showKC7 = activeT2 === 'all' || activeT2 === 'kc7';
-            document.getElementById('sub-htb').style.display = showHTB ? '' : 'none';
-            document.getElementById('sub-kc7').style.display = showKC7 ? '' : 'none';
+            var showHTB     = activeT2 === 'all' || activeT2 === 'htb';
+            var showKC7     = activeT2 === 'all' || activeT2 === 'kc7';
+            var showPicoCTF = activeT2 === 'all' || activeT2 === 'picoctf';
+            document.getElementById('sub-htb').style.display     = showHTB     ? '' : 'none';
+            document.getElementById('sub-kc7').style.display     = showKC7     ? '' : 'none';
+            document.getElementById('sub-picoctf').style.display = showPicoCTF ? '' : 'none';
             wuFilterHTB();
         }
 
@@ -859,6 +928,7 @@ permalink: /writeups/
         if (showLabs) {
             total += document.querySelectorAll('#htbGrid .wu-card:not([style*="none"])').length;
             total += document.querySelectorAll('#kc7Grid .wu-card').length;
+            total += document.querySelectorAll('#picoctfGrid .wu-card').length;
         }
 
         if (showReflection) {
@@ -870,7 +940,7 @@ permalink: /writeups/
         }
 
         var span = document.getElementById('wuResultSpan');
-        var t2labels = { all: 'all labs', htb: 'hackthebox', kc7: 'kc7' };
+        var t2labels = { all: 'all labs', htb: 'hackthebox', kc7: 'kc7', picoctf: 'picoctf' };
         var t1labels = {
             all: 'all writeups',
             research: 'research & projects',
