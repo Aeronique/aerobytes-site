@@ -531,6 +531,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update active nav state
                 updateActiveNavLink(href);
 
+                // Re-execute any inline <script> tags from the new page
+                // (innerHTML swap doesn't run scripts; this does, safely skipping Aerotunes)
+                currentMain.querySelectorAll('script').forEach(function(oldScript) {
+                    var s = document.createElement('script');
+                    if (oldScript.src) {
+                        s.src = oldScript.src;
+                    } else {
+                        s.textContent = oldScript.textContent;
+                    }
+                    document.head.appendChild(s);
+                    document.head.removeChild(s);
+                });
+
                 // Re-initialize page scripts
                 reinitPage();
             })

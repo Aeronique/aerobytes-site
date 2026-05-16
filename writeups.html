@@ -469,8 +469,38 @@ permalink: /writeups/
             <span class="prompt">$</span> showing <span id="wuResultSpan">all writeups</span>
         </div>
 
+        <!-- ====== ALL (chronological) ====== -->
+        <div class="wu-section" id="sec-all">
+            <div class="writeups-list">
+                {% for post in site.posts %}
+                <div class="writeup-item" data-type="{{ post.category }}" data-s="{{ post.title | downcase }} {{ post.tags | join: ' ' | downcase }} {{ post.excerpt | strip_html | downcase | truncatewords: 20 }}">
+                    <div class="writeup-meta">
+                        <span class="writeup-date">{{ post.date | date: "%B %Y" | upcase }}</span>
+                        <span class="writeup-category">{{ post.category }}</span>
+                    </div>
+                    <h2 class="writeup-title">{{ post.title }}</h2>
+                    {% if post.series %}
+                    <p style="color: var(--cyber-purple); font-style: italic; margin-top: -0.5rem; margin-bottom: 1rem;">{{ post.series }} // Entry {{ post.entry }}</p>
+                    {% endif %}
+                    <p class="writeup-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                    {% if post.tags %}
+                    <div class="writeup-tags">
+                        {% for tag in post.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{{ post.url }}" class="writeup-link">Read more →</a>
+                </div>
+                {% endfor %}
+                {% if site.posts.size == 0 %}
+                <div class="wu-empty" style="display:block;"><span class="prompt">$</span> no posts found</div>
+                {% endif %}
+            </div>
+        </div>
+
         <!-- ====== RESEARCH ====== -->
-        <div class="wu-section" id="sec-research">
+        <div class="wu-section" id="sec-research" style="display:none;">
             <div class="wu-section-head">
                 <h2 class="wu-section-title purple">Research & Projects</h2>
                 <div class="wu-section-line purple"></div>
@@ -505,7 +535,7 @@ permalink: /writeups/
         </div>
 
         <!-- ====== COMPETITION ====== -->
-        <div class="wu-section" id="sec-competition">
+        <div class="wu-section" id="sec-competition" style="display:none;">
             <div class="wu-section-head">
                 <h2 class="wu-section-title pink">CTF & Competition</h2>
                 <div class="wu-section-line pink"></div>
@@ -540,7 +570,7 @@ permalink: /writeups/
         </div>
 
         <!-- ====== LABS ====== -->
-        <div class="wu-section" id="sec-labs">
+        <div class="wu-section" id="sec-labs" style="display:none;">
             <div class="wu-section-head">
                 <h2 class="wu-section-title blue">Labs & Practice</h2>
                 <div class="wu-section-line blue"></div>
@@ -686,7 +716,7 @@ permalink: /writeups/
         </div>
 
         <!-- ====== REFLECTION ====== -->
-        <div class="wu-section" id="sec-reflection">
+        <div class="wu-section" id="sec-reflection" style="display:none;">
             <div class="wu-section-head">
                 <h2 class="wu-section-title magenta">Reflection</h2>
                 <div class="wu-section-line magenta"></div>
@@ -780,11 +810,13 @@ permalink: /writeups/
     function wuFilterAll() {
         var q = document.getElementById('wuSearch').value.toLowerCase().trim();
 
-        var showResearch    = activeT1 === 'all' || activeT1 === 'research';
-        var showCompetition = activeT1 === 'all' || activeT1 === 'competition';
-        var showLabs        = activeT1 === 'all' || activeT1 === 'labs';
-        var showReflection  = activeT1 === 'all' || activeT1 === 'reflection';
+        var showAll         = activeT1 === 'all';
+        var showResearch    = activeT1 === 'research';
+        var showCompetition = activeT1 === 'competition';
+        var showLabs        = activeT1 === 'labs';
+        var showReflection  = activeT1 === 'reflection';
 
+        document.getElementById('sec-all').style.display         = showAll         ? '' : 'none';
         document.getElementById('sec-research').style.display    = showResearch    ? '' : 'none';
         document.getElementById('sec-competition').style.display = showCompetition ? '' : 'none';
         document.getElementById('sec-labs').style.display        = showLabs        ? '' : 'none';
@@ -799,6 +831,14 @@ permalink: /writeups/
         }
 
         var total = 0;
+
+        if (showAll) {
+            document.querySelectorAll('#sec-all [data-type]').forEach(function(item) {
+                var match = !q || (item.dataset.s && item.dataset.s.includes(q));
+                item.style.display = match ? '' : 'none';
+                if (match) total++;
+            });
+        }
 
         if (showResearch) {
             document.querySelectorAll('[data-type="research"]').forEach(function(item) {
