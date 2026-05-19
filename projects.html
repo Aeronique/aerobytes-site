@@ -23,21 +23,34 @@ permalink: /projects/
             <div class="work-grid">
                 <div class="project-card ongoing-card">
                     <div class="card-header">
-                        <span class="card-tag ongoing-tag">CLOUD</span>
+                        <span class="card-tag ongoing-tag">HOMELAB</span>
                         <span class="card-date ongoing-status">ONGOING</span>
                     </div>
-                    <h3 class="card-title">Cloud Threat Intelligence Honeypot</h3>
-                    <p class="card-description">Deployed T-Pot honeypot on Google Cloud Platform to capture and analyze live attack traffic. Analyzing adversary tactics, techniques, and procedures (TTPs) from real-world threat actors. Correlating indicators of compromise (IOCs) with threat intelligence feeds.</p>
-                    <p style="color: var(--cyber-purple); font-style: italic; font-size: 0.85rem; margin-top: 0.75rem; margin-bottom: 0.75rem;"></p>
+                    <h3 class="card-title">AeroLab v2: Purple Team Home Lab</h3>
+                    <p class="card-description">A full rebuild of the original AeroLab across two physical nodes with segmented networks and a complete detection stack. Elastic SIEM 9.x ingests Sysmon events from a Windows Server 2022 domain controller populated with realistic misconfigurations via BadBlood. Velociraptor handles live endpoint forensics, MITRE Caldera runs ATT&CK-mapped adversary emulations, and Kali handles manual offensive work from an isolated segment. The red team network can reach production for attack simulations but has no path to the security segment.</p>
                     <div class="card-tags">
-                        <span class="tag">T-Pot</span>
-                        <span class="tag">GCP</span>
-                        <span class="tag">Threat Intelligence</span>
-                        <span class="tag">OSINT</span>
+                        <span class="tag">Proxmox</span>
+                        <span class="tag">Elastic SIEM</span>
+                        <span class="tag">Active Directory</span>
+                        <span class="tag">Velociraptor</span>
+                        <span class="tag">Caldera</span>
                     </div>
-					<a href="https://github.com/Aeronique/honeypot-threat-research" class="card-link">Explore the project on GitHub →</a>
-					<br>
-					<a href="/honeypot-threat-research/" class="card-link">Read the research reports →</a>
+                    <a href="/writeups/aerolab-v2/" class="card-link">Read technical writeup →</a>
+                </div>
+
+                <div class="project-card ongoing-card">
+                    <div class="card-header">
+                        <span class="card-tag ongoing-tag">NETWORKING</span>
+                        <span class="card-date ongoing-status">ONGOING</span>
+                    </div>
+                    <h3 class="card-title">NetworkChuck Summer of CCNA</h3>
+                    <p class="card-description">A structured 4-month self-guided program working through the full Cisco CCNA 200-301 curriculum. Weekly video and ebook lessons cover networking fundamentals, IP addressing, routing protocols, switching, and network security concepts. Hands-on labs use Cisco IOS in-browser environments to reinforce configuration skills alongside practice exams mapped to the certification objectives.</p>
+                    <div class="card-tags">
+                        <span class="tag">Cisco</span>
+                        <span class="tag">CCNA</span>
+                        <span class="tag">Networking</span>
+                        <span class="tag">Routing & Switching</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,6 +59,24 @@ permalink: /projects/
         <div class="completed-section">
             <h3 class="subsection-title">Completed Projects</h3>
             <div class="work-grid">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">CLOUD</span>
+                        <span class="card-date">2026</span>
+                    </div>
+                    <h3 class="card-title">Cloud Threat Intelligence Honeypot</h3>
+                    <p class="card-description">Deployed T-Pot honeypot on Google Cloud Platform and left it exposed to the internet for 28 days, capturing 96 million events. Analyzed adversary TTPs from real-world threat actors, documented CVE exploitation patterns, correlated indicators of compromise with threat intelligence feeds, and published a 14-report research series on the findings.</p>
+                    <div class="card-tags">
+                        <span class="tag">T-Pot</span>
+                        <span class="tag">GCP</span>
+                        <span class="tag">Threat Intelligence</span>
+                        <span class="tag">OSINT</span>
+                    </div>
+                    <a href="https://github.com/Aeronique/honeypot-threat-research" class="card-link">Explore the project on GitHub →</a>
+                    <br>
+                    <a href="/honeypot-threat-research/" class="card-link">Read the research reports →</a>
+                </div>
+
                 <div class="project-card">
                     <div class="card-header">
                         <span class="card-tag">TRAINING</span>
