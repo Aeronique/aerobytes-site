@@ -102,7 +102,7 @@ permalink: /contact/
                         if (form.querySelector('[name="botcheck"]').checked) return;
 
                         var data = Object.fromEntries(new FormData(form).entries());
-                        result.textContent = 'sending...';
+                        result.textContent = 'Sending...';
                         result.className = 'form-result is-pending';
                         submitBtn.disabled = true;
 
@@ -115,15 +115,15 @@ permalink: /contact/
                         .then(function (json) {
                             if (json.success) {
                                 form.reset();
-                                result.textContent = 'message sent. thanks, I will get back to you soon.';
+                                result.textContent = 'Message sent. Thanks, I\'ll get back to you soon.';
                                 result.className = 'form-result is-success';
                             } else {
-                                result.textContent = 'something went wrong. please email contact@aerobytes.io directly.';
+                                result.textContent = 'Something went wrong. Please email contact@aerobytes.io directly.';
                                 result.className = 'form-result is-error';
                             }
                         })
                         .catch(function () {
-                            result.textContent = 'network error. please email contact@aerobytes.io directly.';
+                            result.textContent = 'Network error. Please email contact@aerobytes.io directly.';
                             result.className = 'form-result is-error';
                         })
                         .then(function () { submitBtn.disabled = false; });
