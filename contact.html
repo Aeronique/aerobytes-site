@@ -44,15 +44,93 @@ permalink: /contact/
                         </div>
                     </a>
                     
-                    <a href="mailto:aeronique@proton.me" class="social-link-contact" aria-label="Email">
+                    <a href="mailto:contact@aerobytes.io" class="social-link-contact" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                         <div class="link-details">
                             <span class="link-title">Email</span>
-                            <span class="link-subtitle">aeronique@proton.me</span>
+                            <span class="link-subtitle">contact@aerobytes.io</span>
                         </div>
                     </a>
                 </div>
                 
+                <div class="contact-form-section">
+                    <h3 class="contact-form-heading">
+                        <span class="section-number">//</span> send a message
+                    </h3>
+
+                    <form id="aero-contact-form" class="contact-form">
+                        <input type="hidden" name="access_key" value="936da330-4d10-4917-b481-3fbd15378791">
+                        <input type="hidden" name="subject" value="New message from aerobytes.io">
+                        <input type="hidden" name="from_name" value="aerobytes.io">
+                        <!-- spam honeypot: real visitors never see or fill this -->
+                        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                        <div class="form-row">
+                            <label class="form-label" for="cf-name">name</label>
+                            <input class="form-input" type="text" id="cf-name" name="name" required autocomplete="name">
+                        </div>
+
+                        <div class="form-row">
+                            <label class="form-label" for="cf-email">email</label>
+                            <input class="form-input" type="email" id="cf-email" name="email" required autocomplete="email">
+                        </div>
+
+                        <div class="form-row">
+                            <label class="form-label" for="cf-message">message</label>
+                            <textarea class="form-input form-textarea" id="cf-message" name="message" rows="6" required></textarea>
+                        </div>
+
+                        <button type="submit" class="contact-form-submit">
+                            <i class="fas fa-paper-plane button-icon"></i> send message
+                        </button>
+
+                        <p id="cf-result" class="form-result" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+
+                <script>
+                (function () {
+                    var form = document.getElementById('aero-contact-form');
+                    if (!form || form.dataset.bound) return;
+                    form.dataset.bound = '1';
+
+                    var result = document.getElementById('cf-result');
+                    var submitBtn = form.querySelector('.contact-form-submit');
+
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        if (form.querySelector('[name="botcheck"]').checked) return;
+
+                        var data = Object.fromEntries(new FormData(form).entries());
+                        result.textContent = 'sending...';
+                        result.className = 'form-result is-pending';
+                        submitBtn.disabled = true;
+
+                        fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify(data)
+                        })
+                        .then(function (res) { return res.json(); })
+                        .then(function (json) {
+                            if (json.success) {
+                                form.reset();
+                                result.textContent = 'message sent. thanks, I will get back to you soon.';
+                                result.className = 'form-result is-success';
+                            } else {
+                                result.textContent = 'something went wrong. please email contact@aerobytes.io directly.';
+                                result.className = 'form-result is-error';
+                            }
+                        })
+                        .catch(function () {
+                            result.textContent = 'network error. please email contact@aerobytes.io directly.';
+                            result.className = 'form-result is-error';
+                        })
+                        .then(function () { submitBtn.disabled = false; });
+                    });
+                })();
+                </script>
+
                 <div class="terminal-box">
                     <p><span class="terminal-prompt">root@aerobytes:~$</span> echo "Looking forward to connecting with you!"</p>
                 </div>
