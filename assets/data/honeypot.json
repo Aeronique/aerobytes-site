@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "honeypot": "T-Pot on GCP",
+    "window_days": 28,
+    "total_events": 96408585,
+    "period": "February 2026",
+    "repo": "https://github.com/Aeronique/honeypot-threat-research"
+  },
+  "networks": [
+    {
+      "name": "Alsycon B.V.",
+      "tag": "NL",
+      "count": 24045125
+    },
+    {
+      "name": "DigitalOcean",
+      "tag": "Cloud",
+      "count": 13767116
+    },
+    {
+      "name": "FOP Dmytro Nedilskyi",
+      "tag": "UA",
+      "count": 5436292
+    },
+    {
+      "name": "Smart Servico",
+      "tag": "BR",
+      "count": 3332596
+    },
+    {
+      "name": "Google",
+      "tag": "Cloud",
+      "count": 3064962
+    },
+    {
+      "name": "OXMAN Tecnologia",
+      "tag": "BR",
+      "count": 3032659
+    },
+    {
+      "name": "BITNET Telecom",
+      "tag": "BR",
+      "count": 2986685
+    },
+    {
+      "name": "Bertoncello",
+      "tag": "BR",
+      "count": 2603657
+    },
+    {
+      "name": "GA Telecom",
+      "tag": "BR",
+      "count": 2398612
+    },
+    {
+      "name": "DGNETSP",
+      "tag": "BR",
+      "count": 2161650
+    }
+  ],
+  "ports": [
+    {
+      "port": 443,
+      "service": "HTTPS",
+      "count": 29321017
+    },
+    {
+      "port": 5900,
+      "service": "VNC",
+      "count": 15273533
+    },
+    {
+      "port": 8443,
+      "service": "HTTPS-alt",
+      "count": 7953583
+    },
+    {
+      "port": 22,
+      "service": "SSH",
+      "count": 2127074
+    },
+    {
+      "port": 161,
+      "service": "SNMP",
+      "count": 1328119
+    },
+    {
+      "port": 5060,
+      "service": "SIP",
+      "count": 634539
+    },
+    {
+      "port": 80,
+      "service": "HTTP",
+      "count": 355537
+    },
+    {
+      "port": 8728,
+      "service": "MikroTik",
+      "count": 221873
+    },
+    {
+      "port": 445,
+      "service": "SMB",
+      "count": 207058
+    },
+    {
+      "port": 5902,
+      "service": "VNC",
+      "count": 197716
+    }
+  ],
+  "cves": [
+    {
+      "id": "CVE-2018-13379",
+      "label": "FortiOS SSL VPN",
+      "count": 29938
+    },
+    {
+      "id": "CVE-2024-14007",
+      "label": "TVT NVMS-9000",
+      "count": 1878
+    },
+    {
+      "id": "CVE-2025-55182",
+      "label": "React2Shell",
+      "count": 1527
+    },
+    {
+      "id": "CVE-2023-46604",
+      "label": "Apache ActiveMQ",
+      "count": 414
+    },
+    {
+      "id": "CVE-2025-30208",
+      "label": "Vite",
+      "count": 318
+    },
+    {
+      "id": "CVE-2019-11500",
+      "label": "Dovecot",
+      "count": 203
+    },
+    {
+      "id": "CVE-2024-4577",
+      "label": "PHP-CGI",
+      "count": 162
+    },
+    {
+      "id": "CVE-2021-44228",
+      "label": "Log4Shell",
+      "count": 132
+    },
+    {
+      "id": "CVE-2022-27255",
+      "label": "Realtek eCos",
+      "count": 111
+    },
+    {
+      "id": "CVE-2023-26801",
+      "label": "LB-Link",
+      "count": 80
+    }
+  ],
+  "countries": [
+    "Netherlands",
+    "United States",
+    "Ukraine",
+    "Romania",
+    "France"
+  ]
+}

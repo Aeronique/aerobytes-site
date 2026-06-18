@@ -124,6 +124,159 @@ permalink: /projects/
                     <a href="/writeups/aerox-token/" class="card-link">Read technical writeup →</a>
                 </div>
             </div>
+
+            <!-- =====================================================
+                 HONEYPOT TELEMETRY PANEL
+                 Reads a static snapshot at /assets/data/honeypot.json
+                 (28-day T-Pot capture, committed once, no refresh job).
+                 Self-contained: works on hard loads and SPA navigation.
+                 ===================================================== -->
+            <div class="hp-panel" id="hpPanel">
+                <div class="hp-head">
+                    <h3 class="hp-title"><span class="section-number">//</span> <span>Honeypot Telemetry</span></h3>
+                    <a class="hp-repo" href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" rel="noopener">github.com/Aeronique/honeypot-threat-research &rarr;</a>
+                </div>
+
+                <div class="hp-stats">
+                    <span><b id="hpTotal">&mdash;</b> events captured</span>
+                    <span><b id="hpDays">&mdash;</b> day exposure</span>
+                    <span id="hpSource">&mdash;</span>
+                </div>
+
+                <div class="hp-grid">
+                    <div class="hp-col">
+                        <h4 class="hp-col-title">Top source networks</h4>
+                        <div class="hp-rows" id="hpNetworks"><div class="hp-loading">loading...</div></div>
+                    </div>
+                    <div class="hp-col">
+                        <h4 class="hp-col-title">Most-probed ports</h4>
+                        <div class="hp-rows" id="hpPorts"><div class="hp-loading">loading...</div></div>
+                    </div>
+                    <div class="hp-col">
+                        <h4 class="hp-col-title">Top CVEs</h4>
+                        <div class="hp-rows" id="hpCves"><div class="hp-loading">loading...</div></div>
+                    </div>
+                </div>
+
+                <div class="hp-countries">
+                    <span class="hp-countries-label">Top source countries (rank)</span>
+                    <span class="hp-countries-list" id="hpCountries">&mdash;</span>
+                </div>
+
+                <p class="hp-note">Network and country attribution reflects where source IPs are registered, often cloud or hosting infrastructure, not operator location.</p>
+            </div>
+
+            <style>
+                .hp-panel{margin-top:28px;padding:24px;border:1px solid rgba(0,217,255,.16);border-radius:12px;background:rgba(255,255,255,.02)}
+                .hp-panel .hp-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+                .hp-panel .hp-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:700;font-size:1.4rem;color:#fff;margin:0;display:flex;align-items:center;gap:10px}
+                .hp-panel .hp-title .section-number{color:var(--cyber-cyan,#00d9ff)}
+                .hp-panel .hp-repo{font-family:var(--font-mono,'Space Mono',monospace);font-size:.82rem;color:var(--cyber-cyan,#00d9ff);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
+                .hp-panel .hp-repo:hover{border-bottom-color:var(--cyber-cyan,#00d9ff)}
+
+                .hp-panel .hp-stats{display:flex;flex-wrap:wrap;gap:6px 24px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.92rem;color:#9898b3;margin-bottom:22px}
+                .hp-panel .hp-stats b{color:var(--cyber-pink,#ff2e97);font-weight:700}
+
+                .hp-panel .hp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+                .hp-panel .hp-col-title{font-family:var(--font-mono,'Space Mono',monospace);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyber-cyan,#00d9ff);margin:0 0 12px}
+
+                .hp-panel .hp-row{margin-bottom:11px}
+                .hp-panel .hp-row-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
+                .hp-panel .hp-row-label{font-family:var(--font-mono,'Space Mono',monospace);font-size:.84rem;color:#c9c9d6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+                .hp-panel .hp-row-label a{color:#c9c9d6;text-decoration:none;border-bottom:1px solid rgba(0,217,255,.35)}
+                .hp-panel .hp-row-label a:hover{color:var(--cyber-cyan,#00d9ff)}
+                .hp-panel .hp-row-label .hp-flag{color:#6b6f80}
+                .hp-panel .hp-row-count{font-family:var(--font-mono,'Space Mono',monospace);font-size:.82rem;color:#9898b3;flex:none}
+                .hp-panel .hp-bar{display:block;height:6px;border-radius:4px;background:rgba(255,255,255,.05);overflow:hidden}
+                .hp-panel .hp-fill{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--cyber-cyan,#00d9ff),var(--cyber-pink,#ff2e97))}
+
+                .hp-panel .hp-countries{margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+                .hp-panel .hp-countries-label{font-family:var(--font-mono,'Space Mono',monospace);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--cyber-cyan,#00d9ff)}
+                .hp-panel .hp-countries-list{font-family:var(--font-mono,'Space Mono',monospace);font-size:.86rem;color:#c9c9d6}
+                .hp-panel .hp-countries-list .hp-rank{color:#6b6f80;margin-right:4px}
+                .hp-panel .hp-countries-list .hp-sep{color:#3a3a4a;margin:0 8px}
+
+                .hp-panel .hp-note{margin:16px 0 0;font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;line-height:1.5;color:#6b6f80}
+                .hp-panel .hp-loading,.hp-panel .hp-error{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:#6b6f80;padding:8px 0}
+                .hp-panel .hp-error a{color:var(--cyber-cyan,#00d9ff)}
+
+                @media (max-width:760px){
+                    .hp-panel .hp-grid{grid-template-columns:1fr;gap:22px}
+                }
+            </style>
+
+            <script>
+                (function(){
+                    var panel = document.getElementById("hpPanel");
+                    if (!panel) return;
+                    var DATA_URL = "/assets/data/honeypot.json";
+
+                    function fmt(n){
+                        if (n >= 1e6) return (n/1e6).toFixed(1) + "M";
+                        if (n >= 1e5) return Math.round(n/1e3) + "K";
+                        if (n >= 1e3) return (n/1e3).toFixed(1) + "K";
+                        return String(n);
+                    }
+                    function esc(s){
+                        return String(s).replace(/[&<>"]/g, function(c){
+                            return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];
+                        });
+                    }
+                    function rows(host, items, labelFn){
+                        if (!host) return;
+                        var max = items.reduce(function(m,x){ return Math.max(m, x.count); }, 0) || 1;
+                        host.innerHTML = items.map(function(x){
+                            var pct = Math.max(4, Math.round(x.count / max * 100));
+                            return '<div class="hp-row">'
+                                + '<div class="hp-row-top"><span class="hp-row-label">' + labelFn(x) + '</span>'
+                                + '<span class="hp-row-count">' + fmt(x.count) + '</span></div>'
+                                + '<span class="hp-bar"><span class="hp-fill" style="width:' + pct + '%"></span></span>'
+                                + '</div>';
+                        }).join("");
+                    }
+
+                    function render(d){
+                        var m = d.meta || {};
+                        var total = document.getElementById("hpTotal");
+                        var days = document.getElementById("hpDays");
+                        var src = document.getElementById("hpSource");
+                        if (total) total.textContent = (m.total_events || 0).toLocaleString();
+                        if (days) days.textContent = m.window_days || "";
+                        if (src) src.textContent = m.honeypot || "";
+
+                        rows(document.getElementById("hpNetworks"), d.networks || [], function(x){
+                            return esc(x.name) + (x.tag ? ' <span class="hp-flag">(' + esc(x.tag) + ')</span>' : '');
+                        });
+                        rows(document.getElementById("hpPorts"), d.ports || [], function(x){
+                            return esc(x.port) + (x.service ? ' <span class="hp-flag">' + esc(x.service) + '</span>' : '');
+                        });
+                        rows(document.getElementById("hpCves"), d.cves || [], function(x){
+                            var url = "https://nvd.nist.gov/vuln/detail/" + encodeURIComponent(x.id);
+                            return '<a href="' + url + '" target="_blank" rel="noopener">' + esc(x.id) + '</a>'
+                                + (x.label ? ' <span class="hp-flag">' + esc(x.label) + '</span>' : '');
+                        });
+
+                        var c = document.getElementById("hpCountries");
+                        if (c) c.innerHTML = (d.countries || []).map(function(name, i){
+                            return '<span class="hp-rank">' + (i+1) + '</span>' + esc(name);
+                        }).join('<span class="hp-sep">&middot;</span>');
+                    }
+
+                    function showError(){
+                        ["hpPorts","hpCves"].forEach(function(id){
+                            var el = document.getElementById(id); if (el) el.innerHTML = "";
+                        });
+                        var first = document.getElementById("hpNetworks");
+                        if (first) first.innerHTML = '<div class="hp-error">Snapshot unavailable right now. The raw data lives at '
+                            + '<a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" rel="noopener">github.com/Aeronique/honeypot-threat-research</a>.</div>';
+                    }
+
+                    fetch(DATA_URL, { headers:{ "Accept":"application/json" }, cache:"no-cache" })
+                        .then(function(r){ if(!r.ok) throw new Error("bad status"); return r.json(); })
+                        .then(render)
+                        .catch(showError);
+                })();
+            </script>
         </div>
     </div>
 </section>
