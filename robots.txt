@@ -7,6 +7,9 @@ Allow: /
 Disallow: /resume
 Disallow: /assets/resume/
 
+# Nothing to see here
+Disallow: /classified/
+
 # Allow main content
 Allow: /writeups
 Allow: /assets/css/

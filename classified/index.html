@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CLASSIFIED // aerobytes</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070d;
+    --panel:#0e0e16;
+    --line:#1d1d2b;
+    --cyan:#00d9ff;
+    --pink:#ff2e97;
+    --purple:#b14aed;
+    --ink:#d3d6e0;
+    --muted:#6b6f80;
+    --redact:#050507;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Mono',monospace;
+    min-height:100vh;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  /* ambient grid + scanlines */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(0,217,255,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(177,74,237,.04) 1px,transparent 1px);
+    background-size:42px 42px;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0,rgba(0,0,0,.18) 1px,transparent 1px,transparent 3px);
+    mix-blend-mode:overlay;opacity:.5;
+  }
+
+  /* classification banners */
+  .classbar{
+    position:relative;z-index:2;
+    background:var(--pink);color:#0a0a0f;
+    font-family:'Orbitron',sans-serif;font-weight:900;
+    letter-spacing:.32em;text-align:center;
+    font-size:.7rem;padding:8px 10px;
+    text-transform:uppercase;
+  }
+  .classbar.bottom{margin-top:48px}
+
+  .wrap{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:40px 22px}
+
+  /* ===== decrypt gate ===== */
+  #gate{
+    position:fixed;inset:0;z-index:50;
+    background:radial-gradient(circle at 50% 35%,#0c0c18,#04040a 70%);
+    display:flex;align-items:center;justify-content:center;padding:24px;
+    transition:opacity .45s ease;
+  }
+  .gatecard{
+    width:100%;max-width:480px;background:var(--panel);
+    border:1px solid var(--line);border-top:3px solid var(--pink);
+    padding:34px 30px;text-align:center;
+    box-shadow:0 0 60px rgba(255,46,151,.12);
+  }
+  .gatecard .glyph{font-size:2.4rem;color:var(--pink);text-shadow:0 0 18px rgba(255,46,151,.6)}
+  .gatecard h1{
+    font-family:'Orbitron',sans-serif;font-weight:900;
+    font-size:1.25rem;letter-spacing:.18em;margin:14px 0 6px;color:#fff;
+  }
+  .gatecard .sub{color:var(--muted);font-size:.82rem;margin-bottom:24px}
+  .gatecard .sub b{color:var(--cyan);font-weight:700}
+  .decrypt-btn{
+    font-family:'Orbitron',sans-serif;font-weight:700;letter-spacing:.16em;
+    background:transparent;color:var(--cyan);
+    border:1px solid var(--cyan);padding:14px 26px;
+    cursor:pointer;font-size:.9rem;text-transform:uppercase;
+    transition:all .2s ease;
+  }
+  .decrypt-btn:hover,.decrypt-btn:focus-visible{
+    background:var(--cyan);color:#04040a;box-shadow:0 0 26px rgba(0,217,255,.5);outline:none;
+  }
+  .progress{margin-top:22px;height:16px;display:none;font-size:.75rem;color:var(--cyan)}
+  .progress.on{display:block}
+  .bar{
+    margin-top:8px;height:6px;background:var(--line);overflow:hidden;
+  }
+  .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));transition:width .1s linear}
+
+  /* ===== dossier ===== */
+  #dossier{display:none}
+  #dossier.show{display:block;animation:fadein .5s ease both}
+  @keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .filehead{border:1px solid var(--line);background:rgba(14,14,22,.7);padding:20px 22px;margin-bottom:6px}
+  .filehead .meta{display:flex;flex-wrap:wrap;gap:6px 26px;font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+  .filehead .meta b{color:var(--cyan);font-weight:700}
+  .filehead h2{
+    font-family:'Orbitron',sans-serif;font-weight:900;color:#fff;
+    font-size:1.5rem;letter-spacing:.06em;margin:14px 0 2px;
+  }
+  .filehead .tag{color:var(--pink);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase}
+  .barcode{margin-top:16px;height:30px;display:flex;gap:2px;align-items:stretch;opacity:.8}
+  .barcode span{background:var(--ink);width:2px}
+  .barcode span:nth-child(3n){width:4px}
+  .barcode span:nth-child(4n){width:1px;background:var(--cyan)}
+  .barcode span:nth-child(7n){width:5px}
+
+  .rows{border:1px solid var(--line);border-top:none}
+  .row{
+    display:grid;grid-template-columns:200px 1fr;gap:14px;
+    padding:14px 22px;border-top:1px solid var(--line);align-items:baseline;
+  }
+  .row .label{
+    font-family:'Orbitron',sans-serif;font-weight:700;font-size:.68rem;
+    letter-spacing:.12em;color:var(--cyan);text-transform:uppercase;
+  }
+  .redact{
+    position:relative;display:inline;cursor:pointer;
+    color:transparent;background:var(--redact);
+    background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 6px,transparent 6px 12px);
+    padding:2px 8px;border-radius:2px;
+    transition:background-color .28s ease,color .28s ease,box-shadow .28s ease;
+    user-select:none;outline:none;
+  }
+  .redact:hover,.redact:focus-visible,.redact.revealed{
+    background:transparent;color:var(--ink);user-select:text;
+    box-shadow:inset 0 -2px 0 rgba(0,217,255,.5);
+  }
+  .redact:focus-visible{box-shadow:0 0 0 2px var(--pink)}
+
+  .stamp{
+    margin:40px auto 6px;width:max-content;max-width:100%;
+    border:3px solid var(--pink);color:var(--pink);
+    font-family:'Orbitron',sans-serif;font-weight:900;
+    font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:12px 20px;transform:rotate(-4deg);text-align:center;
+    box-shadow:0 0 22px rgba(255,46,151,.18);opacity:.92;
+  }
+  .return{text-align:center;margin-top:34px}
+  .return a{
+    color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.1em;
+    border-bottom:1px solid transparent;transition:all .2s ease;
+  }
+  .return a:hover{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+  /* ===== transmission window ===== */
+  #transmission{
+    position:fixed;right:16px;bottom:16px;z-index:60;
+    width:min(280px,76vw);background:var(--panel);
+    border:1px solid var(--pink);box-shadow:0 0 30px rgba(255,46,151,.25);
+    display:none;
+  }
+  #transmission.show{display:block;animation:fadein .4s ease both}
+  .tx-head{
+    display:flex;align-items:center;gap:8px;
+    background:rgba(255,46,151,.12);padding:7px 10px;
+    font-family:'Orbitron',sans-serif;font-weight:700;
+    font-size:.62rem;letter-spacing:.14em;color:var(--pink);text-transform:uppercase;
+  }
+  .rec{width:8px;height:8px;border-radius:50%;background:var(--pink);animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:.2}}
+  .tx-head .x{
+    margin-left:auto;cursor:pointer;color:var(--muted);
+    background:none;border:none;font-size:1rem;line-height:1;padding:0 2px;
+  }
+  .tx-head .x:hover{color:var(--cyan)}
+  .tx-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+  .tx-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .tx-foot{padding:6px 10px;font-size:.6rem;color:var(--muted);letter-spacing:.08em}
+  .tx-foot b{color:var(--cyan)}
+
+  @media (max-width:560px){
+    .row{grid-template-columns:1fr;gap:6px}
+    .filehead h2{font-size:1.2rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s!important;transition-duration:.001s!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="classbar top">TOP SECRET // AERONIQUE EYES ONLY</div>
+
+<!-- ===== DECRYPT GATE ===== -->
+<div id="gate">
+  <div class="gatecard">
+    <div class="glyph">&#9888;</div>
+    <h1>RESTRICTED ACCESS</h1>
+    <p class="sub">This file is sealed. Reading <b>robots.txt</b> was step one. Decryption requires your authorization.</p>
+    <button class="decrypt-btn" id="decryptBtn">Decrypt File</button>
+    <div class="progress" id="progress">
+      <span id="progTxt">DECRYPTING&hellip;</span>
+      <div class="bar"><i id="progFill"></i></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DOSSIER ===== -->
+<div class="wrap">
+  <main id="dossier" aria-hidden="true">
+
+    <section class="filehead">
+      <div class="meta">
+        <span>CASE FILE: <b id="caseNo">AB-1989-RR</b></span>
+        <span>STATUS: <b>DECLASSIFIED</b></span>
+        <span>DATE: <b id="dateStamp">18 JUN 2026</b></span>
+      </div>
+      <div class="tag">Personnel Dossier</div>
+      <h2>SUBJECT: AERONIQUE</h2>
+      <div class="barcode" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <p style="font-size:.74rem;color:var(--muted);letter-spacing:.08em;margin:12px 2px 18px">
+      Hover or tap each line to declassify.
+    </p>
+
+    <section class="rows" id="rows">
+      <!-- rows injected here -->
+    </section>
+
+    <div class="stamp">If you read this far, you are exactly the kind of person I want on my team</div>
+
+    <div class="return">
+      <a href="/">&#8249; RETURN TO SURFACE</a>
+    </div>
+  </main>
+</div>
+
+<!-- ===== INCOMING TRANSMISSION ===== -->
+<aside id="transmission" aria-hidden="true">
+  <div class="tx-head">
+    <span class="rec"></span> Incoming Transmission
+    <button class="x" id="txClose" aria-label="Close transmission">&times;</button>
+  </div>
+  <div class="tx-frame" id="txFrame"></div>
+  <div class="tx-foot">NOW PLAYING: <b>[CLASSIFIED]</b></div>
+</aside>
+
+<div class="classbar bottom">TOP SECRET // AERONIQUE EYES ONLY</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var FIELDS = [
+    ["Subject Designation", "AERONIQUE"],
+    ["Clearance Status", "Granted. You read the robots.txt. That is literally the job."],
+    ["Threat Level", "Caffeinated. Escalates after the second cup."],
+    ["Preferred Tooling", "Notepad++, GitHub Desktop, and an unreasonable amount of spite"],
+    ["Known Associates", "A two node Proxmox cluster, an Elastic SIEM, a Caldera adversary that never sleeps, and a domain controller deliberately full of holes"],
+    ["Last Known Activity", "Reverse engineering something in Ghidra at an hour no reasonable person is awake"],
+    ["Special Skills", "Turned 96 million honeypot events into a 14 part research series and had fun doing it"],
+    ["Favorite Exfil Method", "DNS. She will catch you using it though."],
+    ["Known Weakness", "Open CTF flags. Cannot leave one uncaptured."],
+    ["Cover Story", "Intelligence analyst moving into blue team. The cover is real. That is the twist."],
+    ["Detention Risk", "Low. Strictly defensive, though she has a real soft spot for ethical hacking. Every bit of offense is authorized, scoped, and for sport."],
+    ["Current Status", "Accepting mission briefings. Tell your hiring manager."]
+  ];
+
+  // build rows
+  var rowsEl = document.getElementById("rows");
+  FIELDS.forEach(function(f){
+    var row = document.createElement("div");
+    row.className = "row";
+
+    var label = document.createElement("div");
+    label.className = "label";
+    label.textContent = f[0];
+
+    var val = document.createElement("div");
+    var span = document.createElement("span");
+    span.className = "redact";
+    span.textContent = f[1];
+    span.setAttribute("tabindex","0");
+    span.setAttribute("role","button");
+    span.setAttribute("aria-label","Redacted field. Activate to declassify.");
+    span.addEventListener("click", function(){ span.classList.toggle("revealed"); });
+    span.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); span.classList.toggle("revealed"); }
+    });
+    val.appendChild(span);
+
+    row.appendChild(label);
+    row.appendChild(val);
+    rowsEl.appendChild(row);
+  });
+
+  // live date stamp
+  try{
+    var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    var d = new Date();
+    document.getElementById("dateStamp").textContent =
+      String(d.getDate()).padStart(2,"0") + " " + months[d.getMonth()] + " " + d.getFullYear();
+  }catch(e){}
+
+  // decrypt sequence
+  var gate = document.getElementById("gate");
+  var btn = document.getElementById("decryptBtn");
+  var progress = document.getElementById("progress");
+  var fill = document.getElementById("progFill");
+  var progTxt = document.getElementById("progTxt");
+  var dossier = document.getElementById("dossier");
+  var tx = document.getElementById("transmission");
+  var txFrame = document.getElementById("txFrame");
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  function startTransmission(){
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("allow","autoplay; encrypted-media");
+    iframe.setAttribute("allowfullscreen","");
+    iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+    txFrame.appendChild(iframe);
+    tx.classList.add("show");
+    tx.setAttribute("aria-hidden","false");
+  }
+
+  function revealDossier(){
+    gate.style.opacity = "0";
+    setTimeout(function(){ gate.style.display = "none"; }, 460);
+    dossier.classList.add("show");
+    dossier.setAttribute("aria-hidden","false");
+    startTransmission();
+  }
+
+  btn.addEventListener("click", function(){
+    // user gesture lives here, so audio is allowed to start
+    if(reduce){ revealDossier(); return; }
+    btn.style.display = "none";
+    progress.classList.add("on");
+    var pct = 0;
+    var timer = setInterval(function(){
+      pct += Math.random()*16 + 6;
+      if(pct >= 100){ pct = 100; clearInterval(timer); progTxt.textContent = "ACCESS GRANTED"; setTimeout(revealDossier, 380); }
+      fill.style.width = pct + "%";
+    }, 90);
+  });
+
+  // close transmission (stops audio)
+  document.getElementById("txClose").addEventListener("click", function(){
+    txFrame.innerHTML = "";
+    tx.classList.remove("show");
+    tx.setAttribute("aria-hidden","true");
+  });
+
+  // little console wink for the curious
+  try{
+    console.log("%c// you opened devtools on a classified file. respect.","color:#00d9ff;font-family:monospace;font-size:13px;");
+  }catch(e){}
+})();
+</script>
+
+<noscript>
+  <style>
+    #gate{display:none!important}
+    #dossier{display:block!important}
+    .redact{color:var(--ink)!important;background:transparent!important}
+  </style>
+</noscript>
+
+</body>
+</html>
