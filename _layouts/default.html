@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}aerobytes</title>
 
-    <!-- Open Graph share cards (LinkedIn, Slack, Discord, iMessage) -->
+    <!-- Shared page metadata -->
     {% assign og_title = page.title | default: site.title %}
     {% assign og_description = page.description | default: site.description %}
     {% assign og_image = page.image | default: '/assets/images/aerobytes-og.jpg' %}
+    <meta name="description" content="{{ og_description | escape }}">
+
+    <!-- Open Graph share cards (LinkedIn, Slack, Discord, iMessage) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:title" content="{{ og_title | escape }}">
