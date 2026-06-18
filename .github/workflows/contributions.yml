@@ -1,0 +1,52 @@
+name: Update GitHub activity
+
+on:
+  schedule:
+    # twice a day at 06:00 and 18:00 UTC. change the hours to whatever you like.
+    - cron: "0 6,18 * * *"
+  workflow_dispatch: {} # adds a manual "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-activity
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # use the PAT so the resulting commit triggers your normal Pages deploy
+          token: ${{ secrets.CONTRIB_TOKEN }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch contributions
+        env:
+          GH_TOKEN: ${{ secrets.CONTRIB_TOKEN }}
+          GH_USER: Aeronique
+        run: node .github/scripts/fetch-contributions.mjs
+
+      - name: Commit if the data changed
+        run: |
+          # commit author identity. github-actions[bot] keeps your personal
+          # contribution graph honest (this commit will NOT add a square to it).
+          # to make the daily commit count toward YOUR graph instead, swap the
+          # two lines below for your own name and GitHub no-reply email.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add assets/data/contributions.json
+          if git diff --staged --quiet; then
+            echo "No change in activity data, nothing to commit."
+          else
+            git commit -m "chore: refresh GitHub activity data"
+            git push
+          fi
