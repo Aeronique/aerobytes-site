@@ -45,83 +45,6 @@ title: Home
     </div>
 </section>
 
-<!-- Info Boxes Section -->
-<section class="info-boxes">
-    <div class="container">
-        <div class="boxes-grid">
-            <!-- Core Competencies -->
-            <div class="info-box">
-                <h3 class="box-title">Core Competencies</h3>
-                <div class="competency-list">
-                    <div class="competency-item">
-                        <span class="competency-name">Intelligence Analysis</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <span class="competency-level">100%</span>
-                    </div>
-                    <div class="competency-item">
-                        <span class="competency-name">Defensive Security</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%"></div>
-                        </div>
-                        <span class="competency-level">90%</span>
-                    </div>
-                    <div class="competency-item">
-                        <span class="competency-name">Threat Intelligence</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%"></div>
-                        </div>
-                        <span class="competency-level">75%</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Quick Access -->
-            <div class="info-box">
-                <h3 class="box-title">Quick Access</h3>
-                <div class="quick-links">
-                    <a href="{{ '/about/#experience' | relative_url }}" class="quick-link">
-                        Professional Experience
-                    </a>
-                    <a href="{{ '/about/#achievements' | relative_url }}" class="quick-link">
-                        Achievements
-                    </a>
-                    <a href="{{ '/about/#education' | relative_url }}" class="quick-link">
-                        Education
-                    </a>
-                    <a href="{{ '/about/#legacy' | relative_url }}" class="quick-link">
-                        Legacy Systems
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Latest Certifications -->
-            <div class="info-box">
-                <h3 class="box-title">Latest Certifications</h3>
-                <div class="cert-list">
-                    <div class="cert-item">
-                        <span class="cert-name">TAISE</span>
-                        <span class="cert-status completed">Completed</span>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">GCIH</span>
-                        <span class="cert-status completed">Completed</span>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">GSEC</span>
-                        <span class="cert-status completed">Completed</span>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-name">GFACT</span>
-                        <span class="cert-status completed">Completed</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- =====================================================
      GITHUB ACTIVITY GRID
      Reads your own data file at /assets/data/contributions.json,
@@ -158,34 +81,34 @@ title: Home
     </div>
 
     <style>
-        .gh-activity .gh-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-        .gh-activity .gh-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:700;font-size:1.4rem;color:#fff;margin:0;display:flex;align-items:center;gap:10px}
+        .gh-activity .gh-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+        .gh-activity .gh-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:700;font-size:1.65rem;color:#fff;margin:0;display:flex;align-items:center;gap:10px}
         .gh-activity .gh-title .section-number{color:var(--cyber-cyan,#00d9ff)}
-        .gh-activity .gh-profile{font-family:var(--font-mono,'Space Mono',monospace);font-size:.82rem;color:var(--cyber-cyan,#00d9ff);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
+        .gh-activity .gh-profile{font-family:var(--font-mono,'Space Mono',monospace);font-size:.88rem;color:var(--cyber-cyan,#00d9ff);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
         .gh-activity .gh-profile:hover{border-bottom-color:var(--cyber-cyan,#00d9ff)}
 
-        .gh-activity .gh-stats{display:flex;flex-wrap:wrap;gap:6px 22px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:#9898b3;margin-bottom:18px}
+        .gh-activity .gh-stats{display:flex;flex-wrap:wrap;gap:6px 24px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.95rem;color:#9898b3;margin-bottom:20px}
         .gh-activity .gh-stats b{color:var(--cyber-pink,#ff2e97);font-weight:700}
 
-        .gh-activity .gh-graph-wrap{overflow-x:auto;padding-bottom:8px}
+        .gh-activity .gh-graph-wrap{overflow-x:auto;padding-bottom:10px}
         .gh-activity .gh-graph{min-width:max-content}
-        .gh-activity .gh-months{display:grid;grid-auto-flow:column;grid-auto-columns:11px;gap:3px;margin-bottom:5px;height:14px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.62rem;color:#6b6f80}
+        .gh-activity .gh-months{display:grid;grid-auto-flow:column;grid-auto-columns:14px;gap:4px;margin-bottom:6px;height:16px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.7rem;color:#6b6f80}
         .gh-activity .gh-months span{white-space:nowrap}
-        .gh-activity .gh-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,11px);grid-auto-columns:11px;gap:3px}
+        .gh-activity .gh-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,14px);grid-auto-columns:14px;gap:4px}
 
-        .gh-activity .gh-cell{width:11px;height:11px;border-radius:2px;background:rgba(255,255,255,.05);transition:transform .1s ease}
+        .gh-activity .gh-cell{width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,.05);transition:transform .1s ease}
         .gh-activity .gh-grid .gh-cell:hover{outline:1px solid #fff;transform:scale(1.25)}
         .gh-activity .gh-cell[data-level="1"]{background:rgba(0,217,255,.30)}
         .gh-activity .gh-cell[data-level="2"]{background:rgba(0,217,255,.62)}
         .gh-activity .gh-cell[data-level="3"]{background:rgba(255,46,151,.70)}
-        .gh-activity .gh-cell[data-level="4"]{background:var(--cyber-pink,#ff2e97);box-shadow:0 0 6px rgba(255,46,151,.55)}
+        .gh-activity .gh-cell[data-level="4"]{background:var(--cyber-pink,#ff2e97);box-shadow:0 0 7px rgba(255,46,151,.55)}
         .gh-activity .gh-cell.empty{background:transparent}
 
-        .gh-activity .gh-legend{display:flex;align-items:center;gap:5px;margin-top:14px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;color:#6b6f80}
+        .gh-activity .gh-legend{display:flex;align-items:center;gap:6px;margin-top:16px;font-family:var(--font-mono,'Space Mono',monospace);font-size:.78rem;color:#6b6f80}
         .gh-activity .gh-legend .gh-cell{display:inline-block}
 
-        .gh-activity .gh-loading{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:#6b6f80;padding:20px 0}
-        .gh-activity .gh-error{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:#9898b3;padding:14px 0}
+        .gh-activity .gh-loading{font-family:var(--font-mono,'Space Mono',monospace);font-size:.9rem;color:#6b6f80;padding:20px 0}
+        .gh-activity .gh-error{font-family:var(--font-mono,'Space Mono',monospace);font-size:.9rem;color:#9898b3;padding:14px 0}
         .gh-activity .gh-error a{color:var(--cyber-cyan,#00d9ff)}
 
         @media (prefers-reduced-motion:reduce){
@@ -286,6 +209,83 @@ title: Home
                 .catch(showError);
         })();
     </script>
+</section>
+
+<!-- Info Boxes Section -->
+<section class="info-boxes">
+    <div class="container">
+        <div class="boxes-grid">
+            <!-- Core Competencies -->
+            <div class="info-box">
+                <h3 class="box-title">Core Competencies</h3>
+                <div class="competency-list">
+                    <div class="competency-item">
+                        <span class="competency-name">Intelligence Analysis</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span class="competency-level">100%</span>
+                    </div>
+                    <div class="competency-item">
+                        <span class="competency-name">Defensive Security</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                        <span class="competency-level">90%</span>
+                    </div>
+                    <div class="competency-item">
+                        <span class="competency-name">Threat Intelligence</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span class="competency-level">75%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Access -->
+            <div class="info-box">
+                <h3 class="box-title">Quick Access</h3>
+                <div class="quick-links">
+                    <a href="{{ '/about/#experience' | relative_url }}" class="quick-link">
+                        Professional Experience
+                    </a>
+                    <a href="{{ '/about/#achievements' | relative_url }}" class="quick-link">
+                        Achievements
+                    </a>
+                    <a href="{{ '/about/#education' | relative_url }}" class="quick-link">
+                        Education
+                    </a>
+                    <a href="{{ '/about/#legacy' | relative_url }}" class="quick-link">
+                        Legacy Systems
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Latest Certifications -->
+            <div class="info-box">
+                <h3 class="box-title">Latest Certifications</h3>
+                <div class="cert-list">
+                    <div class="cert-item">
+                        <span class="cert-name">TAISE</span>
+                        <span class="cert-status completed">Completed</span>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-name">GCIH</span>
+                        <span class="cert-status completed">Completed</span>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-name">GSEC</span>
+                        <span class="cert-status completed">Completed</span>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-name">GFACT</span>
+                        <span class="cert-status completed">Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- Contact Section -->
