@@ -1,0 +1,8 @@
+# security.txt for aerobytes.io  (RFC 9116)
+# Security contact and disclosure preferences.
+
+Contact: mailto:aeronique@proton.me
+Encryption: https://aerobytes.io/.well-known/aeronique-pubkey.asc
+Expires: 2027-06-01T00:00:00Z
+Preferred-Languages: en
+Canonical: https://aerobytes.io/.well-known/security.txt

@@ -19,6 +19,10 @@ exclude:
   - LICENSE.txt
   - DEPLOYMENT.md
 
+# Force-publish dot folders Jekyll skips by default (serves /.well-known/security.txt)
+include:
+  - .well-known
+
 # Plugins
 plugins:
   - jekyll-feed
