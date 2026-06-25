@@ -31,6 +31,94 @@ title: Purple team, threat intel, and CTF writeups
     </div>
 </section>
 
+<!-- =====================================================
+     CTF RECORD STRIP
+     Static stat strip. Self-contained scoped styles so
+     style.css stays untouched. Mirrors the htb_stats.sh /
+     kc7_stats.sh terminal stat blocks.
+     ===================================================== -->
+<section class="ctf-record section">
+    <div class="container">
+        <div class="ctfr-panel">
+            <div class="ctfr-bar">
+                <div class="ctfr-dots">
+                    <span class="ctfr-dot ctfr-dot-1"></span>
+                    <span class="ctfr-dot ctfr-dot-2"></span>
+                    <span class="ctfr-dot ctfr-dot-3"></span>
+                </div>
+                <span class="ctfr-file">ctf_record.sh</span>
+            </div>
+
+            <div class="ctfr-body">
+                <h2 class="ctfr-title"><span class="ctfr-slash">//</span> CTF Record</h2>
+                <p class="ctfr-cmd"><span class="ctfr-prompt">$</span> ctf --record --summary</p>
+
+                <div class="ctfr-grid">
+                    <div class="ctfr-stat">
+                        <span class="ctfr-num ctfr-cyan">4</span>
+                        <span class="ctfr-lbl">first place</span>
+                    </div>
+                    <div class="ctfr-stat">
+                        <span class="ctfr-num ctfr-pink">4</span>
+                        <span class="ctfr-lbl">second place</span>
+                    </div>
+                    <div class="ctfr-stat">
+                        <span class="ctfr-num ctfr-purple">~750</span>
+                        <span class="ctfr-lbl">largest field topped</span>
+                    </div>
+                    <div class="ctfr-stat">
+                        <span class="ctfr-num ctfr-cyan">9</span>
+                        <span class="ctfr-lbl">events placed</span>
+                    </div>
+                </div>
+
+                <div class="ctfr-highlights">
+                    <span class="ctfr-hl-label">&gt; podium highlights:</span>
+                    <span class="ctfr-tag">1st Overall &middot; WiCyS 2026 Conference CTF</span>
+                    <span class="ctfr-tag">1st &middot; Tenable x WiCyS Exposure Quest</span>
+                    <span class="ctfr-tag">Runner-Up Most Creative &middot; 2025 Holiday Hack</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .ctf-record .ctfr-panel{background:var(--dark-bg,#0a0a0f);border:1px solid rgba(0,217,255,.12);border-radius:12px;overflow:hidden;background-image:linear-gradient(rgba(0,217,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,.04) 1px,transparent 1px);background-size:38px 38px}
+
+        .ctf-record .ctfr-bar{display:flex;align-items:center;justify-content:space-between;background:rgba(0,217,255,.06);border-bottom:1px solid rgba(0,217,255,.15);padding:10px 16px}
+        .ctf-record .ctfr-dots{display:flex;gap:6px}
+        .ctf-record .ctfr-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+        .ctf-record .ctfr-dot-1{background:var(--cyber-blue,#00d9ff)}
+        .ctf-record .ctfr-dot-2{background:var(--cyber-pink,#ff1493)}
+        .ctf-record .ctfr-dot-3{background:var(--cyber-purple,#a855f7)}
+        .ctf-record .ctfr-file{font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;letter-spacing:2px;color:var(--cyber-blue,#00d9ff)}
+
+        .ctf-record .ctfr-body{padding:24px 22px 28px}
+        .ctf-record .ctfr-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:900;font-size:1.5rem;color:var(--text-primary,#e8e8f0);margin:0 0 6px;display:flex;align-items:center;gap:10px}
+        .ctf-record .ctfr-slash{color:var(--cyber-blue,#00d9ff)}
+        .ctf-record .ctfr-cmd{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:var(--text-secondary,#9898b3);margin:0 0 22px}
+        .ctf-record .ctfr-prompt{color:var(--cyber-pink,#ff1493)}
+
+        .ctf-record .ctfr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+        .ctf-record .ctfr-stat{background:var(--card-bg,#0f0f1a);border:1px solid rgba(0,217,255,.2);border-radius:8px;padding:18px 14px;text-align:center;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+        .ctf-record .ctfr-stat:hover{transform:translateY(-4px);border-color:var(--cyber-blue,#00d9ff);box-shadow:0 6px 26px rgba(0,217,255,.22)}
+        .ctf-record .ctfr-num{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:900;font-size:2.5rem;line-height:1;display:block}
+        .ctf-record .ctfr-cyan{color:var(--cyber-blue,#00d9ff);text-shadow:0 0 16px rgba(0,217,255,.5)}
+        .ctf-record .ctfr-pink{color:var(--cyber-pink,#ff1493);text-shadow:0 0 16px rgba(255,20,147,.5)}
+        .ctf-record .ctfr-purple{color:var(--cyber-purple,#a855f7);text-shadow:0 0 16px rgba(168,85,247,.5)}
+        .ctf-record .ctfr-lbl{font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;letter-spacing:1.5px;color:var(--text-secondary,#9898b3);text-transform:uppercase;margin-top:10px;display:block}
+
+        .ctf-record .ctfr-highlights{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+        .ctf-record .ctfr-hl-label{font-family:var(--font-mono,'Space Mono',monospace);font-size:.78rem;color:var(--cyber-purple,#a855f7)}
+        .ctf-record .ctfr-tag{font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;color:var(--cyber-blue,#00d9ff);border:1px solid rgba(0,217,255,.3);border-radius:4px;padding:5px 10px;background:rgba(0,217,255,.05)}
+
+        @media (prefers-reduced-motion:reduce){
+            .ctf-record .ctfr-stat{transition:none}
+            .ctf-record .ctfr-stat:hover{transform:none}
+        }
+    </style>
+</section>
+
 <!-- Holiday Hack Callout -->
 <section class="hhc-callout">
     <div class="container">
