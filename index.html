@@ -51,7 +51,13 @@ title: Purple team, threat intel, and CTF writeups
 
             <div class="ctfr-body">
                 <h2 class="ctfr-title"><span class="ctfr-slash">//</span> CTF Record</h2>
-                <p class="ctfr-cmd"><span class="ctfr-prompt">$</span> ctf --record --summary</p>
+                <p class="ctfr-cmd ctfr-cmd-tight"><span class="ctfr-prompt">$</span> ctf --record --summary</p>
+
+                <div class="ctfr-recent">
+                    <span class="ctfr-pulse"></span>
+                    <span class="ctfr-recent-label">most recent</span>
+                    <span class="ctfr-recent-result"><span class="ctfr-recent-place">11th of 793</span> <span class="ctfr-recent-sep">&middot;</span> Skillbit (MetaCTF) June Flash CTF <span class="ctfr-recent-sep">&middot; Jun 2026</span></span>
+                </div>
 
                 <div class="ctfr-grid">
                     <div class="ctfr-stat">
@@ -105,7 +111,16 @@ title: Purple team, threat intel, and CTF writeups
         .ctf-record .ctfr-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:900;font-size:1.5rem;color:var(--text-primary,#e8e8f0);margin:0 0 6px;display:flex;align-items:center;gap:10px}
         .ctf-record .ctfr-slash{color:var(--cyber-blue,#00d9ff)}
         .ctf-record .ctfr-cmd{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:var(--text-secondary,#9898b3);margin:0 0 22px}
+        .ctf-record .ctfr-cmd-tight{margin:0 0 16px}
         .ctf-record .ctfr-prompt{color:var(--cyber-pink,#ff1493)}
+
+        .ctf-record .ctfr-recent{display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:12px 14px;margin-bottom:22px;border:1px solid rgba(0,217,255,.2);border-radius:8px;background:rgba(0,217,255,.04)}
+        .ctf-record .ctfr-pulse{flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:var(--cyber-blue,#00d9ff);box-shadow:0 0 0 0 rgba(0,217,255,.55);animation:ctfrPulse 2s infinite}
+        .ctf-record .ctfr-recent-label{font-family:var(--font-mono,'Space Mono',monospace);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyber-blue,#00d9ff)}
+        .ctf-record .ctfr-recent-result{font-family:var(--font-mono,'Space Mono',monospace);font-size:.9rem;color:var(--text-primary,#e8e8f0)}
+        .ctf-record .ctfr-recent-place{color:var(--cyber-blue,#00d9ff);font-weight:700}
+        .ctf-record .ctfr-recent-sep{color:#6b6f80}
+        @keyframes ctfrPulse{0%{box-shadow:0 0 0 0 rgba(0,217,255,.55)}70%{box-shadow:0 0 0 8px rgba(0,217,255,0)}100%{box-shadow:0 0 0 0 rgba(0,217,255,0)}}
 
         .ctf-record .ctfr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
         .ctf-record .ctfr-stat{background:var(--card-bg,#0f0f1a);border:1px solid rgba(0,217,255,.2);border-radius:8px;padding:18px 14px;text-align:center;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
@@ -128,6 +143,7 @@ title: Purple team, threat intel, and CTF writeups
         @media (prefers-reduced-motion:reduce){
             .ctf-record .ctfr-stat{transition:none}
             .ctf-record .ctfr-stat:hover{transform:none}
+            .ctf-record .ctfr-pulse{animation:none}
         }
     </style>
 </section>
