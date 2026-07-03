@@ -21,6 +21,214 @@ permalink: /honeypot-threat-research/
             <img src="/assets/images/honeypot-threat-research/final_dataset.png" alt="T-Pot dashboard showing full 28-day dataset totals" style="margin-top: 2rem; width: 100%; border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 8px;">
         </div>
 
+
+        <!-- =====================================================
+             HONEYPOT REPLAY TIMELINE
+             Reads a static per-day snapshot at
+             /assets/data/honeypot-daily.json (28-day T-Pot capture,
+             committed once, no refresh job). Self-contained: scoped
+             styles, works on hard loads and SPA navigation.
+             ===================================================== -->
+        <div class="hpr-panel" id="hprPanel" style="margin-bottom:4rem;">
+            <div class="hpr-bar">
+                <div class="hpr-dots">
+                    <span class="hpr-dot hpr-dot-1"></span>
+                    <span class="hpr-dot hpr-dot-2"></span>
+                    <span class="hpr-dot hpr-dot-3"></span>
+                </div>
+                <span class="hpr-file">honeypot_replay.sh</span>
+            </div>
+
+            <div class="hpr-body">
+                <h2 class="hpr-title"><span class="hpr-slash">//</span> 28 Days, Replayed</h2>
+                <p class="hpr-cmd"><span class="hpr-prompt">$</span> replay --range 2026/02/01..2026/02/28 --step 1d</p>
+
+                <div class="hpr-readout">
+                    <span class="hpr-date" id="hprDate">&mdash;</span>
+                    <span class="hpr-daytotal"><b id="hprTotal">&mdash;</b> events captured</span>
+                </div>
+                <p class="hpr-note" id="hprNote">&nbsp;</p>
+
+                <div class="hpr-chart" id="hprChart" role="img" aria-label="Daily honeypot event volume across 28 days. Use the slider to select a day.">
+                    <div class="hpr-loading">loading replay data...</div>
+                </div>
+                <div class="hpr-axis"><span>Feb 01</span><span>Feb 07</span><span>Feb 14</span><span>Feb 21</span><span>Feb 28</span></div>
+
+                <div class="hpr-controls">
+                    <button class="hpr-play" id="hprPlay" aria-label="Play through all 28 days">&#9654; replay</button>
+                    <input class="hpr-slider" id="hprSlider" type="range" min="0" max="27" value="0" step="1" aria-label="Select day of deployment">
+                </div>
+
+                <div class="hpr-grid">
+                    <div class="hpr-cell">
+                        <span class="hpr-cell-lbl">top cve</span>
+                        <span class="hpr-cell-val hpr-c-cyan" id="hprCve">&mdash;</span>
+                        <span class="hpr-cell-sub" id="hprCveSub">&nbsp;</span>
+                    </div>
+                    <div class="hpr-cell">
+                        <span class="hpr-cell-lbl">top source network</span>
+                        <span class="hpr-cell-val hpr-c-pink" id="hprNet">&mdash;</span>
+                        <span class="hpr-cell-sub" id="hprNetSub">&nbsp;</span>
+                    </div>
+                    <div class="hpr-cell">
+                        <span class="hpr-cell-lbl">most probed port</span>
+                        <span class="hpr-cell-val hpr-c-purple" id="hprPort">&mdash;</span>
+                        <span class="hpr-cell-sub" id="hprPortSub">&nbsp;</span>
+                    </div>
+                </div>
+
+                <div class="hpr-foot">
+                    Drag the slider or press replay to move through the deployment day by day. Every figure is parsed from the raw per-day query output in the <a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" rel="noopener">project repository</a>.
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .hpr-panel{background:var(--dark-bg,#0a0a0f);border:1px solid rgba(0,217,255,.12);border-radius:12px;overflow:hidden;background-image:linear-gradient(rgba(0,217,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,.04) 1px,transparent 1px);background-size:38px 38px}
+            .hpr-panel .hpr-bar{display:flex;align-items:center;justify-content:space-between;background:rgba(0,217,255,.06);border-bottom:1px solid rgba(0,217,255,.15);padding:10px 16px}
+            .hpr-panel .hpr-dots{display:flex;gap:6px}
+            .hpr-panel .hpr-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+            .hpr-panel .hpr-dot-1{background:var(--cyber-blue,#00d9ff)}
+            .hpr-panel .hpr-dot-2{background:var(--cyber-pink,#ff1493)}
+            .hpr-panel .hpr-dot-3{background:var(--cyber-purple,#a855f7)}
+            .hpr-panel .hpr-file{font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;letter-spacing:2px;color:var(--cyber-blue,#00d9ff)}
+
+            .hpr-panel .hpr-body{padding:24px 22px 28px}
+            .hpr-panel .hpr-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:900;font-size:1.5rem;color:var(--text-primary,#e8e8f0);margin:0 0 6px;display:flex;align-items:center;gap:10px}
+            .hpr-panel .hpr-slash{color:var(--cyber-blue,#00d9ff)}
+            .hpr-panel .hpr-cmd{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:var(--text-secondary,#9898b3);margin:0 0 20px}
+            .hpr-panel .hpr-prompt{color:var(--cyber-pink,#ff1493)}
+
+            .hpr-panel .hpr-readout{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+            .hpr-panel .hpr-date{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:900;font-size:1.35rem;color:var(--cyber-blue,#00d9ff);text-shadow:0 0 16px rgba(0,217,255,.5);min-width:170px}
+            .hpr-panel .hpr-daytotal{font-family:var(--font-mono,'Space Mono',monospace);font-size:.92rem;color:var(--text-primary,#e8e8f0)}
+            .hpr-panel .hpr-daytotal b{color:var(--cyber-pink,#ff1493);font-size:1.1rem}
+            .hpr-panel .hpr-note{min-height:1.6em;font-family:var(--font-mono,'Space Mono',monospace);font-size:.8rem;color:var(--cyber-purple,#a855f7);font-style:italic;margin:0 0 18px}
+
+            .hpr-panel .hpr-chart{display:flex;align-items:flex-end;gap:4px;height:150px;padding:0 2px 8px;border-bottom:1px solid rgba(0,217,255,.15)}
+            .hpr-panel .hpr-col{flex:1;min-width:0;height:100%;display:flex;align-items:flex-end;cursor:pointer;position:relative}
+            .hpr-panel .hpr-fill{width:100%;border-radius:3px 3px 0 0;background:rgba(0,217,255,.28);transition:background .2s ease}
+            .hpr-panel .hpr-col:hover .hpr-fill{background:rgba(0,217,255,.6)}
+            .hpr-panel .hpr-col.burst .hpr-fill{background:rgba(168,85,247,.45)}
+            .hpr-panel .hpr-col.burst:hover .hpr-fill{background:rgba(168,85,247,.8)}
+            .hpr-panel .hpr-col.active .hpr-fill,.hpr-panel .hpr-col.burst.active .hpr-fill{background:var(--cyber-pink,#ff1493);box-shadow:0 0 12px rgba(255,20,147,.55)}
+            .hpr-panel .hpr-axis{display:flex;justify-content:space-between;font-family:var(--font-mono,'Space Mono',monospace);font-size:.68rem;color:#6b6f80;padding:6px 2px 0;margin-bottom:18px}
+
+            .hpr-panel .hpr-controls{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+            .hpr-panel .hpr-play{font-family:var(--font-display,'Orbitron',sans-serif);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--cyber-blue,#00d9ff);border:1px solid var(--cyber-blue,#00d9ff);border-radius:4px;padding:9px 18px;cursor:pointer;white-space:nowrap;transition:all .2s ease}
+            .hpr-panel .hpr-play:hover{background:var(--cyber-blue,#00d9ff);color:var(--darker-bg,#050507);box-shadow:0 0 18px rgba(0,217,255,.4)}
+            .hpr-panel .hpr-slider{flex:1;appearance:none;-webkit-appearance:none;height:6px;border-radius:4px;background:linear-gradient(90deg,rgba(0,217,255,.5),rgba(255,20,147,.5));outline:none;cursor:pointer}
+            .hpr-panel .hpr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--cyber-blue,#00d9ff);box-shadow:0 0 12px rgba(0,217,255,.7);cursor:grab;border:2px solid var(--darker-bg,#050507)}
+            .hpr-panel .hpr-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--cyber-blue,#00d9ff);box-shadow:0 0 12px rgba(0,217,255,.7);cursor:grab;border:2px solid var(--darker-bg,#050507)}
+            .hpr-panel .hpr-slider:focus-visible::-webkit-slider-thumb{outline:2px solid var(--cyber-pink,#ff1493);outline-offset:2px}
+
+            .hpr-panel .hpr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+            .hpr-panel .hpr-cell{background:var(--card-bg,#0f0f1a);border:1px solid rgba(0,217,255,.2);border-radius:8px;padding:14px 16px}
+            .hpr-panel .hpr-cell-lbl{font-family:var(--font-mono,'Space Mono',monospace);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-secondary,#9898b3);display:block;margin-bottom:6px}
+            .hpr-panel .hpr-cell-val{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:700;font-size:1.02rem;line-height:1.35;display:block;overflow-wrap:anywhere}
+            .hpr-panel .hpr-cell-sub{font-family:var(--font-mono,'Space Mono',monospace);font-size:.7rem;color:var(--text-secondary,#9898b3);display:block;margin-top:4px}
+            .hpr-panel .hpr-c-cyan{color:var(--cyber-blue,#00d9ff);text-shadow:0 0 12px rgba(0,217,255,.4)}
+            .hpr-panel .hpr-c-pink{color:var(--cyber-pink,#ff1493);text-shadow:0 0 12px rgba(255,20,147,.4)}
+            .hpr-panel .hpr-c-purple{color:var(--cyber-purple,#a855f7);text-shadow:0 0 12px rgba(168,85,247,.4)}
+
+            .hpr-panel .hpr-foot{margin-top:20px;padding-top:14px;border-top:1px solid rgba(0,217,255,.1);font-family:var(--font-mono,'Space Mono',monospace);font-size:.72rem;line-height:1.6;color:#6b6f80}
+            .hpr-panel .hpr-foot a{color:var(--cyber-blue,#00d9ff);text-decoration:none;border-bottom:1px solid rgba(0,217,255,.35)}
+            .hpr-panel .hpr-loading,.hpr-panel .hpr-error{font-family:var(--font-mono,'Space Mono',monospace);font-size:.85rem;color:#6b6f80;padding:8px 0;align-self:center}
+            .hpr-panel .hpr-error a{color:var(--cyber-blue,#00d9ff)}
+
+            @media (max-width:640px){
+                .hpr-panel .hpr-chart{height:110px;gap:2px}
+                .hpr-panel .hpr-date{font-size:1.1rem;min-width:0}
+            }
+            @media (prefers-reduced-motion:reduce){
+                .hpr-panel .hpr-play,.hpr-panel .hpr-fill{transition:none}
+            }
+        </style>
+
+        <script>
+            (function(){
+                var panel = document.getElementById("hprPanel");
+                if (!panel || panel.dataset.bound) return;
+                panel.dataset.bound = "1";
+
+                var DATA_URL = "/assets/data/honeypot-daily.json";
+                var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                var chart = document.getElementById("hprChart");
+                var slider = document.getElementById("hprSlider");
+                var playBtn = document.getElementById("hprPlay");
+                var idx = 0, timer = null, days = [];
+                var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+                function fmt(n){
+                    if (n >= 1e6) return (n/1e6).toFixed(2) + "M";
+                    if (n >= 1e3) return (n/1e3).toFixed(0) + "K";
+                    return String(n);
+                }
+                function dayLabel(iso){
+                    var p = iso.split("-");
+                    return MONTHS[+p[1]-1] + " " + p[2] + ", " + p[0];
+                }
+                function setDay(i){
+                    idx = i;
+                    var day = days[i];
+                    slider.value = i;
+                    document.getElementById("hprDate").textContent = dayLabel(day.date);
+                    document.getElementById("hprTotal").textContent = fmt(day.total);
+                    var note = document.getElementById("hprNote");
+                    if (day.note){ note.textContent = "> " + day.note; } else { note.innerHTML = "&nbsp;"; }
+                    document.getElementById("hprCve").textContent = day.cve;
+                    document.getElementById("hprCveSub").textContent = day.cve_n.toLocaleString() + " events";
+                    document.getElementById("hprNet").textContent = day.net;
+                    document.getElementById("hprNetSub").textContent = fmt(day.net_n) + " events";
+                    document.getElementById("hprPort").textContent = day.port;
+                    document.getElementById("hprPortSub").textContent = day.port_svc + " \u00b7 " + fmt(day.port_n) + " events";
+                    var cols = chart.children;
+                    for (var c = 0; c < cols.length; c++) cols[c].classList.toggle("active", c === i);
+                }
+                function stop(){
+                    if (timer){ clearInterval(timer); timer = null; }
+                    playBtn.innerHTML = "&#9654; replay";
+                }
+                function render(data){
+                    days = data.days || [];
+                    if (days.length !== 28){ showError(); return; }
+                    var max = days.reduce(function(m,x){ return Math.max(m, x.total); }, 0) || 1;
+                    chart.innerHTML = "";
+                    days.forEach(function(day, i){
+                        var col = document.createElement("div");
+                        col.className = "hpr-col" + (day.burst ? " burst" : "");
+                        col.title = dayLabel(day.date) + " \u00b7 " + day.total.toLocaleString() + " events";
+                        var fill = document.createElement("div");
+                        fill.className = "hpr-fill";
+                        fill.style.height = Math.max(6, Math.round(day.total / max * 100)) + "%";
+                        col.appendChild(fill);
+                        col.addEventListener("click", function(){ setDay(i); stop(); });
+                        chart.appendChild(col);
+                    });
+                    slider.addEventListener("input", function(){ setDay(+this.value); stop(); });
+                    playBtn.addEventListener("click", function(){
+                        if (timer){ stop(); return; }
+                        if (idx >= days.length - 1) idx = -1;
+                        playBtn.innerHTML = "&#10074;&#10074; pause";
+                        timer = setInterval(function(){
+                            if (idx >= days.length - 1){ stop(); return; }
+                            setDay(idx + 1);
+                        }, reduced ? 1400 : 700);
+                    });
+                    setDay(0);
+                }
+                function showError(){
+                    chart.innerHTML = '<div class="hpr-error">Replay data unavailable right now. The raw per-day output lives at '
+                        + '<a href="https://github.com/Aeronique/honeypot-threat-research" target="_blank" rel="noopener">github.com/Aeronique/honeypot-threat-research</a>.</div>';
+                }
+
+                fetch(DATA_URL, { headers: { "Accept": "application/json" }, cache: "no-cache" })
+                    .then(function(r){ if (!r.ok) throw new Error("bad status"); return r.json(); })
+                    .then(render)
+                    .catch(showError);
+            })();
+        </script>
+
         <div class="writeups-list">
 
             <h3 class="subsection-title">Vulnerability Exploitation</h3>
