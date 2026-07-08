@@ -11,7 +11,47 @@ permalink: /projects/
                 <span class="section-number">//</span>
                 <span>Projects</span>
             </h1>
-            <p class="page-description">Security infrastructure, threat research, and detection work, built and documented from scratch.</p>
+            <p class="page-description">A wide range of security work, built and documented from scratch: AI red teaming, threat research, detection engineering, and homelab infrastructure.</p>
+        </div>
+
+        <!-- AI Security Lab Section -->
+        <div class="completed-section">
+            <h3 class="subsection-title">AI Security Lab</h3>
+            <div class="work-grid">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">AI SECURITY</span>
+                        <span class="card-date">2026</span>
+                    </div>
+                    <h3 class="card-title">Local LLM &amp; RAG Stack</h3>
+                    <p class="card-description">A private LLM stack that runs entirely on one laptop, with no cloud inference and nothing exposed to the network. Ollama serves Mistral Small 24B and Mistral Nemo 12B, each tuned to the largest context that stays fully resident on a 16 GB card. A retrieval layer built on mxbai embeddings and a file-backed vector index answers over my own security writeups, routing between the two models by query load. I fine-tuned the 12B on my own articles with QLoRA so it drafts in my writing voice, running as aero-voice:12b. A self-hosted SearXNG layer adds local web search, keeping live results clearly separated from my trusted sources. Full writeup coming soon.</p>
+                    <div class="card-tags">
+                        <span class="tag">Ollama</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">QLoRA</span>
+                        <span class="tag">Mistral</span>
+                        <span class="tag">SearXNG</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">AI SECURITY</span>
+                        <span class="card-date">2026</span>
+                    </div>
+                    <h3 class="card-title">llm-redteam-mcp</h3>
+                    <p class="card-description">A Model Context Protocol server I built to test my own local models before wiring any of them into an agent. It sends adversarial prompts across four categories: prompt injection, jailbreak, system prompt leak, and data exfiltration, then scores each response. The scorer reads two signals: a refusal, or a fail marker like a planted canary token that proves a guardrail was bypassed. A fail marker outranks a refusal, since a model will sometimes refuse and then leak in the same breath. It only talks to a local Ollama endpoint, so every test is repeatable and nothing leaves the lab. Backed by 47 passing tests, with new probes added as YAML whenever I find a tactic worth pinning down.</p>
+                    <div class="card-tags">
+                        <span class="tag">MCP</span>
+                        <span class="tag">Ollama</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Red Team</span>
+                    </div>
+                    <a href="https://github.com/Aeronique/llm-redteam-mcp" class="card-link">Explore the project on GitHub →</a>
+                    <br>
+                    <a href="/writeups/llm-redteam-mcp/" class="card-link">Read technical writeup →</a>
+                </div>
+            </div>
         </div>
 
         <!-- Ongoing Projects Section -->
