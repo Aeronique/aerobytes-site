@@ -8,7 +8,7 @@ excerpt: "Collecting Active Directory data with five different ingestors, mappin
 permalink: /writeups/bloodhound/
 ---
 
-BloodHound is one of those tools that makes Active Directory finally make sense. It takes the tangled pile of users, groups, and permissions inside a domain, works out who can reach whom, and draws the whole thing as a graph you can follow. This Hack Smarter lab, over at [www.hacksmarter.org](https://www.hacksmarter.org), is a friendly introduction to it. You begin with a single set of low-privilege credentials, and the job is to collect the domain data, load it into BloodHound, and follow the paths it lays out until you reach the domain administrator.
+BloodHound is one of those tools that makes Active Directory finally make more sense to me. It takes the tangled pile of users, groups, and permissions inside a domain, works out who can reach whom, and draws the whole thing as a graph you can follow (which is perfect for my visual learning style). This Hack Smarter lab, over at [www.hacksmarter.org](https://www.hacksmarter.org), is a friendly introduction to it. You begin with a single set of low-privilege credentials, and the job is to collect the domain data, load it into BloodHound, and follow the paths it lays out until you reach the domain administrator.
 
 ```
 Username: pentest
@@ -17,27 +17,27 @@ Password: HackSmarter123!
 
 ---
 
-## Collecting the data
+## Collecting the Data
 
-BloodHound is only ever as good as the data you hand it, so before any of the fun graphing happens, you have to pull that data out of the domain. A handful of ingestors all produce the same JSON, and picking one really comes down to the platform you are working from and how the target is set up. I worked through five of them here, since it helps to know your options for the moments when one tool stalls and another gets the job done.
+BloodHound is only ever as good as the data you hand it, so before any of the fun graphing happens, you have to pull that data out of the domain. A handful of ingestors all produce the same JSON, and picking one really comes down to the platform you are working from and how the target is set up. I worked through five of them here, since it helps to know your options.
 
 ### NetExec
 
-NetExec is where I like to start. It checks that the credentials work and then runs the collection in the same session, so you get your confirmation and your data without hopping between tools. First, make sure the credentials are valid over SMB.
+NetExec is my preferred tool to start. It checks that the credentials work and then runs the collection in the same session, so you get your confirmation and your data without having to hop between tools. First, make sure the credentials are valid over SMB.
 
 `nxc smb [DC] -u '[USERNAME]' -p '[PASSWORD]' --shares`
 
 ![NetExec confirming the pentest credentials are valid over SMB](/assets/images/bloodhound/1.png)
 
-*The `+` beside the credentials is what tells you they are good, and taking that half a second to confirm saves you from chasing errors later that were never really there.*
+*The `+` beside the credentials is what tells you they are good, and it's super important to confirm before moving on!*
 
-Once you know the login works, point NetExec at LDAP and let its built-in BloodHound collector do the gathering.
+Once you know the login works, point NetExec at LDAP this time and let its built-in BloodHound collector do the gathering.
 
 `nxc ldap [DC-IP] -u '[USERNAME]' -p '[PASSWORD]' --bloodhound --collection All --dns-server [DC-IP]`
 
 ![NetExec running BloodHound collection over LDAP](/assets/images/bloodhound/2.png)
 
-*One command runs the collector across every collection method, which is a big part of why NetExec is such a comfortable place to begin.*
+*One command runs the collector across every collection method, which is why I think NetExec is such a good place to begin.*
 
 The run drops a zip file, and unzipping it hands you the JSON documents you will load into BloodHound a little later.
 
@@ -47,15 +47,15 @@ The run drops a zip file, and unzipping it hands you the JSON documents you will
 
 ### SharpHound
 
-SharpHound is the C# collector that runs right on a Windows target, and it is the one Defender is quick to flag, so do not be surprised when it gets caught as malware the moment it touches disk. You can grab it from [SpecterOps' GitHub releases](https://github.com/SpecterOps/SharpHound/releases).
+SharpHound is the C# collector that runs right on a Windows target, and it is the one Defender is quick to flag, so don't be surprised when it gets caught as malware the moment it touches disk. You can grab it from [SpecterOps' GitHub releases](https://github.com/SpecterOps/SharpHound/releases).
 
-To get it onto the box, open a session on the domain controller with evil-winrm using the same credentials you already have.
+To get it onto the box, open a session on the domain controller with `evil-winrm` using the same credentials you already have.
 
 `evil-winrm -i [DC] -u '[USERNAME]' -p '[PASSWORD]'`
 
 ![evil-winrm session opened against the domain controller](/assets/images/bloodhound/4.png)
 
-*evil-winrm gives you a proper interactive session on the domain controller, all from the credentials you started with.*
+*evil-winrm gives you an interactive session on the domain controller, using the credentials you started with.*
 
 From inside that session, upload SharpHound to the target.
 
@@ -65,7 +65,7 @@ From inside that session, upload SharpHound to the target.
 
 *The `upload` command drops SharpHound.exe straight onto the target for you.*
 
-Give it a quick `dir` to make sure the file really landed.
+Give it a quick `dir` to make sure the file landed in the location you intended.
 
 ![Confirming the SharpHound upload with dir](/assets/images/bloodhound/6.png)
 
@@ -101,7 +101,7 @@ And with that, the collected files are ready to go.
 
 ### RustHound
 
-RustHound is a cross-platform ingestor written in Rust, and it is a lovely little tool to have on hand. It compiles down to one small, quick binary for either Linux or Windows, and since it leans on no .NET at all, it stays light enough to drop onto almost any host without a second thought.
+RustHound is a cross-platform ingestor written in Rust, and it is a great versatile little tool to have on hand. It compiles down to one small, quick binary for either Linux or Windows, and since it leans on no .NET at all, it stays light enough to drop onto almost any host.
 
 Run it against the domain controller with your credentials and let it collect.
 
@@ -119,7 +119,7 @@ Change into that output directory and you will find the data already in its orig
 
 ### bloodhound-python
 
-When you are working entirely from Linux, bloodhound-python is a comfortable choice. It is a Python ingestor that queries the domain controller over LDAP and asks for nothing you would not already have on a Linux box.
+When you are working entirely from Linux, `bloodhound-python` is a good choice. It's a Python ingestor that queries the domain controller over LDAP and asks for nothing you would not already have on a Linux box.
 
 `bloodhound-python -u 'username' -p 'password' -d [DOMAIN] -dc [DC-HOSTNAME] -c All -ns [DC-IP]`
 
@@ -135,7 +135,7 @@ Once it finishes, the output saves into whatever directory you happened to be wo
 
 ### bloodyad
 
-bloodyad takes a little patience the first time, since its syntax is a bit particular, but it earns that patience quickly. It reliably pulls data from Windows Server 2025 even in the moments where NetExec and bloodhound-python come up short, so it is a good one to have ready for stubborn targets.
+`bloodyad` takes a little patience the first time, since its syntax is a bit particular, but it's complexity is worth the patience. It can reliably pull data from Windows Server 2025, where NetExec and bloodhound-python struggle, so it is a good one to have ready for really stubborn targets.
 
 `bloodyad -H [DC-HOSTNAME] -d [DOMAIN] -u 'username' -p 'password' get bloodhound`
 
@@ -151,13 +151,13 @@ Whichever route you take, you end up in the same place, with a full set of data 
 
 BloodHound ships with a CLI distribution from SpecterOps, written in Go, that quietly handles the container setup, the configuration, and the log wrangling so you do not have to. It runs happily on Windows, Linux, and macOS.
 
-Grab the build that matches your system, unzip it, add `bloodhound-cli` to your path, then start up a local instance and open it in your browser.
+Grab the build that matches your system, unzip it, add `bloodhound-cli` to your path, then start up a local instance and open it in your browser. Make sure before setting the container up, that port `8080` is free, otherwise you'll need to specify a different port in the configuration.
 
 ![Starting a local BloodHound instance with bloodhound-cli](/assets/images/bloodhound/16.png)
 
 *bloodhound-cli spins up a local instance that you reach through the browser.*
 
-### Loading the data
+### Loading the Data
 
 Head to Administration > File Ingest and upload the JSON files from whichever collector you used. BloodHound takes them all the same way, so it does not care which tool did the gathering.
 
@@ -165,9 +165,9 @@ Head to Administration > File Ingest and upload the JSON files from whichever co
 
 *File Ingest happily accepts the JSON from any of the collectors above.*
 
-### Built-in queries
+### Built-in Queries
 
-Under Explore > CYPHER, BloodHound gives you a whole set of prewritten queries you can fire off with a single click, which means you can get straight to the interesting findings without having to write any Cypher by hand.
+Under Explore > CYPHER, BloodHound gives you a whole set of prewritten queries you can use with a single click, which means you can get straight to the interesting findings without having to write any Cypher by hand (it's a little...complex).
 
 ![The built-in Cypher queries under Explore then Cypher](/assets/images/bloodhound/18.png)
 
@@ -176,7 +176,7 @@ Under Explore > CYPHER, BloodHound gives you a whole set of prewritten queries y
 The queries I reach for first:
 
 - **Paths from Domain Users to Tier Zero / High Value Targets.** This is the big one, the query that traces every known relationship from the lower-privileged objects all the way up to the highest tier of administrative control.
-- **Shortest paths to Domain Admins.** This one narrows things down to the quickest route to a Domain Admin account, and reaching one of those means the entire domain is yours.
+- **Shortest paths to Domain Admins.** This one narrows things down to the quickest route to a Domain Admin account, and if you can reach one, the entire domain is yours.
 - **Find AS-REP Roastable / Kerberoastable Users.** This surfaces the accounts that are exposed to offline credential cracking, which often gives you an easy early foothold.
 
 BloodHound draws the answer as a live map, laying the targets out on the right and the starting points you can use over on the left, so the route between them is easy to trace.
@@ -185,7 +185,7 @@ BloodHound draws the answer as a live map, laying the targets out on the right a
 
 *Targets on the right, usable starting points on the left, and the path drawn in between.*
 
-### User nodes
+### User Nodes
 
 Clicking on a user node opens a side panel packed with the account's properties and its relationships, and that panel quickly becomes the thing you spend most of your time reading.
 
@@ -195,7 +195,7 @@ Clicking on a user node opens a side panel packed with the account's properties 
 
 ### Outbound Object Control
 
-Outbound Object Control is the view I keep coming back to. It lays out every account a given user can act against, and that list is exactly the trail an attacker follows when they are looking for lateral movement and a way to climb.
+Outbound Object Control is the view you want to always check. It lays out every account a given user can act against, and that list is exactly the trail an attacker follows when they are looking for lateral movement and a way to climb.
 
 ![The Outbound Object Control view for a user showing accounts it can act against](/assets/images/bloodhound/21.png)
 
@@ -213,7 +213,7 @@ That same view is useful whichever side you are on. An attacker reads it to find
 
 ---
 
-## The challenge
+## The Final Challenge
 
 With the domain mapped out, the challenge is to recover the flag tucked away at `C:\Users\Administrator\Desktop\root.txt`, and you get to do it starting from the very same low-privilege credentials the lab handed you at the beginning.
 
@@ -248,13 +248,13 @@ No output at all is the good sign here, since it means the password change went 
 
 *NetExec confirms the freshly set `backup_svc` credentials are working over SMB.*
 
-Back in BloodHound, right click the user and mark it as Owned now that the account belongs to you, which keeps the map honest as your path grows.
+Back in BloodHound, right click the user and mark it as Owned now that the account belongs to you, which keeps the map organized as your path grows.
 
 ![Marking backup_svc as Owned in BloodHound](/assets/images/bloodhound/27.png)
 
 *Marking the account as Owned keeps the picture accurate as you move forward.*
 
-We are still short of any real admin rights, so the enumeration keeps going from this new account, and the first thing to read is its Outbound Object Control.
+We are still short of any real admin rights, so the enumeration keeps going from this new account, and the first thing to read is its Outbound Object Control (sensing a pattern here).
 
 ![The backup_svc account's Outbound Object Control over the domain controller](/assets/images/bloodhound/28.png)
 
@@ -266,7 +266,7 @@ This is the moment the lab gets exciting. `backup_svc` holds `GetChanges` and `G
 
 *`GetChanges` and `GetChangesAll` together are what open the door to DCSync.*
 
-A DCSync attack asks the domain controller to replicate its directory data and, in doing so, dumps the password hashes for every account it holds. Pulling the krbtgt hash along the way can also set you up for a Golden Ticket attack down the line. NetExec handles the DCSync for you.
+A DCSync attack asks the domain controller to replicate its directory data and, in doing so, dumps the password hashes for every account it holds. Pulling the `krbtgt` hash along the way can also set you up for a Golden Ticket attack down the line. NetExec handles the DCSync for you.
 
 `nxc smb [DOMAIN CONTROLLER] -u 'username' -p 'password' --ntds`
 
@@ -274,7 +274,7 @@ A DCSync attack asks the domain controller to replicate its directory data and, 
 
 *The DCSync pulls every user hash straight off the domain controller.*
 
-With all of those hashes in hand, grab the NTLM hash for the `tyler_adm` account and pass it to evil-winrm to open an administrative session.
+With all of those hashes in hand, grab the NTLM hash (the second hash) for the `tyler_adm` account and pass it to evil-winrm to open an administrative session.
 
 `evil-winrm -i [DOMAIN CONTROLLER] -u 'username' -H 'NTLM HASH'`
 
@@ -282,7 +282,7 @@ With all of those hashes in hand, grab the NTLM hash for the `tyler_adm` account
 
 *Passing the `tyler_adm` hash to evil-winrm lands you an administrative session.*
 
-That drops you into an administrative shell, and the flag is sitting right there on the desktop waiting for you.
+That drops you into an administrative shell, and the flag is sitting right there on the desktop waiting for you!
 
 ![Reading root.txt from the administrator desktop](/assets/images/bloodhound/32.png)
 
