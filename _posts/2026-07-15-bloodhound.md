@@ -185,7 +185,7 @@ Head to Administration > File Ingest and upload the JSON files from whichever co
 
 ### Built-in Queries
 
-Under Explore > CYPHER, BloodHound gives you a whole set of prewritten queries you can use with a single click, which means you can get straight to the interesting findings without having to write any Cypher by hand (it's a little...complex).
+Under Explore > CYPHER, BloodHound gives you a whole set of prewritten queries you can use with a single click, which means you can get straight to the interesting findings without having to write any Cypher by hand (it's a little... complex).
 
 ![The built-in Cypher queries under Explore then Cypher](/assets/images/bloodhound/18.png)
 
