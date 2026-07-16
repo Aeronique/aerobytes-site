@@ -11,6 +11,9 @@
     {% assign og_image = page.image | default: '/assets/images/aerobytes-og.jpg' %}
     <meta name="description" content="{{ og_description | escape }}">
 
+    <!-- Per-page robots directive (opt-in via page front matter) -->
+    {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+
     <!-- Open Graph share cards (LinkedIn, Slack, Discord, iMessage) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ site.title }}">
@@ -53,7 +56,6 @@
                 <a href="{{ '/projects/' | relative_url }}" class="nav-link">projects</a>
                 <a href="https://hhc2025.aerobytes.io" target="_blank" class="nav-link">hhc2025</a>
                 <a href="{{ '/contact/' | relative_url }}" class="nav-link">contact</a>
-                <a href="{{ '/resume/' | relative_url }}" class="nav-link">resume</a>
             </div>
         </div>
     </nav>
