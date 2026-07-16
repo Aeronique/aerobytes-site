@@ -292,7 +292,7 @@ What I really enjoyed about this lab is how far plain enumeration carried the wh
 
 ---
 
-## Defensive takeaways
+## Defensive Takeaways
 
 - **Audit Outbound Object Control and dangerous ACLs.** The entire path here rode on write and replication rights that reached a good deal further than they ever needed to. Take a regular look at who holds `GenericAll`, `GenericWrite`, and write access over your service and privileged accounts, and quietly pull back anything that is not doing real work.
 - **Watch for service account password resets.** The very first move was a `net rpc password` reset against `backup_svc`, so Event ID 4724 (a password reset attempt) and 4738 (an account being changed) on service accounts are both well worth alerting on.
