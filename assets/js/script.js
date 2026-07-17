@@ -175,10 +175,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (rotatingTextElement && cursorElement) {
         const roles = [
-            'intelligence analyst',
-            'security researcher',
-            'threat hunter',
-            'ctf competitor'
+            'ai security engineer',
+            'reverse engineer',
+            'purple teamer',
+            'threat intelligence analyst'
         ];
         
         let currentIndex = 0;
@@ -440,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var rotatingEl = document.querySelector('.rotating-text');
         var cursorEl = document.querySelector('.cursor');
         if (rotatingEl && cursorEl) {
-            var roles = ['intelligence analyst', 'security researcher', 'threat hunter', 'ctf competitor'];
+            var roles = ['ai security engineer', 'reverse engineer', 'purple teamer', 'threat intelligence analyst'];
             var idx = 0, charIdx = 0, deleting = false, speed = 100;
             cursorEl.style.display = 'none';
 
