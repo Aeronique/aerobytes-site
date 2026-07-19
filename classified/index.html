@@ -19,7 +19,7 @@
     --purple:#b14aed;
     --ink:#d3d6e0;
     --muted:#6b6f80;
-    --redact:#050507;
+    --redact:#181824;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -126,14 +126,15 @@
   .redact{
     position:relative;display:inline;cursor:pointer;
     color:transparent;background:var(--redact);
-    background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 6px,transparent 6px 12px);
-    padding:2px 8px;border-radius:2px;
-    transition:background-color .28s ease,color .28s ease,box-shadow .28s ease;
+    background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 6px,transparent 6px 12px);
+    padding:2px 8px;border-radius:2px;border:1px solid rgba(177,74,237,.45);
+    box-shadow:0 0 10px rgba(177,74,237,.3);
+    transition:background-color .28s ease,color .28s ease,box-shadow .28s ease,border-color .28s ease;
     user-select:none;outline:none;
   }
   .redact:hover,.redact:focus-visible,.redact.revealed{
     background:transparent;color:var(--ink);user-select:text;
-    box-shadow:inset 0 -2px 0 rgba(0,217,255,.5);
+    box-shadow:inset 0 -2px 0 rgba(0,217,255,.5);border-color:transparent;
   }
   .redact:focus-visible{box-shadow:0 0 0 2px var(--pink)}
 
@@ -189,7 +190,7 @@
 </head>
 <body>
 
-<div class="classbar top">TOP SECRET // AERONIQUE EYES ONLY</div>
+<div class="classbar top">TOP SECRET // AERONIQUE'S EYES ONLY</div>
 
 <!-- ===== DECRYPT GATE ===== -->
 <div id="gate">
@@ -211,7 +212,7 @@
 
     <section class="filehead">
       <div class="meta">
-        <span>CASE FILE: <b id="caseNo">AB-1989-RR</b></span>
+        <span>CASE FILE: <b id="caseNo">AERO-1337-CYB</b></span>
         <span>STATUS: <b>DECLASSIFIED</b></span>
         <span>DATE: <b id="dateStamp">18 JUN 2026</b></span>
       </div>
@@ -253,7 +254,7 @@
   <div class="tx-foot">NOW PLAYING: <b>[CLASSIFIED]</b></div>
 </aside>
 
-<div class="classbar bottom">TOP SECRET // AERONIQUE EYES ONLY</div>
+<div class="classbar bottom">TOP SECRET // AERONIQUE'S EYES ONLY</div>
 
 <script>
 (function(){
@@ -263,14 +264,14 @@
     ["Subject Designation", "AERONIQUE"],
     ["Clearance Status", "Granted. You read the robots.txt. That is literally the job."],
     ["Threat Level", "Caffeinated. Escalates after the second cup."],
-    ["Preferred Tooling", "Notepad++, GitHub Desktop, and an unreasonable amount of spite"],
+    ["Preferred Tooling", "Notepad++, Obsidian, GitHub Desktop, Kali on WSL, and an unreasonable amount of spite"],
     ["Known Associates", "A two node Proxmox cluster, an Elastic SIEM, a Caldera adversary that never sleeps, and a domain controller deliberately full of holes"],
     ["Last Known Activity", "Reverse engineering something in Ghidra at an hour no reasonable person is awake"],
     ["Special Skills", "Turned 96 million honeypot events into a 14 part research series and had fun doing it"],
     ["Favorite Exfil Method", "DNS. She will catch you using it though."],
     ["Known Weakness", "Open CTF flags. Cannot leave one uncaptured."],
-    ["Cover Story", "Intelligence analyst moving into blue team. The cover is real. That is the twist."],
-    ["Detention Risk", "Low. Strictly defensive, though she has a real soft spot for ethical hacking. Every bit of offense is authorized, scoped, and for sport."],
+    ["Cover Story", "Intelligence analyst moving into red and purple team work with a focus on AI security. The cover is real. That is the twist."],
+    ["Detention Risk", "Low. Purple team operator who works the offense and the defense together. Ethical hacking is a genuine soft spot, and every engagement is authorized, scoped, and for sport."],
     ["Current Status", "Accepting mission briefings. Tell your hiring manager."]
   ];
 
