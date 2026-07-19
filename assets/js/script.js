@@ -930,9 +930,9 @@ document.addEventListener('DOMContentLoaded', function() {
         '1337  aero       ctf_solver.py --autopwn --plz',
         '2600  aero       caldera.py --purple --attack-and-detect',
         '4444  aero       meterpreter (waiting for callback...)',
-        '57005 aero       ghidra --analyze (still renaming functions)',
         '9000  root       its_over_9000.sh',
         '9001  aero       vim (not exiting, send help)',
+        '57005 aero       ghidra --analyze (still renaming functions)',
     ];
 
     var history = [];
@@ -1010,11 +1010,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } else if (cmd === 'whoami') {
             addLine(output, 'aeronique (michelle duell)', '#a855f7');
-            addLine(output, 'intelligence analyst → cybersecurity');
-            addLine(output, 'blue team | threat intel | CTF competitor');
+            addLine(output, 'intelligence analyst → red/purple team & AI security');
             addLine(output, 'GFACT · GSEC · GCIH (98%) · TAISE');
-            addLine(output, '1st place WiCyS 2026 CTF · 2nd place Target x WiCyS Cyber Defense');
-            addLine(output, '5th place SANS Holiday Hack Challenge 2025');
+            addLine(output, '1st place WiCyS 2026 Conference CTF');
             addLine(output, '');
             addLine(output, 'contact: aeronique@proton.me', '#ff1493');
 
