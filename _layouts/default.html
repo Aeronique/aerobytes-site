@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}aerobytes</title>
+    <title>{% if page.tab_title %}{{ page.tab_title }}{% elsif page.title %}{{ page.title }} | aerobytes{% else %}aerobytes{% endif %}</title>
 
     <!-- Shared page metadata -->
     {% assign og_title = page.title | default: site.title %}
