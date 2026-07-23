@@ -25,7 +25,7 @@ LSASS stands for Local Security Authority Subsystem Service, and it's the Window
 
 If you can read the memory of `lsass.exe`, you can walk away with the credentials of everyone who has logged into that machine, which often includes domain accounts and service accounts that open doors elsewhere on the network. This is usually the first thing an attacker reaches for after landing admin on a Windows host. In the MITRE ATT&CK framework it's [T1003.001, OS Credential Dumping (LSASS Memory)](https://attack.mitre.org/techniques/T1003/001/), and it's still one of the most common credential access techniques on Windows.
 
-It's worth flagging up front that reading LSASS memory needs local administrator or SYSTEM privileges. In this lab we're handed the Administrator account, so we already have what we need. On a real engagement, getting to this point is its own effort.
+It's worth stating up front that reading LSASS memory needs local administrator or SYSTEM privileges. In this lab we're handed the Administrator account, so we already have what we need. On a real engagement, getting to this point is its own effort.
 
 The plan is the same across all three methods below. We create a memory dump file on the target, move it to our attack machine, and parse it there. Running the parser on our own machine keeps the noisy tooling off the target, so we don't set off the antivirus that would light up the moment something like Mimikatz runs on the box.
 
@@ -96,7 +96,7 @@ dir C:\
 
 ## Attacking LSASS With Native Binaries
 
-Sometimes downloading a tool like ProcDump onto the target draws too much attention. A quieter option is to use binaries that already ship with Windows, known as LOLBins (Living Off the Land Binaries). Since these files are already trusted parts of the operating system, using them blends in with normal activity.
+Sometimes downloading a tool like ProcDump onto the target draws too much attention. A quieter option is to use binaries that already ship with Windows, known as **LOLBins** (Living Off the Land Binaries). Since these files are already trusted parts of the operating system, using them blends in with normal activity.
 
 The one we'll use is `rundll32.exe` to call the `MiniDump` function inside `comsvcs.dll`, a built-in Windows DLL. That function dumps process memory the same way Task Manager does. This exact technique is documented in the [LOLBAS project's comsvcs entry](https://lolbas-project.github.io/lolbas/Libraries/comsvcs/).
 
