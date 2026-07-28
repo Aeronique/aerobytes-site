@@ -68,7 +68,7 @@ permalink: /projects/
                         <span class="card-date ongoing-status">ONGOING</span>
                     </div>
                     <h3 class="card-title">AeroLab v2: Purple Team Home Lab</h3>
-                    <p class="card-description">A full rebuild of the original AeroLab across two physical nodes with segmented networks and a complete detection stack. Elastic SIEM 9.x ingests Sysmon events from a Windows Server 2022 domain controller populated with realistic misconfigurations via BadBlood. Velociraptor handles live endpoint forensics, MITRE Caldera runs ATT&CK-mapped adversary emulations, and Kali handles manual offensive work from an isolated segment. The red team network can reach production for attack simulations but has no path to the security segment.</p>
+                    <p class="card-description">A full rebuild of the original AeroLab across two physical nodes with segmented networks and a complete detection stack. Elastic SIEM 9.x ingests Sysmon events from a Windows Server 2022 domain controller populated with realistic misconfigurations via BadBlood. Velociraptor handles live endpoint forensics, MITRE Caldera runs ATT&CK-mapped adversary emulations including Kerberoasting, AS-REP roasting, Pass-the-Hash, and DCSync, and Kali handles manual offensive work from an isolated segment. The red team network can reach production for attack simulations but has no path to the security segment.</p>
                     <div class="card-tags">
                         <span class="tag">Proxmox</span>
                         <span class="tag">Elastic SIEM</span>
@@ -253,6 +253,24 @@ permalink: /projects/
         <div class="completed-section">
             <h3 class="subsection-title">Completed Projects</h3>
             <div class="work-grid">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="card-tag">REVERSE ENGINEERING</span>
+                        <span class="card-date">2026</span>
+                    </div>
+                    <h3 class="card-title">Ghidra Function ID Pipeline</h3>
+                    <p class="card-description">A repeatable pipeline that generates Ghidra Function ID databases for glibc across four Ubuntu releases, covering 29,578 functions. Run against a stripped, statically linked test binary, it raised the number of named functions from 7 to 144.</p>
+                    <div class="card-tags">
+                        <span class="tag">Ghidra</span>
+                        <span class="tag">Reverse Engineering</span>
+                        <span class="tag">glibc</span>
+                        <span class="tag">Function ID</span>
+                    </div>
+                    <a href="https://github.com/Aeronique/ghidra-glibc-fid" class="card-link">Explore the project on GitHub →</a>
+                    <br>
+                    <a href="/writeups/ghidra-glibc-fid/" class="card-link">Read technical writeup →</a>
+                </div>
+
                 <div class="project-card">
                     <div class="card-header">
                         <span class="card-tag">CLOUD</span>

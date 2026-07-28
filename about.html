@@ -12,7 +12,7 @@ title: About
         </h2>
         <div class="about-content">
             <div class="about-text">
-                <p class="lead">I'm <span class="name-highlight">Michelle Duell</span>, an intelligence analyst with eight years of military experience and an active security clearance. My background is imagery and all-source analysis, where I reconstructed adversary behavior from fragments of evidence and briefed findings to senior leadership. That same investigative process now drives my work in reverse engineering, purple team operations, and AI security engineering.</p>
+                <p class="lead">I'm <span class="name-highlight">Michelle Duell</span>, a security researcher and intelligence professional with an active [REDACTED] clearance. Right now I'm an AI safety red team fellow, running adversarial testing against frontier AI systems. Behind that is eight years of operational targeting and multi-source intelligence work, a 16-report threat intelligence series, and podium finishes in national cybersecurity competitions. I'm looking for roles in threat hunting, threat intelligence, incident response, SOC, detection engineering, and AI red teaming.</p>
 
                 <p>Reverse engineering is where I do my deepest work. I trace suspicious samples through a decompiler to understand what they do and why, working static binary analysis in Ghidra and taking mobile apps apart with adb, apktool, and smali. I turned that methodology into a conference talk accepted from more than 1,500 proposals for the WiCyS 2026 National Conference, where I co-presented static binary analysis from novice to professional level.</p>
 
@@ -20,7 +20,7 @@ title: About
 
                 <p>As a SANS Cyber Academy Scholar and GIAC Advisory Board member, I've earned GCIH (98%), GSEC (95%), and GFACT (100%) certifications, along with a Trusted AI Safety Expert (TAISE) certification from the Cloud Security Alliance, and I'm currently working toward the HTB Certified Penetration Testing Specialist (CPTS). I've put those skills to the test in competition, placing 1st in the Tenable x WiCyS CTF, 1st Overall and 1st Industry Professional at the WiCyS 2026 Conference CTF, 1st in the WiCyS Cyber Quest Tournament, 2nd in the SANS Women's History Month BootUp CTF, 2nd in the WiCyS x Target Cyber Defense Challenge, and earning Runner-Up Most Creative Report and 5th place in the SANS Holiday Hack Challenge.</p>
 
-                <p>Outside of competitions, my homelab and independent research keep the work hands-on. The GCP honeypot is complete, 96 million events across 28 days documented in a 16-report research series. AeroLab v2 is the current focus: a full rebuild across two physical Proxmox nodes with five segmented networks and a detection stack built around Elastic SIEM 9.x, Velociraptor for endpoint forensics, and MITRE Caldera for ATT&CK-mapped adversary emulation against a Windows Server 2022 domain controller. The goal is simple: run an attack, see what the SIEM catches, write a Sigma rule, repeat. The lab also has an AI security side: a local LLM stack running open-weight Mistral models on Ollama, with tool use enabled, a retrieval pipeline built on local embeddings, and a QLoRA voice fine-tune trained in Unsloth on my own writeups. I wrote <a href="https://github.com/Aeronique/llm-redteam-mcp" target="_blank">llm-redteam-mcp</a>, an MCP tool that runs offensive tests against those models, probing prompt handling, tool use, and retrieval behavior in a fully controlled environment. I'm also working through the Cisco CCNA 200-301 curriculum via the NetworkChuck Summer of CCNA to sharpen the networking fundamentals that sit underneath all of it.</p>
+                <p>Outside of competitions, my homelab and independent research keep the work hands-on. The GCP honeypot is complete, 96 million events across 28 days documented in a 16-report research series. AeroLab v2 is the current focus: a full rebuild across two physical Proxmox nodes with five segmented networks and a detection stack built around Elastic SIEM 9.x, Velociraptor for endpoint forensics, and MITRE Caldera for ATT&CK-mapped adversary emulation against a Windows Server 2022 domain controller, running identity-based attacks including Kerberoasting, AS-REP roasting, Pass-the-Hash, and DCSync, then capturing and analyzing the resulting attack telemetry in Elastic SIEM. The lab also has an AI security side: a local LLM stack running open-weight Mistral models on Ollama, with tool use enabled, a retrieval pipeline built on local embeddings, and a QLoRA voice fine-tune trained in Unsloth on my own writeups. I wrote <a href="https://github.com/Aeronique/llm-redteam-mcp" target="_blank">llm-redteam-mcp</a>, an MCP tool that runs offensive tests against those models, probing prompt handling, tool use, and retrieval behavior in a fully controlled environment. I'm also working through the Cisco CCNA 200-301 curriculum via the NetworkChuck Summer of CCNA to sharpen the networking fundamentals that sit underneath all of it.</p>
             </div>
             
             <div class="about-contact">
@@ -220,7 +220,7 @@ title: About
 
         <h3 class="subsection-title">Technical Writing</h3>
         <div class="writing-item">
-            <p>Author of technical reports and analysis documenting CTF challenge solutions, honeypot deployment findings, blockchain security research, and homelab infrastructure. Published 8 articles at <a href="https://medium.com/@aeronique" target="_blank" class="inline-link">medium.com/@aeronique</a></p>
+            <p>Author of technical reports and analysis documenting CTF challenge solutions, honeypot deployment findings, blockchain security research, and homelab infrastructure. Published 35+ articles, including a 16-report threat intelligence series, at <a href="{{ '/writeups/' | relative_url }}" class="inline-link">aerobytes.io/writeups</a></p>
         </div>
     </div>
 </section>
@@ -326,15 +326,29 @@ title: About
             <div class="experience-item">
                 <div class="experience-header">
                     <div>
+                        <h3 class="experience-title">AI Safety Red Team Fellow</h3>
+                        <p class="experience-company">Handshake AI | Remote (Contract)</p>
+                    </div>
+                    <span class="experience-date">July 2026 - Present</span>
+                </div>
+                <ul class="experience-responsibilities">
+                    <li>Conduct structured adversarial testing of large language models, probing model behavior against safety policies and documenting reproducible findings</li>
+                    <li>Apply offensive security methodology and threat intelligence tradecraft to identify failure modes in frontier AI systems</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
                         <h3 class="experience-title">AI Workflow Engineer & Threat Content Analyst (Volunteer)</h3>
                         <p class="experience-company">KC7 Foundation | Remote</p>
                     </div>
                     <span class="experience-date">2026 - Present</span>
                 </div>
                 <ul class="experience-responsibilities">
-                    <li>Contributed to a published investigation, authoring a threat scenario and investigative workflow released on KC7's free cybersecurity education platform</li>
-                    <li>Designed an agentic content pipeline using LLM-powered agents that takes a human-authored scenario concept and generates the full game, including threat narrative, datasets, and KQL queries, with projected production time dropping from 2-3 months to approximately 2 weeks</li>
-                    <li>Review threat scenarios, datasets, and investigative workflows for technical accuracy, validating TTP realism, identifying gaps before scenarios reach learners, and providing structured feedback to the KC7 team to maintain consistent quality standards</li>
+                    <li>Designed and built an agentic LLM pipeline of 40+ specialized agents, cutting threat scenario production time from roughly three weeks to roughly three hours</li>
+                    <li>Contributed to 6+ published games on KC7's free cybersecurity education platform, authoring threat scenarios and investigative workflows</li>
+                    <li>Review threat scenarios and investigative workflows for technical accuracy, validating that attacker techniques reflect realistic TTPs</li>
                 </ul>
             </div>
 
