@@ -178,7 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'ai red teamer',
             'ai security engineer',
             'reverse engineer',
-            'purple teamer',
+            'malware analyst',
+            'threat hunter',
             'threat intelligence analyst'
         ];
         
@@ -441,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var rotatingEl = document.querySelector('.rotating-text');
         var cursorEl = document.querySelector('.cursor');
         if (rotatingEl && cursorEl) {
-            var roles = ['ai red teamer', 'ai security engineer', 'reverse engineer', 'purple teamer', 'threat intelligence analyst'];
+            var roles = ['ai red teamer', 'ai security engineer', 'reverse engineer', 'malware analyst', 'threat hunter', 'threat intelligence analyst'];
             var idx = 0, charIdx = 0, deleting = false, speed = 100;
             cursorEl.style.display = 'none';
 
