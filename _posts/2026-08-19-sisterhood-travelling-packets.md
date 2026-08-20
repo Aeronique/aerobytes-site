@@ -1,6 +1,6 @@
 ---
 layout: writeup
-title: "Sisterhood of the Travelling Packets: Walking the Pantalones Leak Site"
+title: "Sisterhood of the Travelling Packets: Caught With Their Pantalones Down"
 date: 2026-08-19
 category: ctf
 tags: [flare, sans, wicys, web, recon, Tor, broken-access-control, idor, credential-reuse, darkweb, ransomware]
