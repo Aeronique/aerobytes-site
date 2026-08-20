@@ -67,6 +67,8 @@ Hitting `/api.php` with no parameters returns an error that lists every action i
 
 ![api.php returning its full list of valid actions inside a JSON error](/assets/images/sisterhood-travelling-packets/4.png)
 
+`api.php` is a single PHP script that routes on its query string. The first parameter follows a `?`, and each parameter after that is joined with an `&`. The `action` parameter selects the operation, and the sections below build the call up one parameter at a time.
+
 Seven actions, none of them gated by authentication: `upload`, `status`, `messages`, `decrypt`, `wallets`, `payloads`, `exfil`. An endpoint that runs sensitive actions without confirming the caller is broken access control, the risk that has held the top spot on the OWASP Top 10 since the 2021 edition. `messages` was the most promising, so I started there.
 
 ## Reading the Crew's Chat Logs
@@ -78,6 +80,12 @@ Seven actions, none of them gated by authentication: `upload`, `status`, `messag
 ```
 
 ![The messages action asking for a conversation_id parameter](/assets/images/sisterhood-travelling-packets/5.png)
+
+It wants a `conversation_id`. That is the second parameter, so it joins the string with an `&`, and the endpoint returns a full chat log:
+
+```
+/api.php?action=messages&conversation_id=0
+```
 
 Conversation IDs are sequential integers. IDs 0 through 4 each return a full internal chat log. Anything past 4 returns "conversation not found" with a hint that a valid ID looks like `conversation_id=0`. Changing a predictable ID to read records that belong to someone else is an Insecure Direct Object Reference, or IDOR. The OWASP API Security Top 10 ranks it first, under the name Broken Object Level Authorization (API1:2023). The object here is a private conversation, and the server never checks whether the caller may read it. Five conversations came back, and the crew talks like no one is listening:
 
