@@ -51,12 +51,6 @@ None of the victim data holds the flag: not the archives, not the timers, not th
 
 When a site hides endpoints, `robots.txt` often lists them anyway, because the owner still wants crawlers to skip them. This one actually does.
 
-```
-User-agent: *
-Disallow: /api.php
-Disallow: /admin.php
-```
-
 ![robots.txt disallowing /api.php and /admin.php](/assets/images/sisterhood-travelling-packets/3.png)
 
 Two paths the crew wanted kept quiet: a backend API and an admin login. Both go on the list.
@@ -71,10 +65,6 @@ Hitting `/api.php` with no parameters returns an error that lists every action i
 /api.php
 ```
 
-```json
-{"error":"missing required parameter: action","valid_actions":["upload","status","messages","decrypt","wallets","payloads","exfil"]}
-```
-
 ![api.php returning its full list of valid actions inside a JSON error](/assets/images/sisterhood-travelling-packets/4.png)
 
 Seven actions, none of them gated by authentication: `upload`, `status`, `messages`, `decrypt`, `wallets`, `payloads`, `exfil`. An endpoint that runs sensitive actions without confirming the caller is broken access control, the risk that has held the top spot on the OWASP Top 10 since the 2021 edition. `messages` was the most promising, so I started there.
@@ -85,10 +75,6 @@ Seven actions, none of them gated by authentication: `upload`, `status`, `messag
 
 ```
 /api.php?action=messages
-```
-
-```json
-{"error":"missing required parameter: conversation_id"}
 ```
 
 ![The messages action asking for a conversation_id parameter](/assets/images/sisterhood-travelling-packets/5.png)
