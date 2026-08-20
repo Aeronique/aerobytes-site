@@ -195,3 +195,5 @@ Every step in this solve maps to a named weakness class. If you want to carry th
 ## Credits
 
 Thanks to Flare, SANS, and WiCyS for the challenge! It was quick, well built, and a good reminder that the fastest route through a web target is often reading what the other side left in the open! I'm excited for my *fancy hacker shirt!*
+
+<small><em>The research, solution, and drafting here are my own. I used an AI assistant to help structure and edit this writeup.</em></small>
