@@ -87,7 +87,7 @@ It wants a `conversation_id`. That is the second parameter, so it joins the stri
 /api.php?action=messages&conversation_id=0
 ```
 
-Conversation IDs are sequential integers. IDs 0 through 4 each return a full internal chat log. Anything past 4 returns "conversation not found" with a hint that a valid ID looks like `conversation_id=0`. Changing a predictable ID to read records that belong to someone else is an Insecure Direct Object Reference, or IDOR. The OWASP API Security Top 10 ranks it first, under the name Broken Object Level Authorization (API1:2023). The object here is a private conversation, and the server never checks whether the caller may read it. Five conversations came back, and the crew talks like no one is listening:
+Conversation IDs are sequential integers. IDs 0 through 4 each return a full internal chat log. Anything past 4 returns "conversation not found" with a hint that a valid ID looks like `conversation_id=0`. Changing a predictable ID to read records that belong to someone else is an **Insecure Direct Object Reference**, or **IDOR**. The OWASP API Security Top 10 ranks it first, under the name Broken Object Level Authorization (API1:2023). The object here is a private conversation, and the server never checks whether the caller may read it. Five conversations are visible and the crew talks like no one is listening:
 
 - **0**: uploading the AetherFlow data, ransom priced at 4.5 BTC
 - **1**: payload staging for StratifyTech, and vex shrugging off the `.exfil.sh` file left inside the AetherFlow archive ("its a dotfile tho so nobody will see it probably")
@@ -129,7 +129,7 @@ That leaves the second path from `robots.txt`. `/admin.php` is a login form unde
 
 ![The pantalones admin login panel](/assets/images/sisterhood-travelling-packets/7.png)
 
-mora is crew, so her name paired with her recycled password is the natural first guess. I typed the two values straight into the login form and submitted:
+`mora` is crew, so her name paired with her recycled password is the natural first guess. I typed the two values straight into the login form and submitted:
 
 ```
 username: mora
@@ -176,7 +176,7 @@ The challenge is a checklist of mistakes that would compromise a real crew:
 5. vex left `.exfil.sh`, holding the panel URL and API key, inside a published leak archive.
 6. Every warning crypt raised got waved off ("its behind tor who cares," "ill do it tomorrow its 4am").
 
-This plays out well beyond CTFs and into a real operation. In February 2024, a task force called Operation Cronos, led by the UK National Crime Agency alongside the FBI, Europol, and other partners, seized the infrastructure of LockBit, at the time the most active ransomware group in the world. Investigators took the leak site, the affiliate panel, the source code, internal chat logs, victim records, and decryption keys, and by LockBit's own account they got in through an unpatched PHP flaw on the group's public servers. The crew that squeezed thousands of victims over weak security lost its whole operation to weak security of its own. Pantalones is that same story played for laughs.
+This plays out well beyond CTFs and into a real operation. In February 2024, a task force called **Operation Cronos**, led by the UK National Crime Agency alongside the FBI, Europol, and other partners, seized the infrastructure of **LockBit**, at the time the most active ransomware group in the world. Investigators took the leak site, the affiliate panel, the source code, internal chat logs, victim records, and decryption keys, and by LockBit's own account they got in through an unpatched PHP flaw on the group's public servers. The crew that squeezed thousands of victims over weak security lost its whole operation to weak security of its own. Pantalones is that same story played for laughs.
 
 The setup is comedic but the failures under it are exceedingly ordinary. Access control and credential hygiene stop most intrusions of this kind, and they are the first controls to slip when an operator assumes no one is looking.
 
@@ -194,4 +194,4 @@ Every step in this solve maps to a named weakness class. If you want to carry th
 
 ## Credits
 
-Thanks to Flare, SANS, and WiCyS for the challenge! It was quick, well built, and a good reminder that the fastest route through a web target is often reading what the other side left in the open! I'm excited for my fancy hacker shirt!
+Thanks to Flare, SANS, and WiCyS for the challenge! It was quick, well built, and a good reminder that the fastest route through a web target is often reading what the other side left in the open! I'm excited for my *fancy hacker shirt!*
