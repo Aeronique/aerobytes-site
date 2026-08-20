@@ -11,9 +11,9 @@ back_label: writeups
 
 Flare, SANS, and WiCyS ran Sisterhood of the Travelling Packets over three days in August 2026. One flag, one target, and speed decided the standings. The first 250 solvers won a free shirt, and I solved it early enough to earn one!
 
-The target was a leak site for a fictional ransomware crew that calls itself pantalones, hosted as a Tor hidden service. The challenge is offline now, so the address is redacted throughout. The whole solve runs on the crew's own OPSEC failures. The gang that robs everyone else guards its own systems poorly, and every step below turns one of those mistakes back on it.
+The target was a leak site for a fictional ransomware crew that calls itself Pantalones, hosted as a Tor hidden service. The challenge is offline now, so the address is redacted throughout. The whole solve runs on the crew's own OPSEC failures. The gang that robs everyone else guards its own systems poorly, and every step below turns one of those mistakes back on it.
 
-The front page set a trap, and many players walked into it. Two of the six victims were marked leaked, each with a downloadable archive of convincing stolen data: SQL dumps, chat exports, API keys, customer records. An archive that size is the obvious place to hunt, so a lot of people spent the event grinding through gigabytes. The flag was not in the archives. It surfaced only after treating the site as a whole and reading the page source.
+The front page set a trap, and many players walked into it. Two of the six victims were marked leaked, each with a downloadable archive of convincing stolen data: SQL dumps, chat exports, API keys, customer records. An archive that size is the obvious place to hunt, so a lot of people spent the event grinding through archive files. But! The flag was not in the archives. It surfaced only after treating the site as a whole and reading the page source.
 
 Entry point: a Tor hidden service, address `[REDACTED]`.
 
@@ -23,7 +23,7 @@ The landing page follows the standard leak site layout: a crew banner, then a vi
 
 ![The pantalones leak site landing page listing six victims, two leaked and four on release countdowns](/assets/images/sisterhood-travelling-packets/1.png)
 
-The page pushes you toward the archives. Read the source first.
+The page pushes you toward the archives. But let's put our hacker hoodies on and read the page source first.
 
 ## The Comment in the Source
 
@@ -49,7 +49,7 @@ None of the victim data holds the flag: not the archives, not the timers, not th
 
 ## robots.txt Hands Over the Map
 
-When a site hides endpoints, `robots.txt` often lists them anyway, because the owner still wants crawlers to skip them. This one actually does.
+When a site hides endpoints, `robots.txt` often lists them anyway, because the owner still wants crawlers to skip them. This one actually exists and functions.
 
 ![robots.txt disallowing /api.php and /admin.php](/assets/images/sisterhood-travelling-packets/3.png)
 
@@ -59,7 +59,7 @@ One point worth stating for anyone new: `robots.txt` is only a request to crawle
 
 ## The API Documents Itself
 
-Hitting `/api.php` with no parameters returns an error that lists every action it accepts.
+Hitting `/api.php` with no parameters returns an error that lists every action it accepts. Useful information!
 
 ```
 /api.php
@@ -136,7 +136,7 @@ username: mora
 password: Pantal0n3s_Rul3z!
 ```
 
-The panel loads. This is credential reuse working the way it does outside a CTF: one password recovered in one place opens a second, unrelated system because the same secret protected both. The same behavior drives credential stuffing (MITRE ATT&CK T1110.004) and a large share of real account takeovers under Valid Accounts (T1078). The dashboard opens straight to a victim table with a Decryption Key column. The Sisterhood row's key is the flag, listed in plain view.
+The panel loads! This is **credential reuse** working the way it does outside a CTF with one password recovered in one place opens a second, unrelated system because the same secret protected both. The same behavior drives **credential stuffing (MITRE ATT&CK T1110.004)** and a large share of real account takeovers under **Valid Accounts (T1078)**. The dashboard opens straight to a victim table with a Decryption Key column. The Sisterhood row's key is the flag, listed in plain view.
 
 ![The admin dashboard with the Sisterhood decryption key highlighted](/assets/images/sisterhood-travelling-packets/8.png)
 
@@ -176,9 +176,9 @@ The challenge is a checklist of mistakes that would compromise a real crew:
 5. vex left `.exfil.sh`, holding the panel URL and API key, inside a published leak archive.
 6. Every warning crypt raised got waved off ("its behind tor who cares," "ill do it tomorrow its 4am").
 
-This plays out well beyond CTFs. In February 2024, a task force called Operation Cronos, led by the UK National Crime Agency alongside the FBI, Europol, and other partners, seized the infrastructure of LockBit, at the time the most active ransomware group in the world. Investigators took the leak site, the affiliate panel, the source code, internal chat logs, victim records, and decryption keys, and by LockBit's own account they got in through an unpatched PHP flaw on the group's public servers. The crew that squeezed thousands of victims over weak security lost its whole operation to weak security of its own. pantalones is that same story played for laughs.
+This plays out well beyond CTFs and into a real operation. In February 2024, a task force called Operation Cronos, led by the UK National Crime Agency alongside the FBI, Europol, and other partners, seized the infrastructure of LockBit, at the time the most active ransomware group in the world. Investigators took the leak site, the affiliate panel, the source code, internal chat logs, victim records, and decryption keys, and by LockBit's own account they got in through an unpatched PHP flaw on the group's public servers. The crew that squeezed thousands of victims over weak security lost its whole operation to weak security of its own. Pantalones is that same story played for laughs.
 
-The setup is comedic, but the failures under it are ordinary. Access control and credential hygiene stop most intrusions of this kind, and they are the first controls to slip when an operator assumes no one is looking.
+The setup is comedic but the failures under it are exceedingly ordinary. Access control and credential hygiene stop most intrusions of this kind, and they are the first controls to slip when an operator assumes no one is looking.
 
 ## Concepts and References
 
