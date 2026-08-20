@@ -95,7 +95,7 @@ Conversation IDs are sequential integers. IDs 0 through 4 each return a full int
 - **3**: vex clocking someone walking the API with sequential `conversation_id` values, the crew starting to sweat, crypt telling everyone to rotate the panel key, vex replying "ill do it tomorrow its 4am"
 - **4**: the NexaVista intrusion, phish to backup service account to domain admin, then an AD dump of 847 accounts
 
-Conversation 3 is the crew reacting to the enumeration in real time. Conversation 2 holds the solution.
+Conversation 3 is the crew reacting to the enumeration in real time. **Conversation 2 holds the solution.**
 
 ## The Password Slip
 
