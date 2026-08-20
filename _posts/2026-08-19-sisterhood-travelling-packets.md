@@ -3,7 +3,7 @@ layout: writeup
 title: "Sisterhood of the Travelling Packets: Walking the Pantalones Leak Site"
 date: 2026-08-19
 category: ctf
-tags: [flare, sans, wicys, web, recon, broken-access-control, idor, credential-reuse]
+tags: [flare, sans, wicys, web, recon, Tor, broken-access-control, idor, credential-reuse, darkweb, ransomware]
 excerpt: "A Flare, SANS, and WiCyS speed CTF built around a fictional ransomware crew's leak site. The solve chains the gang's own OPSEC failures: an unauthenticated API, an IDOR that leaks their internal chat logs, a password shared in plaintext, and admin credentials reused since 2011."
 back_url: /writeups/
 back_label: writeups
