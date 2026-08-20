@@ -9,7 +9,7 @@ back_url: /writeups/
 back_label: writeups
 ---
 
-Flare, SANS, and WiCyS ran Sisterhood of the Travelling Packets over three days in August 2026. One flag, one target, and speed decided the standings. I solved it in the top 250 and plenty early enough to earn a shirt!
+Flare, SANS, and WiCyS ran Sisterhood of the Travelling Packets over three days in August 2026. One flag, one target, and speed decided the standings. The first 250 solvers won a free shirt, and I solved it early enough to earn one!
 
 The target was a leak site for a fictional ransomware crew that calls itself pantalones, hosted as a Tor hidden service. The challenge is offline now, so the address is redacted throughout. The whole solve runs on the crew's own OPSEC failures. The gang that robs everyone else guards its own systems poorly, and every step below turns one of those mistakes back on it.
 
