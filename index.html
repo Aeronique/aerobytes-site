@@ -329,6 +329,45 @@ tab_title: "Aerobytes // Research Lab"
     </script>
 </section>
 
+<!-- =====================================================
+     WARDRIVING CARD
+     Live WDGWars stats card, embedded as an <img> so the
+     SVG is sandboxed. Self-contained scoped styles;
+     style.css stays untouched.
+     ===================================================== -->
+<section class="wardrive section">
+    <div class="container">
+        <div class="wd-head">
+            <h2 class="wd-title"><span class="section-number">//</span> <span>Wardriving</span></h2>
+            <a class="wd-profile" href="https://wdgwars.pl/" target="_blank" rel="noopener">wdgwars.pl &rarr;</a>
+        </div>
+
+        <p class="wd-caption">Networks logged in the field, tracked on WDGWars.</p>
+
+        <div class="wd-card-wrap">
+            <a href="https://wdgwars.pl/" target="_blank" rel="noopener" aria-label="WDGWars wardriving stats for Aeronique">
+                <img src="https://wdgwars.pl/card/Aeronique.svg" alt="WDGWars wardriving stats card for Aeronique" width="480" height="200" loading="lazy" class="wd-card">
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .wardrive .wd-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+        .wardrive .wd-title{font-family:var(--font-display,'Orbitron',sans-serif);font-weight:700;font-size:1.65rem;color:#fff;margin:0;display:flex;align-items:center;gap:10px}
+        .wardrive .wd-title .section-number{color:var(--cyber-cyan,#00d9ff)}
+        .wardrive .wd-profile{font-family:var(--font-mono,'Space Mono',monospace);font-size:.88rem;color:var(--cyber-cyan,#00d9ff);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}
+        .wardrive .wd-profile:hover{border-bottom-color:var(--cyber-cyan,#00d9ff)}
+        .wardrive .wd-caption{font-family:var(--font-mono,'Space Mono',monospace);font-size:.95rem;color:#9898b3;margin:0 0 20px}
+        .wardrive .wd-card-wrap{display:flex;justify-content:center}
+        .wardrive .wd-card{max-width:100%;height:auto;border:1px solid rgba(0,217,255,.2);border-radius:10px;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+        .wardrive .wd-card:hover{transform:translateY(-4px);border-color:var(--cyber-cyan,#00d9ff);box-shadow:0 6px 26px rgba(0,217,255,.22)}
+        @media (prefers-reduced-motion:reduce){
+            .wardrive .wd-card{transition:none}
+            .wardrive .wd-card:hover{transform:none}
+        }
+    </style>
+</section>
+
 <!-- Info Boxes Section -->
 <section class="info-boxes">
     <div class="container">
