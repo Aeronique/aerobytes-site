@@ -1012,7 +1012,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } else if (cmd === 'whoami') {
             addLine(output, 'aeronique (michelle duell)', '#a855f7');
-            addLine(output, 'intelligence analyst → red/purple team & AI security');
+            addLine(output, 'intelligence analyst → blue/purple team & AI security');
             addLine(output, 'GFACT · GSEC · GCIH (98%) · TAISE');
             addLine(output, '1st place WiCyS 2026 Conference CTF');
             addLine(output, '');
