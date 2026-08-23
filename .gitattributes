@@ -1,0 +1,27 @@
+# Store every text file with LF line endings in the repository.
+# Editors on Windows can still work however they like locally.
+* text=auto eol=lf
+
+# Explicit text types
+*.html  text eol=lf
+*.md    text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.json  text eol=lf
+*.txt   text eol=lf
+*.svg   text eol=lf
+
+# Keep these byte for byte, no conversion
+*.asc   -text
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
