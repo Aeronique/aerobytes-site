@@ -10,8 +10,6 @@ back_url: /honeypot-threat-research/
 back_label: Back to 28 Days Exposed
 ---
 
-# Cloud Infrastructure Abuse
-
 **Deployment Period:** February 1, 2026 to February 28, 2026 
  
 **Honeypot:** T-Pot Community Edition, Google Cloud Platform 

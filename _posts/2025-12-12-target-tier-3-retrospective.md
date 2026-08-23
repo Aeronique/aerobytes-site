@@ -10,8 +10,6 @@ excerpt: "Reflections on placing 2nd in the national cyber defense competition. 
 
 ![Tier 3 Badge](/assets/images/tier3.png)
 
-# 2025 Target x WiCyS Cyber Defense Challenge
-
 ## Tier 3 Presentation Summary
 
 **2nd Place Overall**

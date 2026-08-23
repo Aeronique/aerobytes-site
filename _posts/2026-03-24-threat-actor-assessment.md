@@ -10,8 +10,6 @@ back_url: /honeypot-threat-research/
 back_label: Back to 28 Days Exposed
 ---
 
-# Threat Actor Assessment
-
 **Deployment Period:** 2026/02/01 to 2026/02/28
 
 **Honeypot:** T-Pot Community Edition, Google Cloud Platform

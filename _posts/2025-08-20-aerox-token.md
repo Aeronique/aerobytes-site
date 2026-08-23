@@ -10,8 +10,6 @@ excerpt: "Exploring blockchain security by building and deploying an ERC-20 toke
 
 <img src="/assets/images/AeroX.png" alt="AeroX Token" style="max-width: 600px; margin: 2rem auto; display: block;">
 
-# AeroX: Building and Deploying My First ERC-20 Token
-
 Understanding blockchain security means understanding how blockchain actually works. So I built my own cryptocurrency token from scratch and deployed it to a live testnet.
 
 ## Why Build a Token?

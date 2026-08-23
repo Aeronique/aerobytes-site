@@ -4,6 +4,7 @@ title: "PowerAnalysis: Warmup"
 date: 2026-02-03
 category: picoctf
 tags: [picoctf, cryptography, side-channel, power-analysis, correlation-attack]
+excerpt: "A 400 point cryptography challenge where the encryption program leaks a bit of timing data on every computation. Recovering the full 16 byte AES key from that leak using a correlation attack against the S-box."
 back_url: /writeups/
 back_label: "Writeups"
 ---

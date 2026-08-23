@@ -10,7 +10,7 @@ back_url: /honeypot-threat-research/
 back_label: Back to 28 Days Exposed
 ---
 
-# CVE-2026-24061: GNU InetUtils telnetd Authentication Bypass
+## CVE-2026-24061: GNU InetUtils telnetd Authentication Bypass
 
 **Deployment Period:** 2026/02/01 to 2026/02/28
 

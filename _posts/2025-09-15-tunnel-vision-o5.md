@@ -10,7 +10,7 @@ excerpt: "Reverse engineering a DNS exfiltration binary when every other escape 
 
 ![Tunnel Vision Challenge](/assets/images/tunnelvision.png)
 
-# 2025 Target Cyber Defense Challenge: When All Exits Are Blocked, Go Underground
+## 2025 Target Cyber Defense Challenge: When All Exits Are Blocked, Go Underground
 
 **Target Corporation x Women in Cybersecurity (WiCyS)**
 

@@ -4,6 +4,7 @@ title: "droids1"
 date: 2026-02-08
 category: picoctf
 tags: [picoctf, reverse-engineering, android, apk, apktool, mobile-security]
+excerpt: "An Android reversing challenge that never needs a decompiler. Pulling the APK apart with apktool and finding the flag sitting in the resources folder, where the app was writing it to the log all along."
 back_url: /writeups/
 back_label: "Writeups"
 ---
