@@ -490,6 +490,7 @@ permalink: /writeups/
                 <button class="wu-sub-btn"    data-p="hacksmarter" onclick="wuSetT2('hacksmarter',this)">hack smarter</button>
                 <button class="wu-sub-btn"    data-p="htb"     onclick="wuSetT2('htb',this)">hackthebox</button>
                 <button class="wu-sub-btn"    data-p="kc7"     onclick="wuSetT2('kc7',this)">kc7</button>
+                <button class="wu-sub-btn"    data-p="crackmes" onclick="wuSetT2('crackmes',this)">crackmes</button>
                 <button class="wu-sub-btn"    data-p="picoctf" onclick="wuSetT2('picoctf',this)">picoctf</button>
             </div>
         </div>
@@ -856,6 +857,62 @@ permalink: /writeups/
                 </div>
             </div>
 
+            <!-- Crackmes -->
+            <div class="wu-lab-sub" id="sub-crackmes">
+                <div class="wu-sub-head">
+                    <h3 class="wu-sub-title" style="color: #a855f7;">// Crackmes</h3>
+                    <div class="wu-section-line" style="flex:1;height:1px;background:linear-gradient(90deg,rgba(168,85,247,0.4),transparent);opacity:0.4;"></div>
+                </div>
+
+                <div class="wu-terminal">
+                    <div class="wu-terminal-bar"><i class="fas fa-terminal"></i> crackmes_stats.sh</div>
+                    <div class="wu-terminal-stats">
+                        {% assign crackmes_posts = site.posts | where: "category", "crackmes" %}
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> solved</div>
+                            <div class="wu-stat-num">{{ crackmes_posts.size }}</div>
+                            <div class="wu-stat-sub">binaries reversed</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> focus</div>
+                            <div class="wu-stat-num sm">STATIC ANALYSIS</div>
+                            <div class="wu-stat-sub">elf / x64</div>
+                        </div>
+                        <div class="wu-stat">
+                            <div class="wu-stat-label"><span class="ps">$</span> series</div>
+                            <div class="wu-stat-num sm">Phrackery</div>
+                            <div class="wu-stat-sub">18 levels</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wu-card-grid" id="crackmesGrid">
+                    {% for post in crackmes_posts %}
+                    <a href="{{ post.url }}" class="wu-card">
+                        <div class="wu-card-head">
+                            <span class="wu-card-name">{{ post.title }}</span>
+                        </div>
+                        {% if post.difficulty or post.arch %}
+                        <div class="wu-card-desc" style="color: var(--cyber-purple); font-family: var(--font-mono); font-size: 0.72rem;">{% if post.level %}Level {{ post.level }}{% endif %}{% if post.difficulty %} &middot; {{ post.difficulty }}{% endif %}{% if post.arch %} &middot; {{ post.arch }}{% endif %}</div>
+                        {% endif %}
+                        {% if post.excerpt %}
+                        <div class="wu-card-desc">{{ post.excerpt | strip_html | truncatewords: 12 }}</div>
+                        {% endif %}
+                        {% if post.tags %}
+                        <div class="wu-card-tags">
+                            {% for tag in post.tags limit:3 %}
+                            <span class="wu-card-tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                    {% if crackmes_posts.size == 0 %}
+                    <div class="wu-placeholder">binaries coming soon...</div>
+                    {% endif %}
+                </div>
+            </div>
+
             <!-- PicoCTF -->
             <div class="wu-lab-sub" id="sub-picoctf">
                 <div class="wu-sub-head">
@@ -1024,11 +1081,13 @@ permalink: /writeups/
             var showHackSmarter = activeT2 === 'all' || activeT2 === 'hacksmarter';
             var showHTB     = activeT2 === 'all' || activeT2 === 'htb';
             var showKC7     = activeT2 === 'all' || activeT2 === 'kc7';
+            var showCrackmes = activeT2 === 'all' || activeT2 === 'crackmes';
             var showPicoCTF = activeT2 === 'all' || activeT2 === 'picoctf';
             document.getElementById('sub-aerolab').style.display = showAeroLab ? '' : 'none';
             document.getElementById('sub-hacksmarter').style.display = showHackSmarter ? '' : 'none';
             document.getElementById('sub-htb').style.display     = showHTB     ? '' : 'none';
             document.getElementById('sub-kc7').style.display     = showKC7     ? '' : 'none';
+            document.getElementById('sub-crackmes').style.display = showCrackmes ? '' : 'none';
             document.getElementById('sub-picoctf').style.display = showPicoCTF ? '' : 'none';
             wuFilterHTB();
         }
@@ -1064,6 +1123,7 @@ permalink: /writeups/
             total += document.querySelectorAll('#hacksmarterGrid .wu-card').length;
             total += document.querySelectorAll('#htbGrid .wu-card:not([style*="none"])').length;
             total += document.querySelectorAll('#kc7Grid .wu-card').length;
+            total += document.querySelectorAll('#crackmesGrid .wu-card').length;
             total += document.querySelectorAll('#picoctfGrid .wu-card').length;
         }
 
@@ -1076,7 +1136,7 @@ permalink: /writeups/
         }
 
         var span = document.getElementById('wuResultSpan');
-        var t2labels = { all: 'all labs', aerolab: 'aerolab', hacksmarter: 'hack smarter', htb: 'hackthebox', kc7: 'kc7', picoctf: 'picoctf' };
+        var t2labels = { all: 'all labs', aerolab: 'aerolab', hacksmarter: 'hack smarter', htb: 'hackthebox', kc7: 'kc7', crackmes: 'crackmes', picoctf: 'picoctf' };
         var t1labels = {
             all: 'all writeups',
             research: 'research & projects',
