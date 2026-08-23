@@ -12,6 +12,9 @@ Disallow: /classified/
 
 # Allow main content
 Allow: /writeups
+Allow: /aerolab
 Allow: /assets/css/
 Allow: /assets/js/
 Allow: /assets/images/
+
+Sitemap: https://aerobytes.io/sitemap.xml
