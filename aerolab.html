@@ -14,12 +14,56 @@ permalink: /aerolab/
     min-height: 100vh;
 }
 
+.al-banner-wrap {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2.5rem;
+}
+
 .al-banner {
     width: 100%;
     display: block;
     border: 1px solid rgba(0, 217, 255, 0.2);
     border-radius: 8px;
-    margin-bottom: 2.5rem;
+}
+
+/* Wordmark laid over the empty left side of the banner art */
+.al-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    text-align: left;
+    pointer-events: none;
+}
+
+.al-banner-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.1rem, 4.4vw, 3.4rem);
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: #f2f6ff;
+    margin: 0;
+    white-space: nowrap;
+    text-shadow:
+        0 0 8px rgba(0, 217, 255, 0.9),
+        0 0 26px rgba(0, 217, 255, 0.5),
+        0 0 52px rgba(168, 85, 247, 0.35),
+        0 2px 10px rgba(0, 0, 0, 0.85);
+}
+
+.al-banner-title .slash { color: var(--cyber-pink); }
+
+.al-banner-tag {
+    font-family: var(--font-mono);
+    font-size: clamp(0.4rem, 1.32vw, 1rem);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--cyber-blue);
+    margin: 0.75em 0 0 0;
+    white-space: nowrap;
+    text-shadow: 0 0 12px rgba(0, 217, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .al-intro p {
@@ -29,12 +73,6 @@ permalink: /aerolab/
     margin-bottom: 1rem;
 }
 
-.al-sub {
-    color: var(--cyber-purple);
-    font-style: italic;
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
-}
 
 .al-strip {
     margin-top: 2rem;
@@ -263,7 +301,8 @@ permalink: /aerolab/
 @media (max-width: 768px) {
     .al-grid { grid-template-columns: 1fr; }
     .al-tactic-title { font-size: 1.1rem; }
-    .al-sub { font-size: 1.2rem; }
+    .al-banner-title { letter-spacing: 0.06em; }
+    .al-banner-tag { letter-spacing: 0.16em; }
 }
 </style>
 
@@ -279,14 +318,15 @@ permalink: /aerolab/
 <section class="al-page">
     <div class="container">
 
-        <img src="/assets/images/aerolab-banner.png" alt="AeroLab, an isometric wireframe of the lab rack" class="al-banner">
+        <div class="al-banner-wrap">
+            <img src="/assets/images/aerolab-banner.png" alt="AeroLab, an isometric wireframe of the lab rack" class="al-banner">
+            <div class="al-banner-text">
+                <h1 class="al-banner-title"><span class="slash">//</span> AEROLAB</h1>
+                <p class="al-banner-tag">Attack Simulation and Detection</p>
+            </div>
+        </div>
 
         <div class="al-intro" style="margin-bottom: 1rem;">
-            <h1 class="page-title" style="justify-content: flex-start; text-align: left;">
-                <span class="section-number">//</span>
-                <span>AeroLab</span>
-            </h1>
-            <p class="al-sub">Attack Simulation and Detection</p>
             <p>AeroLab is my home lab. Each writeup below runs a single MITRE ATT&amp;CK technique against a live host, then works out how to catch it. Baseline the target, execute, detect it several different ways, compare what the endpoint tool sees against what the log pipeline recorded, write a rule, and return the host to its starting state.</p>
             <p>The interesting part is usually where a detection method fails rather than where it works. Every writeup documents the gaps and the false positives alongside the results, because a rule you cannot tune is a rule nobody will keep running.</p>
             <p>Hardware and network design are covered in the <a href="/writeups/aerolab-v2/" class="inline-link">AeroLab v2 build writeup</a>. Two Lenovo M920q nodes running Proxmox, a UniFi switch, segmented networks, and a full detection stack.</p>
