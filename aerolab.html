@@ -1,0 +1,375 @@
+---
+layout: default
+title: "AeroLab: Attack Simulation and Detection"
+permalink: /aerolab/
+---
+
+<style>
+/* =============================================
+   AEROLAB PAGE — scoped styles
+   ============================================= */
+
+.al-page {
+    padding: calc(var(--section-padding) + 120px) 2rem var(--section-padding) 2rem;
+    min-height: 100vh;
+}
+
+.al-banner {
+    width: 100%;
+    display: block;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+}
+
+.al-intro p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.al-sub {
+    color: var(--cyber-purple);
+    font-style: italic;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.al-strip {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 217, 255, 0.05);
+    border-left: 3px solid var(--cyber-blue);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.al-strip .ps { color: var(--cyber-magenta); }
+
+/* Stats terminal */
+.al-term {
+    background: var(--dark-bg, #0a0a0f);
+    border: 1px solid rgba(0, 217, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 3rem 0 3.5rem 0;
+    background-image: linear-gradient(rgba(0, 217, 255, .04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 217, 255, .04) 1px, transparent 1px);
+    background-size: 38px 38px;
+}
+
+.al-term-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 217, 255, .06);
+    border-bottom: 1px solid rgba(0, 217, 255, .15);
+    padding: 10px 16px;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: 2px;
+    color: var(--cyber-blue);
+}
+
+.al-term-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1.5rem;
+    padding: 1.75rem 1.5rem;
+}
+
+.al-stat-label {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: .5rem;
+}
+
+.al-stat-label .ps { color: var(--cyber-pink); }
+
+.al-stat-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--cyber-blue);
+    text-shadow: 0 0 16px rgba(0, 217, 255, .35);
+    line-height: 1.1;
+}
+
+.al-stat-num.sm { font-size: 1.05rem; }
+.al-stat-num.pink { color: var(--cyber-pink); text-shadow: 0 0 16px rgba(255, 20, 147, .35); }
+.al-stat-num.purple { color: var(--cyber-purple); text-shadow: 0 0 16px rgba(168, 85, 247, .35); }
+
+.al-stat-sub {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: #6b6f80;
+    margin-top: .35rem;
+}
+
+/* Tactic sections */
+.al-tactic { margin-bottom: 3.5rem; }
+
+.al-tactic-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.al-tactic-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--cyber-blue);
+    white-space: nowrap;
+    margin: 0;
+}
+
+.al-tactic-title .slash { color: var(--cyber-pink); }
+
+.al-tactic-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 217, 255, 0.4), transparent);
+}
+
+.al-tactic-count {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* Cards */
+.al-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 1.25rem;
+}
+
+.al-card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 217, 255, 0.15);
+    border-radius: 8px;
+    padding: 1.4rem;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.al-card:hover {
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.al-card-top {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-bottom: .75rem;
+}
+
+.al-badge {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: 1px;
+    color: var(--cyber-pink);
+    border: 1px solid rgba(255, 20, 147, 0.4);
+    border-radius: 3px;
+    padding: 2px 7px;
+    white-space: nowrap;
+}
+
+.al-badge.plat {
+    color: var(--cyber-purple);
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.al-badge.rule {
+    color: var(--cyber-blue);
+    border-color: rgba(0, 217, 255, 0.4);
+}
+
+.al-card-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin: 0 0 .5rem 0;
+}
+
+.al-card:hover .al-card-title { color: var(--cyber-blue); }
+
+.al-card-tech {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: .75rem;
+}
+
+.al-card-desc {
+    color: var(--text-secondary);
+    font-size: .85rem;
+    line-height: 1.6;
+    margin-bottom: .9rem;
+}
+
+.al-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+.al-card-tag {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--text-secondary);
+    background: rgba(0, 217, 255, 0.06);
+    border: 1px solid rgba(0, 217, 255, 0.12);
+    border-radius: 3px;
+    padding: 2px 6px;
+}
+
+.al-card-date {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    color: #6b6f80;
+    margin-left: auto;
+}
+
+.al-empty {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    padding: 2rem;
+    text-align: center;
+}
+
+.al-note {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(168, 85, 247, 0.05);
+    border-left: 3px solid var(--cyber-purple);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-size: .92rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .al-grid { grid-template-columns: 1fr; }
+    .al-tactic-title { font-size: 1.1rem; }
+    .al-sub { font-size: 1.2rem; }
+}
+</style>
+
+{% assign aerolab_posts = site.posts | where: "category", "aerolab" %}
+{% assign tactic_order = "Reconnaissance,Resource Development,Initial Access,Execution,Persistence,Privilege Escalation,Defense Evasion,Credential Access,Discovery,Lateral Movement,Collection,Command and Control,Exfiltration,Impact" | split: "," %}
+{% assign tactics_covered = 0 %}
+{% for t in tactic_order %}
+  {% assign t_posts = aerolab_posts | where: "tactic", t %}
+  {% if t_posts.size > 0 %}{% assign tactics_covered = tactics_covered | plus: 1 %}{% endif %}
+{% endfor %}
+{% assign rule_posts = aerolab_posts | where: "sigma", "yes" %}
+
+<section class="al-page">
+    <div class="container">
+
+        <img src="/assets/images/aerolab-banner.png" alt="AeroLab, an isometric wireframe of the lab rack" class="al-banner">
+
+        <div class="al-intro" style="margin-bottom: 1rem;">
+            <h1 class="page-title" style="justify-content: flex-start; text-align: left;">
+                <span class="section-number">//</span>
+                <span>AeroLab</span>
+            </h1>
+            <p class="al-sub">Attack Simulation and Detection</p>
+            <p>AeroLab is my home lab. Each writeup below runs a single MITRE ATT&amp;CK technique against a live host, then works out how to catch it. Baseline the target, execute, detect it several different ways, compare what the endpoint tool sees against what the log pipeline recorded, write a rule, and return the host to its starting state.</p>
+            <p>The interesting part is usually where a detection method fails rather than where it works. Every writeup documents the gaps and the false positives alongside the results, because a rule you cannot tune is a rule nobody will keep running.</p>
+            <p>Hardware and network design are covered in the <a href="/writeups/aerolab-v2/" class="inline-link">AeroLab v2 build writeup</a>. Two Lenovo M920q nodes running Proxmox, a UniFi switch, segmented networks, and a full detection stack.</p>
+
+            <div class="al-strip">
+                <span class="ps">$</span> Detection stack: Velociraptor &nbsp;|&nbsp; Sysmon &nbsp;|&nbsp; Winlogbeat &nbsp;|&nbsp; Elastic SIEM &nbsp;|&nbsp; Sigma &nbsp;|&nbsp; Suricata
+            </div>
+        </div>
+
+        <!-- Coverage stats -->
+        <div class="al-term">
+            <div class="al-term-bar"><i class="fas fa-terminal"></i> aerolab_coverage.sh</div>
+            <div class="al-term-stats">
+                <div class="al-stat">
+                    <div class="al-stat-label"><span class="ps">$</span> techniques</div>
+                    <div class="al-stat-num">{{ aerolab_posts.size }}</div>
+                    <div class="al-stat-sub">documented end to end</div>
+                </div>
+                <div class="al-stat">
+                    <div class="al-stat-label"><span class="ps">$</span> tactics</div>
+                    <div class="al-stat-num pink">{{ tactics_covered }}</div>
+                    <div class="al-stat-sub">of 14 enterprise tactics</div>
+                </div>
+                <div class="al-stat">
+                    <div class="al-stat-label"><span class="ps">$</span> rules</div>
+                    <div class="al-stat-num purple">{{ rule_posts.size }}</div>
+                    <div class="al-stat-sub">sigma rules written</div>
+                </div>
+                <div class="al-stat">
+                    <div class="al-stat-label"><span class="ps">$</span> framework</div>
+                    <div class="al-stat-num sm">MITRE ATT&amp;CK</div>
+                    <div class="al-stat-sub">enterprise matrix</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tactic sections -->
+        {% for tactic in tactic_order %}
+        {% assign tactic_posts = aerolab_posts | where: "tactic", tactic %}
+        {% if tactic_posts.size > 0 %}
+        <div class="al-tactic">
+            <div class="al-tactic-head">
+                <h2 class="al-tactic-title"><span class="slash">//</span> {{ tactic }}</h2>
+                <div class="al-tactic-line"></div>
+                <span class="al-tactic-count">{{ tactic_posts.size }} technique{% if tactic_posts.size != 1 %}s{% endif %}</span>
+            </div>
+            <div class="al-grid">
+                {% for post in tactic_posts %}
+                <a href="{{ post.url }}" class="al-card">
+                    <div class="al-card-top">
+                        {% if post.technique %}<span class="al-badge">{{ post.technique }}</span>{% endif %}
+                        {% if post.platform %}<span class="al-badge plat">{{ post.platform }}</span>{% endif %}
+                        {% if post.sigma == "yes" %}<span class="al-badge rule">sigma</span>{% endif %}
+                        <span class="al-card-date">{{ post.date | date: "%b %Y" | upcase }}</span>
+                    </div>
+                    <h3 class="al-card-title">{{ post.title }}</h3>
+                    {% if post.technique_name %}
+                    <div class="al-card-tech">{{ post.technique_name }}</div>
+                    {% endif %}
+                    {% if post.excerpt %}
+                    <div class="al-card-desc">{{ post.excerpt | strip_html | truncatewords: 28 }}</div>
+                    {% endif %}
+                    {% if post.tags %}
+                    <div class="al-card-tags">
+                        {% for tag in post.tags limit:4 %}
+                        <span class="al-card-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% if aerolab_posts.size == 0 %}
+        <div class="al-empty"><span class="prompt">$</span> no techniques documented yet</div>
+        {% endif %}
+
+        <div class="al-note">
+            <strong style="color: var(--cyber-purple);">On scope.</strong> Everything here runs against hosts I built and own, on an isolated lab network. Techniques are executed with benign payloads that prove the mechanism without doing damage, and every host is returned to a verified baseline afterward. Detection rules are published as written and tested, including the conditions where they would fire on ordinary activity.
+        </div>
+
+    </div>
+</section>
