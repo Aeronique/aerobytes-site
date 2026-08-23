@@ -181,10 +181,11 @@ body {
 }
 
 .hero-banner {
-    max-width: 1583px;
+    position: relative;
+    max-width: 1584px;
     width: 90%;
     height: auto;
-    aspect-ratio: 1583 / 566;
+    aspect-ratio: 1584 / 672;
     z-index: 10;
     animation: fadeInDown 1s ease-out;
 }
@@ -194,7 +195,41 @@ body {
     height: 100%;
     object-fit: contain;
     object-position: center;
+    border-radius: 8px;
     filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.4));
+}
+
+/* Wordmark laid over the banner art, upper right */
+.banner-wordmark {
+    position: absolute;
+    top: 4%;
+    right: 3.5%;
+    text-align: right;
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    white-space: nowrap;
+    font-size: clamp(0.72rem, 2.05vw, 2.15rem);
+    color: #f2f6ff;
+    text-shadow:
+        0 0 6px rgba(0, 217, 255, 0.9),
+        0 0 22px rgba(0, 217, 255, 0.55),
+        0 0 44px rgba(168, 85, 247, 0.4),
+        0 2px 10px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+}
+
+.banner-wordmark .wm-slash {
+    color: var(--cyber-pink);
+    text-shadow:
+        0 0 8px rgba(255, 20, 147, 0.9),
+        0 0 24px rgba(255, 20, 147, 0.5),
+        0 2px 10px rgba(0, 0, 0, 0.85);
+}
+
+.banner-wordmark .wm-lab {
+    color: var(--cyber-blue);
 }
 
 /* Mobile banner fix */
@@ -203,12 +238,9 @@ body {
         max-width: 100%;
         width: 95%;
     }
-    
-    .banner-img {
-        width: 100%;
-        height: auto;
-        max-height: 120px;
-        object-fit: contain;
+
+    .banner-wordmark {
+        letter-spacing: 0.1em;
     }
 }
 
@@ -216,9 +248,10 @@ body {
     .hero-banner {
         width: 100%;
     }
-    
-    .banner-img {
-        max-height: 80px;
+
+    .banner-wordmark {
+        letter-spacing: 0.06em;
+        font-size: clamp(0.6rem, 2.5vw, 1rem);
     }
 }
 
